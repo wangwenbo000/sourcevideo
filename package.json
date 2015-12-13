@@ -1,0 +1,27 @@
+{
+  "name": "thinkjs-application",
+  "description": "application created by thinkjs",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node www/development.js",
+    "compile": "babel --loose all --optional runtime --stage 0 --modules common src/ --out-dir app/ --retain-lines",
+    "watch-compile": "node -e \"console.log('<npm run watch-compile> no longer need, use <npm start> command direct.');console.log();\"",
+    "watch": "npm run watch-compile"
+  },
+  "dependencies": {
+    "thinkjs": "2.0.x",
+    "babel": "5.8.21",
+    "babel-runtime": "5.6.17"
+  },
+  "devDependencies": {
+    "babel-loader": "^6.2.0",
+    "gulp": "^3.9.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.1",
+    "gulp-webpack": "^1.5.0",
+    "sass-loader": "^3.1.2",
+    "vue": "^1.0.11",
+    "vue-loader": "^7.2.0",
+    "vue-router": "^0.7.7"
+  }
+}
