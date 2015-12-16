@@ -1,15 +1,11 @@
 <template>
-    <div>
-        <h1>hello</h1>
-    </div>
+    <Menu></Menu>
+    <router-view transition transition-mode="out-in"></router-view>
 </template>
 
 <script type="text/babel">
-
-</script>
-
-<style lang="sass?outputStyle=expanded">
-    h1{
-        color: #ff0000;
+    import Menu from './nav/nav.vue'
+    export default{
+        components:{Menu}
     }
-</style>
+</script>
