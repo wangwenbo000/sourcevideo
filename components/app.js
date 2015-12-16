@@ -11,40 +11,38 @@ import About from './about/about.vue'
 import Situation from './situation/situation.vue'
 import Join from './join/join.vue'
 
+//vue路由设置
 Vue.use(Router);
 var router = new Router();
 
 router.map({
-  '/':{
-    component:Index
-  },
-  '/index':{
-    component:Index,
-    subRoutes:{
-      '/situation':{
-        component:Situation
-      }
+    '/': {
+        component: Index
+    },
+    '/index': {
+        component: Index,
+        subRoutes: {
+            '/situation': {
+                component: Situation
+            }
+        }
+    },
+    '/work': {
+        component: Work,
+        subRoutes: {
+            '/design': {
+                component: Design
+            },
+            '/video': {
+                component: Video
+            }
+        }
+    },
+    '/about': {
+        component: About
+    },
+    '/join': {
+        component: Join
     }
-  },
-  '/work':{
-    component:Work,
-    subRoutes:{
-      '/design':{
-        component:Design
-      },
-      '/video':{
-        component:Video
-      }
-    }
-  },
-  '/about':{
-    component:About
-  },
-  //'/situation':{
-  //  component:Situation
-  //},
-  '/join':{
-    component:Join
-  }
 });
-router.start(App,'#app');
+router.start(App, '#app');
