@@ -1,11 +1,18 @@
 <template>
     <Menu></Menu>
-    <router-view transition transition-mode="out-in"></router-view>
+    <router-view transition="fade" transition-mode="out-in"></router-view>
 </template>
 
 <script type="text/babel">
     import Menu from './nav/nav.vue'
     export default{
-        components:{Menu}
+        components: {
+            Menu
+        }
     }
 </script>
+
+<style lang="sass?outputStyle=expanded">
+    /*全局样式表*/
+    @import "style.scss";
+</style>
