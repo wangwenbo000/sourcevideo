@@ -18,6 +18,6 @@
     }
 </script>
 
-<style lang="sass?outputStyle=expanded">
+<style lang="sass">
     @import "nav.scss";
 </style>

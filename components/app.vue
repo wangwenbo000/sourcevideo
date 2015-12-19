@@ -12,7 +12,9 @@
     }
 </script>
 
-<style lang="sass?outputStyle=expanded">
+<style lang="sass">
     /*全局样式表*/
+    @import "fontface.scss";
+    @import "normalize.scss";
     @import "style.scss";
 </style>

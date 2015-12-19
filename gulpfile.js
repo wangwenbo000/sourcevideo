@@ -11,6 +11,6 @@ gulp.task('webpack', function () {
   return gulp.src('components/*.js')
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(rename('app.js'))
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulp.dest('www/static/app'));
 });
