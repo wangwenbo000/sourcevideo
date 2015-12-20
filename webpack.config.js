@@ -4,8 +4,8 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry:'./components/app.js',
   output:{
-    path:__dirname+'/www/static/',
-    filename:'app/build.js'
+    path:__dirname+'/www/',
+    filename:'/static/app/build.js'
   },
   module: {
     loaders: [
@@ -23,7 +23,15 @@ module.exports = {
         loader: 'url',
         query:{
           limit:1,
-          name:'./fonts/'+'[name].[ext]'
+          name:'/static/fonts/'+'[name].[ext]'
+        }
+      },
+      {
+        test: /\.(jpg|png|gif)$/,
+        loader: 'url',
+        query:{
+          limit:10000,
+          name:'/static/img/'+'[name].[ext]'
         }
       }
     ]
@@ -39,7 +47,7 @@ module.exports = {
     }
   },
   plugins: [
-    new ExtractTextPlugin('css/style.css'),
+    new ExtractTextPlugin('/static/css/style.css'),
     //进入生产环境
     new webpack.DefinePlugin({
       'process.env': {

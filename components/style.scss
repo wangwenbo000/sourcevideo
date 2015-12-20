@@ -1,7 +1,65 @@
+$borderColor: #000;
+$borderWidth: 20px;
+html {
+  height: 100%;
+  padding: 0;
+  background: #000;
+}
+body{
+  margin: $borderWidth;
+}
+a{
+  text-decoration: none;
+}
+ul{
+  list-style: none;
+  padding: 0;
+}
+//四个边缘
+.border-left, .border-right, .border-top, .border-bottom {
+  position: fixed;
+  background: $borderColor;
+  z-index: 1000;
+}
+
+.border-left {
+  left: 0;
+  top:0;
+}
+
+.border-right {
+  right: 0
+}
+
+.border-top {
+  top: 0;
+}
+
+.border-bottom {
+  bottom: 0;
+  text-align: center;
+  span{
+    color: #fff;
+    font-size: 8px;
+    font-weight: 100;
+  }
+}
+
+.border-left, .border-right {
+  width: $borderWidth;
+  height: 100%;
+}
+
+.border-top, .border-bottom {
+  width: 100%;
+  height: $borderWidth;
+}
+
 //过渡动画
 .fade-transition {
   transition: opacity .3s ease;
 }
+
 .fade-enter, .fade-leave {
   opacity: 0;
 }

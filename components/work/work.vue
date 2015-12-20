@@ -1,6 +1,6 @@
 <template>
     <div id="work">
-        <h1>{{location}}</h1>
+        <img src="./img/sourcework.png" class="workTitle">
         <ul>
             <li><a href="#/work/video">video</a></li>
             <li><a href="#/work/design">design</a></li>
@@ -18,3 +18,6 @@
         }
     }
 </script>
+<style lang="sass">
+@import "work.scss";
+</style>
