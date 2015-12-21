@@ -13,4 +13,21 @@
     margin-left: -187px;
     margin-top:-206px;
   }
+  .workNav{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom:0;
+    height: 70px;
+    background: #fff url("img/bg.jpg") no-repeat center;
+    background-size: cover;
+    li{
+      width: 50%;
+      float: left;
+      text-align: center;
+      height: 60px;
+      margin-top: 5px;
+      line-height: 60px;
+    }
+  }
 }

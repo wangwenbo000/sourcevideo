@@ -1,11 +1,22 @@
 <template>
-    <a href="#//follow" id="follow">FOLLOW</a>
-    <a href="#//contact" id="contact">CONTACT</a>
-    <router-view transition="fade" transition-mode="out-in"></router-view>
+    <a href="javascript:;" id="follow">FOLLOW</a>
+    <a href="javascript:;" @click="showModal = true" id="contact">CONTACT</a>
+    <Contact :show.sync="showModal"></Contact>
 </template>
 
 <script type="text/babel">
-    export default{}
+    import Contact from './map.vue'
+    export default{
+        data(){
+            return {
+                showModal: false
+            }
+        },
+        components: {
+            Contact
+        },
+        methods: {}
+    }
 </script>
 
 <style lang="sass">

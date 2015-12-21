@@ -1,9 +1,9 @@
 <template>
     <div id="work">
         <img src="./img/sourcework.png" class="workTitle">
-        <ul>
-            <li><a href="#/work/video">video</a></li>
-            <li><a href="#/work/design">design</a></li>
+        <ul class="workNav">
+            <li><a href="#/work/video">Video Cases / 视频案例</a></li>
+            <li><a href="#/work/design">Graphic Design / 平面案例</a></li>
         </ul>
         <router-view></router-view>
     </div>
