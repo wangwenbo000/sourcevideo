@@ -58,14 +58,26 @@ $linkColor: #d6b264;
     }
   }
   .slider {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 1;
     li {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      overflow: hidden;
-      z-index: 1;
+
       img {
         width: 100%;
+      }
+    }
+  }
+}
+@media (max-width: 600px) {
+  .slider{
+    li{
+      overflow: hidden;
+      img{
+        height: 100%;
       }
     }
   }
