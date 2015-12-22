@@ -6,6 +6,7 @@
                 <img v-bind:src="'static/img/index/'+img.img" title="{{img.title}}">
             </li>
         </ul>
+        <a href="#/index/situation" class="moreNews">MORE+</a>
         <ul class="slider-bar">
             <li v-for="list in newlist" @mouseenter="slideTo($index)" @mouseleave="swiperAutoPlay">
                 <span>{{list.category}}</span>

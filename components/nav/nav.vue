@@ -7,6 +7,7 @@
         <li><a href="#/join">Join us <h2>加入</h2></a></li>
     </ul>
     <Share></Share>
+    <router-view transition="fade" transition-mode="in-out"></router-view>
 </template>
 
 <script type="text/babel">
