@@ -20,7 +20,7 @@
                 required: true,
                 twoWay: true
             }
-        },
+        }
     }
 </script>
 

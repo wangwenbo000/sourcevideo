@@ -5,7 +5,6 @@
     <div class="border-bottom">
         <span>Copyright soure video © 2010-2015 design&power superset.love</span>
     </div>
-
     <Menu></Menu>
     <router-view transition="fade" transition-mode="out-in"></router-view>
 </template>
