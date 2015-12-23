@@ -1,5 +1,6 @@
 $borderColor: #000;
 $borderWidth: 20px;
+$linkColor:#d6b264;
 html {
   height: 100%;
   padding: 0;
@@ -68,6 +69,14 @@ ul {
   position: absolute;
   right: 10px;
   top: 10px;
+  -webkit-transition: background-color .4s;
+  -moz-transition: background-color .4s;
+  -ms-transition: background-color .4s;
+  -o-transition: background-color .4s;
+  transition: background-color .4s;
+}
+.close:hover{
+  background: $linkColor url("nav/img/close.png") no-repeat center;
 }
 
 //过渡动画

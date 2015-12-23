@@ -1,3 +1,7 @@
+@import "../shadow.scss";
+
+$mapWidth: 70%;
+$mapHeight: 600px;
 #contactUs {
   width: 70%;
   height: 600px;
@@ -9,8 +13,9 @@
   background: #fff;
   z-index: 1000;
   transition: all .3s ease;
-  #GDMap{
+  @include shadowOnSides($mapWidth, $mapHeight, 10px, rgba(0, 0, 0, .4));
+  #GDMap {
     width: 100%;
-    height:100%;
+    height: 100%;
   }
 }

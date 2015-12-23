@@ -3,7 +3,8 @@
         <img src="./img/logo.png" alt="" id="logo">
         <ul class="slider swiper-wrapper">
             <li v-for="img in newlist" class="swiper-slide">
-                <img v-bind:src="'static/img/index/'+img.img" title="{{img.title}}">
+                <img data-src="static/img/index/{{img.img}}" class="swiper-lazy">
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </li>
         </ul>
         <a href="#/index/situation" class="moreNews">MORE+</a>
@@ -28,6 +29,7 @@
                 fade: {
                     crossFade: true
                 },
+                preloadImages: false,
                 lazyLoading: true
             })
         },
