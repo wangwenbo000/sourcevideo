@@ -49,24 +49,35 @@ $linkColor: #d6b264;
       width: calc(100% / 5 - 33px);
       height: 120px;
       float: left;
-      color: #707070;
       border-right: 1px solid #585858;
       padding: 16px 16px 0 16px;
-      -webkit-transition: color .3s;
+      -webkit-transition: all .3s;
       -moz-transition: all .3s;
       -ms-transition: all .3s;
       -o-transition: all .3s;
       transition: all .3s;
-      span {
+      a{
         display: block;
-        font-size: 12px;
+        color: #707070;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        -ms-transition: all .3s;
+        -o-transition: all .3s;
+        transition: all .3s;
+        span {
+          display: block;
+          font-size: 12px;
+        }
+        time {
+          font-size: 30px;
+        }
+        h2 {
+          font-size: 14px;
+          font-weight: 200;
+        }
       }
-      time {
-        font-size: 30px;
-      }
-      h2 {
-        font-size: 14px;
-        font-weight: 200;
+      a:hover{
+        color: $linkColor;
       }
     }
     li:last-child {

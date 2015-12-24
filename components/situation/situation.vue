@@ -1,8 +1,8 @@
 <template>
     <div id="situation">
         <div class="content">
-            <h1>Situationp <p>索斯最新通告</p></h1>
             <a href="#/index" class="close"></a>
+            <router-view ></router-view>
         </div>
     </div>
 </template>

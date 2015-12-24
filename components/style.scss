@@ -93,3 +93,14 @@ ul {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+
+.staggered-transition {
+  transition: all .5s ease;
+  overflow: hidden;
+  margin: 0;
+  height: 62px;
+}
+.staggered-enter, .staggered-leave {
+  opacity: 0;
+  height: 0;
+}

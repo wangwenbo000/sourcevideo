@@ -6,7 +6,6 @@
         <span>Copyright soure video © 2010-2015 design&power superset.love</span>
     </div>
     <router-view transition="fade" transition-mode="out-in"></router-view>
-    
     <Menu></Menu>
 
 </template>
