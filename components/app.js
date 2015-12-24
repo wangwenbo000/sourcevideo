@@ -40,15 +40,13 @@ router.map({
     }
   },
   '/work': {
-    component: Work,
-    subRoutes: {
-      '/design': {
-        component: Design
-      },
-      '/video': {
-        component: Video
-      }
-    }
+    component: Work
+  },
+  '/design': {
+    component: Design
+  },
+  '/video': {
+    component: Video
   },
   '/about': {
     component: About

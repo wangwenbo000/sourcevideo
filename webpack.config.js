@@ -51,7 +51,7 @@ module.exports = {
     //进入生产环境
     new webpack.DefinePlugin({
       'process.env': {
-        //NODE_ENV: '"production"'
+        NODE_ENV: '"production"'
       }
     }),
     new webpack.optimize.UglifyJsPlugin({

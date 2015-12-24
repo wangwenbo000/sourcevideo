@@ -1,6 +1,5 @@
 <template>
     <div id="video">
-        <h1>{{location}}</h1>
     </div>
 </template>
 
