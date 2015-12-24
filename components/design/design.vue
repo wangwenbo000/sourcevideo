@@ -12,3 +12,6 @@
         }
     }
 </script>
+<style lang="sass">
+    @import "design.scss";
+</style>
