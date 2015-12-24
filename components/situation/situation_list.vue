@@ -1,5 +1,6 @@
 <template>
     <h1>Situationp <p>索斯最新通告</p></h1>
+    <input type="text" v-model="search">
     <ul class="listCategory">
         <li>
             <a href="javascript:;" v-bind:class="query" @click="query = ''">
@@ -27,7 +28,7 @@
         </li>
     </ul>
     <ul class="listCategoryInList">
-        <li v-for="list in newlist | filterBy query in 'category'" transition="staggered" stagger="60">
+        <li v-for="list in newlist | filterBy query in 'category' | filterBy search in 'title'" transition="staggered" stagger="60">
             <time>{{list.date}}</time>
             <span>/ 23:59:34</span>
             <a href="#/index/situation/content/{{list.id}}">
@@ -42,6 +43,7 @@
         data(){
             return {
                 query:'',
+                search:'',
                 show: false,
                 newlist: [
                     {id:0, category: 'doing', date: '2015/07/23', title: '亚视前主播邓景辉今早堕楼身亡 曾被称为“新闻王子”', img: '1.jpg'},
