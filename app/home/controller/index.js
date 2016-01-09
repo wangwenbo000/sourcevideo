@@ -9,7 +9,4 @@
    */_default.prototype.
   indexAction = function indexAction() {
     //auto render template file index_index.html
-    return this.display();};_default.prototype.
-
-  helloAction = function helloAction() {
     return this.display();};return _default;})(_baseJs2['default']);exports['default'] = _default;module.exports = exports['default'];

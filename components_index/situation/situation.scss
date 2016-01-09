@@ -1,0 +1,20 @@
+#situation {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.6);
+  z-index: 999;
+  justify-content:center;//子元素水平居中
+  align-items:center;//子元素垂直居中
+  display:-webkit-flex;
+  .content {
+    position: relative;
+    z-index: 1000;
+    width: 90%;
+    height: 90%;
+    background: #ffffff url("../work/img/bg.jpg");
+    overflow: hidden;
+  }
+}

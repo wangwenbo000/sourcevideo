@@ -1,0 +1,26 @@
+@import "./bootstrap/scss/bootstrap.scss";
+
+.container {
+  margin-top: 56px;
+}
+
+.slider {
+  .card-header {
+    border-bottom: none;
+  }
+}
+.uploadForm .form-control{
+  line-height: 0.9;
+}
+.container{
+  padding: 10px;
+  background: #fff;
+  border:1px solid #eaeaea;
+}
+.fade-transition {
+  transition: opacity .3s ease;
+}
+
+.fade-enter, .fade-leave {
+  opacity: 0;
+}
