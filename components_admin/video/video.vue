@@ -4,7 +4,7 @@
             视频列表 <small class="text-muted">视频托管服务商为爱奇艺视频</small>
         </div>
         <div class="card-block">
-            <a href="#!/addVideo" class="btn btn-primary btn-sm text-right"><i class="fa fa-cloud-upload"></i>上传视频</a>
+            <a v-link="{name:'addVideo',params:{videoId:'upload'}}" class="btn btn-primary btn-sm text-right"><i class="fa fa-cloud-upload"></i>上传视频</a>
             <div class="dropdown-divider"></div>
             <table class="table table-striped table-hover">
                 <thead>
@@ -17,11 +17,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
+                <tr v-for="v in videolist">
+                    <th scope="row">{{v.id}}</th>
                     <td><img src="" alt=""></td>
-                    <td>政治局召开民主生活会 习近平讲话</td>
-                    <td>2015-08-08</td>
+                    <td>{{v.title}}</td>
+                    <td>{{v.date}}</td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="...">
                             <button type="button" class="btn btn-secondary"><i class="fa fa-pencil-square-o"></i></button>
@@ -59,9 +59,21 @@
 
 <script type="text/babel">
     export default{
+        ready(){
+            var getVideoAPI = '/admin/video/getlist';
+            this.$http.get(getVideoAPI).then((response)=>{
+                this.$set('videolist',response.data.data.data);
+            })
+        },
         methods:{
             isDelete(id){
-                window.confirm("确定要删除这条记录么?");
+                var isDel = window.confirm("确定要删除这条记录么?");
+                if(isDel){
+                    var delVideoAPI = '/admin/video/delnews';
+                    this.$http.post(delVideoAPI,{id:news.id,filename:news.cover}).then((response)=>{
+                        this.newslist.$remove(this.newslist[index]);
+                    });
+                }
             }
         }
     }

@@ -7,6 +7,7 @@ import Modal from './bootstrap/js/modal.js'
 import Vue from 'vue'
 import Router from 'vue-router'
 import VueValidator from 'vue-validator'
+import VueResource from 'vue-resource'
 import App from './admin.vue'
 
 //admin Components
@@ -27,6 +28,11 @@ import addPhotos from './photos/add.vue'
 //vue路由设置
 Vue.use(Router);
 Vue.use(VueValidator);
+Vue.use(VueResource);
+
+Vue.http.options.root = '/root';
+Vue.http.headers.common['Authorization'] = 'Basic YXBpOnBhc3N3b3Jk';
+Vue.http.options.emulateJSON = true;
 
 var router = new Router();
 
@@ -39,16 +45,16 @@ router.map({
     name: 'situation',
     component: Situation
   },
-  'addSituation': {
-    name: 'situation',
+  '/addSituation/:newsId': {
+    name: 'addSituation',
     component: Addstiuation
   },
-  'video': {
+  '/video': {
     name: 'video',
     component: Video
   },
-  'addVideo': {
-    name: 'video',
+  '/addVideo/:videoId': {
+    name: 'addVideo',
     component: AddVideo
   },
   'graphic': {

@@ -4,26 +4,28 @@
             公告列表
         </div>
         <div class="card-block">
-            <a href="#!/addSituation" class="btn btn-primary btn-sm text-right"><i class="fa fa-plus-circle"></i>  增加公告</a>
+            <a v-link="{name:'addSituation',params:{newsId:'upload'}}" class="btn btn-primary btn-sm text-right"><i class="fa fa-plus-circle"></i>  增加公告</a>
             <div class="dropdown-divider"></div>
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th>#</th>
                     <th>新闻标题</th>
+                    <th>分类</th>
                     <th>发布时间</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>湖南“吸毒市长”被逮捕 曾与毒友长期保持性关系</td>
-                    <td>2015-10-08</td>
+                <tr v-for="l in newslist">
+                    <th scope="row">{{l.id}}</th>
+                    <td>{{l.title}}</td>
+                    <td>{{l.catagory}}</td>
+                    <td>{{l.date}}</td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                            <button type="button" class="btn btn-secondary"><i class="fa fa-pencil-square-o"></i></button>
-                            <button type="button" class="btn btn-secondary" @click="isDelete"><i class="fa fa-trash-o text-danger"></i></button>
+                            <a class="btn btn-secondary" v-link="{name:'addSituation',params:{newsId:l.id}}"><i class="fa fa-pencil-square-o"></i></a>
+                            <a class="btn btn-secondary" @click="isDelete(l,$index)"><i class="fa fa-trash-o text-danger"></i></a>
                         </div>
                     </td>
                 </tr>
@@ -57,9 +59,21 @@
 
 <script type="text/babel">
 export default{
+    ready(){
+        var getStiuationAPI = '/admin/situation/getlist';
+        this.$http.get(getStiuationAPI).then((response)=>{
+            this.$set('newslist',response.data.data.data);
+        })
+    },
     methods:{
-        isDelete(id){
-            window.confirm("确定要删除这条记录么?");
+        isDelete(news,index){
+            var isDel = window.confirm("确定要删除这条记录么?");
+            if(isDel){
+                var delStiuationAPI = '/admin/situation/delnews';
+                this.$http.post(delStiuationAPI,{id:news.id,filename:news.cover}).then((response)=>{
+                    this.newslist.$remove(this.newslist[index]);
+                });
+            }
         }
     }
 }

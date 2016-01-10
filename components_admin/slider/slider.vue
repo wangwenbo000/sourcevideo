@@ -33,6 +33,10 @@
             <i class="fa fa-eye"></i> 人才招聘
             <span class="label label-pill label-danger pull-right">2</span>
         </a>
+        <a href="#!/job" class="list-group-item"
+           :class="[$route.name=='job'?'active':'']">
+            <i class="fa fa-user-secret"></i> 账号管理
+        </a>
         <a href="javascript:;" class="list-group-item"
            :class="[$route.name=='opensource'?'active':'']" data-toggle="modal" data-target="#myModal">
             <i class="fa fa-github-alt"></i> 开源库

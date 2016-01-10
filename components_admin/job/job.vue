@@ -76,6 +76,7 @@
                             <th>手机号码</th>
                             <th>电邮</th>
                             <th>应聘职业</th>
+                            <th>期望薪资</th>
                             <th>提交时间</th>
                             <th>操作</th>
                         </tr>
@@ -87,6 +88,7 @@
                             <td><h5>15117909848</h5></td>
                             <td>wangwenbo000@me.com</td>
                             <td>摄影师,摄影指导</td>
+                            <td>10000+</td>
                             <td>2015-08-08</td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="...">

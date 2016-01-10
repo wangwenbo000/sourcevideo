@@ -20,7 +20,7 @@
                 <li @click="query = 'TV'"><a href="javascript:;"><h3>TV</h3>电视</a></li>
                 <li @click="query = 'Progaganda'"><a href="javascript:;"><h3>Progaganda</h3>宣传片</a></li>
                 <li @click="query = 'Documentary'"><a href="javascript:;"><h3>Documentary</h3>记录片</a></li>
-                <li @click="query = 'Activity'"><a href="javascript:;"><h3>Activity</h3>活动</a></li>
+                <li @click="query = 'Activity'"><a href="javascript:;"><h3>Documentary</h3>活动</a></li>
             </ul>
             <input type="text" placeholder="输入影片关键词检索作品" v-model="search">
             <a href="" class="goDesign">Design</a>
