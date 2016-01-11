@@ -5,11 +5,11 @@
  */exports.__esModule = true;exports['default'] = 
 { 
   type: 'mysql', 
-  host: '182.92.213.118', 
+  host: '127.0.0.1', 
   port: '3306', 
   name: 'sourcevideo', 
   user: 'root', 
-  pwd: '15117909848', 
+  pwd: '', 
   prefix: 'sv_', 
   encoding: 'utf8', 
   nums_per_page: 10, 
