@@ -41,11 +41,15 @@ export default class extends Base {
   async uploadcoverAction() {
     var _this = this;
     let filename = this.post().filename;
+    console.log(filename);
     let uploadInfo = this.file('situation_cover');
+    console.log(uploadInfo);
     var fs = require('fs');
     var newFileName = think.isEmpty(filename) ? moment().format('YYYYMMDDHHmmss') + ".jpg" : filename;
+
+
     var oldPath = uploadInfo.path;
-    var newPath = think.RESOURCE_PATH + '/static/img/indexCover/';
+    var newPath = think.RESOURCE_PATH + '/static/img/indexCover/' ;
     fs.rename(oldPath, newPath + newFileName, function (err) {
       if (err) {
         console.error(err);

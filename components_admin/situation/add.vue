@@ -69,9 +69,19 @@
                 minImageHeight: 50,
                 showUpload: false
             };
-            $("#upload_situation_cover").fileinput(this.fileInputConfig);
+
+            this.uploadDom = "#upload_situation_cover";
+
+
             if (this.$route.params.newsId != 'upload') {
+                //更新配置
                 this.isEdit(parseInt(this.$route.params.newsId));
+                this.uploadCommand = 'filebatchuploadsuccess';
+            }else {
+                //添加配置
+                $(this.uploadDom).fileinput(this.fileInputConfig);
+                this.uploadCommand = 'fileuploaded';
+
             }
         },
         beforeDestroy(){
@@ -80,15 +90,10 @@
         methods: {
             add(event){
                 event.preventDefault();
-                var resource = this.$resource('/admin/situation/addlist');
-                $('#upload_situation_cover').fileinput('upload');
-                $('#upload_situation_cover').on('fileuploaded', (event, data)=> {
-                    this.$data.input.content = tinymce.activeEditor.getContent();
-                    this.$data.input.cover = data.response.data;
-                    this.$data.input.date = moment().format('YYYY-MM-DD HH:mm:ss');
-                    resource.save(this.$data.input).then((response)=> {
-                        window.location.href = "#!/situation";
-                    });
+                $(this.uploadDom).fileinput('upload');
+                $(this.uploadDom).on(this.uploadCommand, (event, data)=> {
+                    console.log(data);
+                    this.saveData(data);
                 });
             },
             isEdit(id){
@@ -98,9 +103,18 @@
                     this.$set("input", response);
                     tinymce.activeEditor.setContent(response.content);
                     this.fileInputConfig.uploadExtraData = {filename: response.cover};
-                    this.fileInputConfig.initialPreview = ["<img src='/static/img/indexCover/" + response.cover + "' class='file-preview-image'>"];
-                    $("#upload_situation_cover").fileinput('refresh', this.fileInputConfig);
-                })
+                    this.fileInputConfig.initialPreview = ["<img src='/static/img/indexCover/"+ response.cover +"' class='file-preview-image'>"];
+                    $(this.uploadDom).fileinput(this.fileInputConfig);
+                });
+            },
+            saveData(data){
+                var resource = this.$resource('/admin/situation/addlist');
+                this.$data.input.content = tinymce.activeEditor.getContent();
+                this.$data.input.cover = data.response.data;
+                this.$data.input.date = moment().format('YYYY-MM-DD HH:mm:ss');
+                resource.save(this.$data.input).then((response)=> {
+                    window.location.href = "#!/situation";
+                });
             }
         }
     }

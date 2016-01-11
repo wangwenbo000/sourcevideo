@@ -41,16 +41,20 @@
   uploadcoverAction = function uploadcoverAction() {var 
     _this, 
     filename, 
+
     uploadInfo, 
+
     fs, 
     newFileName, 
+
+
     oldPath, 
-    newPath;return _regeneratorRuntime.async(function uploadcoverAction$(context$2$0) {while (1) switch (context$2$0.prev = context$2$0.next) {case 0:_this = this;filename = this.post().filename;uploadInfo = this.file('situation_cover');fs = require('fs');newFileName = think.isEmpty(filename) ? _moment2['default']().format('YYYYMMDDHHmmss') + ".jpg" : filename;oldPath = uploadInfo.path;newPath = think.RESOURCE_PATH + '/static/img/indexCover/';
+    newPath;return _regeneratorRuntime.async(function uploadcoverAction$(context$2$0) {while (1) switch (context$2$0.prev = context$2$0.next) {case 0:_this = this;filename = this.post().filename;console.log(filename);uploadInfo = this.file('situation_cover');console.log(uploadInfo);fs = require('fs');newFileName = think.isEmpty(filename) ? _moment2['default']().format('YYYYMMDDHHmmss') + ".jpg" : filename;oldPath = uploadInfo.path;newPath = think.RESOURCE_PATH + '/static/img/indexCover/';
           fs.rename(oldPath, newPath + newFileName, function (err) {
             if (err) {
               console.error(err);} else 
             {
-              _this.success(newFileName);}});case 8:case 'end':return context$2$0.stop();}}, null, this);};_default.prototype.
+              _this.success(newFileName);}});case 10:case 'end':return context$2$0.stop();}}, null, this);};_default.prototype.
 
 
 
