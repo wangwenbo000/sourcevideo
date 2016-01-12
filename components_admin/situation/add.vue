@@ -66,8 +66,7 @@
                 allowedFileExtensions: ["jpg", "png", "gif"],
                 maxFileCount: 1,
                 minImageWidth: 50,
-                minImageHeight: 50,
-                showUpload: false
+                minImageHeight: 50
             };
 
             this.uploadDom = "#upload_situation_cover";
@@ -104,6 +103,15 @@
                     tinymce.activeEditor.setContent(response.content);
                     this.fileInputConfig.uploadExtraData = {filename: response.cover};
                     this.fileInputConfig.initialPreview = ["<img src='/static/img/indexCover/"+ response.cover +"' class='file-preview-image'>"];
+                    this.fileInputConfig.initialPreviewConfig= [
+                        {
+                            caption: response.cover,
+                            width: '120px',
+                            url: 'http://localhost/avatar/delete', // server delete action
+                            key: 100,
+                            extra: {filename: response.cover}
+                        }
+                    ]
                     $(this.uploadDom).fileinput(this.fileInputConfig);
                 });
             },

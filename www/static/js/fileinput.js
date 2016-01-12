@@ -273,16 +273,16 @@
         '   <span class="{previewFileIconClass}">{previewFileIcon}</span>\n' +
         '</div>';
     defaultFileActionSettings = {
-        removeIcon: '<i class="glyphicon glyphicon-trash text-danger"></i>',
-        removeClass: 'btn btn-xs btn-default',
+        removeIcon: '<i class="fa fa-trash-o"></i>',
+        removeClass: 'btn btn-danger-outline',
         removeTitle: 'Remove file',
-        uploadIcon: '<i class="glyphicon glyphicon-upload text-info"></i>',
-        uploadClass: 'btn btn-xs btn-default',
+        uploadIcon: '<i class="fa fa-arrow-circle-o-up"></i>',
+        uploadClass: 'btn btn-primary-outline',
         uploadTitle: 'Upload file',
-        indicatorNew: '<i class="glyphicon glyphicon-hand-down text-warning"></i>',
-        indicatorSuccess: '<i class="glyphicon glyphicon-ok-sign text-success"></i>',
-        indicatorError: '<i class="glyphicon glyphicon-exclamation-sign text-danger"></i>',
-        indicatorLoading: '<i class="glyphicon glyphicon-hand-up text-muted"></i>',
+        indicatorNew: '<i class="fa fa-hand-o-down"></i>',
+        indicatorSuccess: '<i class="fa fa-check"></i>',
+        indicatorError: '<i class="fa fa-exclamation-circle"></i>',
+        indicatorLoading: '<i class="fa fa-hand-o-up"></i>',
         indicatorNewTitle: 'Not uploaded yet',
         indicatorSuccessTitle: 'Uploaded',
         indicatorErrorTitle: 'Upload Error',
@@ -332,12 +332,13 @@
         '    </div>\n' +
         '  </div>\n' +
         '</div>';
-    tProgress = '<div class="progress">\n' +
-        '    <div class="{class}" role="progressbar"' +
-        ' aria-valuenow="{percent}" aria-valuemin="0" aria-valuemax="100" style="width:{percent}%;">\n' +
-        '        {percent}%\n' +
-        '     </div>\n' +
-        '</div>';
+    tProgress = '<progress class="{class}" value="{percent}" max="100">{percent}%</progress>';
+      //'<div class="progress">\n' +
+      //  '    <div class="{class}" role="progressbar"' +
+      //  ' aria-valuenow="{percent}" aria-valuemin="0" aria-valuemax="100" style="width:{percent}%;">\n' +
+      //  '        {percent}%\n' +
+      //  '     </div>\n' +
+      //  '</div>';
     tFooter = '<div class="file-thumbnail-footer">\n' +
         '    <div class="file-footer-caption" title="{caption}">{caption}</div>\n' +
         '    {progress} {actions}\n' +
@@ -353,7 +354,7 @@
         'title="{removeTitle}" {dataUrl}{dataKey}>{removeIcon}</button>\n';
     tActionUpload = '<button type="button" class="kv-file-upload {uploadClass}" title="{uploadTitle}">' +
         '   {uploadIcon}\n</button>\n';
-    tZoom = '<button type="button" class="btn btn-default btn-xs btn-block" title="{zoomTitle}: {caption}" onclick="{dialog}">\n' +
+    tZoom = '<button type="button" class="btn btn-secondary btn-xs btn-block" title="{zoomTitle}: {caption}" onclick="{dialog}">\n' +
         '   {zoomInd}\n' +
         '</button>\n';
     tGeneric = '<div class="file-preview-frame{frameClass}" id="{previewId}" data-fileindex="{fileindex}">\n' +
@@ -2594,19 +2595,19 @@
         customPreviewTags: {},
         previewSettings: defaultPreviewSettings,
         fileTypeSettings: defaultFileTypeSettings,
-        previewFileIcon: '<i class="glyphicon glyphicon-file"></i>',
+        previewFileIcon: '<i class="fa fa-file-o"></i>',
         previewFileIconClass: 'file-icon-4x',
         previewFileIconSettings: {},
         previewFileExtSettings: {},
         buttonLabelClass: 'hidden-xs',
-        browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+        browseIcon: '<i class="fa fa-folder-open-o"></i>',
         browseClass: 'btn btn-primary',
-        removeIcon: '<i class="glyphicon glyphicon-trash"></i>',
-        removeClass: 'btn btn-default',
-        cancelIcon: '<i class="glyphicon glyphicon-ban-circle"></i>',
-        cancelClass: 'btn btn-default',
-        uploadIcon: '<i class="glyphicon glyphicon-upload"></i>',
-        uploadClass: 'btn btn-default',
+        removeIcon: '<i class="fa fa-trash-o"></i>',
+        removeClass: 'btn btn-secondary',
+        cancelIcon: '<i class="fa fa-minus-square-o"></i>',
+        cancelClass: 'btn btn-secondary',
+        uploadIcon: '<i class="fa fa-arrow-circle-o-up"></i>',
+        uploadClass: 'btn btn-secondary',
         uploadUrl: null,
         uploadAsync: true,
         uploadExtraData: {},
@@ -2625,9 +2626,9 @@
         msgValidationErrorClass: 'text-danger',
         msgValidationErrorIcon: '<i class="glyphicon glyphicon-exclamation-sign"></i> ',
         msgErrorClass: 'file-error-message',
-        progressThumbClass: "progress-bar progress-bar-success progress-bar-striped active",
-        progressClass: "progress-bar progress-bar-success progress-bar-striped active",
-        progressCompleteClass: "progress-bar progress-bar-success",
+        progressThumbClass: "progress progress-success progress-striped active",
+        progressClass: "progress progress-success progress-striped active",
+        progressCompleteClass: "progress progress-success",
         previewFileType: 'image',
         zoomIndicator: '<i class="glyphicon glyphicon-zoom-in"></i>',
         elCaptionContainer: null,

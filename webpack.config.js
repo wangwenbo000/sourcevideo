@@ -42,6 +42,7 @@ module.exports = {
     ]
   },
   babel: {
+    cacheDirectory: true,
     presets: ['es2015'],
     plugins: ['transform-runtime']
   },
