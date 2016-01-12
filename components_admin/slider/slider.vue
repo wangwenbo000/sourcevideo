@@ -8,11 +8,11 @@
             <i class="fa fa-tachometer"></i> 控制台
         </a>
         <a href="#!/situation" class="list-group-item"
-           :class="[$route.name=='situation'?'active':'']">
+           :class="[$route.name=='situation' || $route.name=='addSituation'?'active':'']">
             <i class="fa fa-newspaper-o"></i> 新闻发布
         </a>
         <a href="#!/video" class="list-group-item"
-           :class="[$route.name=='video'?'active':'']">
+           :class="[$route.name=='video' || $route.name=='addVideo'?'active':'']">
             <i class="fa fa-youtube-play"></i> 视频管理
         </a>
 

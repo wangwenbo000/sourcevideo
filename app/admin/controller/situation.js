@@ -40,8 +40,6 @@
 
   uploadcoverAction = function uploadcoverAction() {var 
     _this, 
-    filename, 
-
     uploadInfo, 
 
     fs, 
@@ -49,13 +47,22 @@
 
 
     oldPath, 
-    newPath;return _regeneratorRuntime.async(function uploadcoverAction$(context$2$0) {while (1) switch (context$2$0.prev = context$2$0.next) {case 0:_this = this;filename = this.post().filename;console.log(filename);uploadInfo = this.file('situation_cover');console.log(uploadInfo);fs = require('fs');newFileName = think.isEmpty(filename) ? _moment2['default']().format('YYYYMMDDHHmmss') + ".jpg" : filename;oldPath = uploadInfo.path;newPath = think.RESOURCE_PATH + '/static/img/indexCover/';
+    newPath;return _regeneratorRuntime.async(function uploadcoverAction$(context$2$0) {while (1) switch (context$2$0.prev = context$2$0.next) {case 0:_this = this;uploadInfo = this.file('situation_cover');console.log(uploadInfo);fs = require('fs');newFileName = _moment2['default']().format('YYYYMMDDHHmmss') + ".jpg";oldPath = uploadInfo.path;newPath = think.RESOURCE_PATH + '/static/img/indexCover/';
+
           fs.rename(oldPath, newPath + newFileName, function (err) {
             if (err) {
               console.error(err);} else 
             {
-              _this.success(newFileName);}});case 10:case 'end':return context$2$0.stop();}}, null, this);};_default.prototype.
+              _this.success(newFileName);}});case 8:case 'end':return context$2$0.stop();}}, null, this);};_default.prototype.
 
+
+
+
+  delcoverAction = function delcoverAction() {var 
+    fs, 
+    imgPath;return _regeneratorRuntime.async(function delcoverAction$(context$2$0) {var _this2 = this;while (1) switch (context$2$0.prev = context$2$0.next) {case 0:fs = require('fs');imgPath = think.RESOURCE_PATH + '/static/img/indexCover/' + this.post().filename;
+          fs.unlink(imgPath, function (err) {
+            err ? _this2.fail() : _this2.success();});case 3:case 'end':return context$2$0.stop();}}, null, this);};_default.prototype.
 
 
 
@@ -63,6 +70,6 @@
     fs, 
     news, 
     delNews, 
-    imgPath;return _regeneratorRuntime.async(function delnewsAction$(context$2$0) {var _this2 = this;while (1) switch (context$2$0.prev = context$2$0.next) {case 0:fs = require('fs');news = this.model('news');context$2$0.next = 4;return _regeneratorRuntime.awrap(news.where({ id: this.post().id })['delete']());case 4:delNews = context$2$0.sent;imgPath = think.RESOURCE_PATH + '/static/img/indexCover/' + this.post().filename;
+    imgPath;return _regeneratorRuntime.async(function delnewsAction$(context$2$0) {var _this3 = this;while (1) switch (context$2$0.prev = context$2$0.next) {case 0:fs = require('fs');news = this.model('news');context$2$0.next = 4;return _regeneratorRuntime.awrap(news.where({ id: this.post().id })['delete']());case 4:delNews = context$2$0.sent;imgPath = think.RESOURCE_PATH + '/static/img/indexCover/' + this.post().filename;
           fs.unlink(imgPath, function (err) {
-            err ? _this2.fail() : _this2.success();});case 7:case 'end':return context$2$0.stop();}}, null, this);};return _default;})(_baseJs2['default']);exports['default'] = _default;module.exports = exports['default'];
+            err ? _this3.fail() : _this3.success();});case 7:case 'end':return context$2$0.stop();}}, null, this);};return _default;})(_baseJs2['default']);exports['default'] = _default;module.exports = exports['default'];

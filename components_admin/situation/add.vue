@@ -54,34 +54,44 @@
 <script type="text/babel">
     export default{
         ready(){
+            //初始化编辑器
             tinymce.init({
                 selector: '#editor',
                 plugins: "image imagetools",
                 height: 360
             });
+            //上传配置
             this.fileInputConfig = {
                 uploadUrl: "/admin/situation/uploadcover",
                 showCancel: false,
-                showRemove: false,
+                showRemove:false,
                 allowedFileExtensions: ["jpg", "png", "gif"],
                 maxFileCount: 1,
                 minImageWidth: 50,
                 minImageHeight: 50
             };
-
+            //上传组件dom
             this.uploadDom = "#upload_situation_cover";
+            this.updateId = this.$route.params.newsId;
 
-
-            if (this.$route.params.newsId != 'upload') {
+            if (this.updateId != 'upload' && typeof parseInt(this.updateId) === 'number') {
                 //更新配置
-                this.isEdit(parseInt(this.$route.params.newsId));
-                this.uploadCommand = 'filebatchuploadsuccess';
-            }else {
+                this.update(parseInt(this.updateId));
+            } else {
                 //添加配置
                 $(this.uploadDom).fileinput(this.fileInputConfig);
-                this.uploadCommand = 'fileuploaded';
-
             }
+            //上传结束后更新图片文件名
+            $(this.uploadDom).on('fileuploaded', (event, data)=> {
+                this.$data.input.cover = data.response.data;
+            });
+            $(this.uploadDom).on("filepredelete", (jqXHR)=> {
+                var abort = true;
+                if (confirm("你确定删除这张照片么?")) {
+                    abort = false;
+                }
+                return abort;
+            });
         },
         beforeDestroy(){
             tinymce.remove("#editor");
@@ -89,36 +99,32 @@
         methods: {
             add(event){
                 event.preventDefault();
-                $(this.uploadDom).fileinput('upload');
-                $(this.uploadDom).on(this.uploadCommand, (event, data)=> {
-                    console.log(data);
-                    this.saveData(data);
-                });
+                this.saveData();
             },
-            isEdit(id){
+            update(id){
                 var getStiuationAPI = '/admin/situation/getlist';
                 this.$http.post(getStiuationAPI, {id: id}).then((response)=> {
                     var response = response.data.data[0];
                     this.$set("input", response);
                     tinymce.activeEditor.setContent(response.content);
-                    this.fileInputConfig.uploadExtraData = {filename: response.cover};
-                    this.fileInputConfig.initialPreview = ["<img src='/static/img/indexCover/"+ response.cover +"' class='file-preview-image'>"];
-                    this.fileInputConfig.initialPreviewConfig= [
-                        {
-                            caption: response.cover,
-                            width: '120px',
-                            url: 'http://localhost/avatar/delete', // server delete action
-                            key: 100,
-                            extra: {filename: response.cover}
-                        }
-                    ]
+                    this.fileInputConfig.uploadExtraData = {
+                        filename: response.cover
+                    };
+                    this.fileInputConfig.initialPreview = [
+                        "<img src='/static/img/indexCover/" + response.cover + "' class='file-preview-image'>"
+                    ];
+                    this.fileInputConfig.initialPreviewConfig = [{
+                        caption: response.cover,
+                        width: '120px',
+                        url: '/admin/situation/delcover',
+                        extra: {filename: response.cover}
+                    }];
                     $(this.uploadDom).fileinput(this.fileInputConfig);
                 });
             },
-            saveData(data){
+            saveData(){
                 var resource = this.$resource('/admin/situation/addlist');
                 this.$data.input.content = tinymce.activeEditor.getContent();
-                this.$data.input.cover = data.response.data;
                 this.$data.input.date = moment().format('YYYY-MM-DD HH:mm:ss');
                 resource.save(this.$data.input).then((response)=> {
                     window.location.href = "#!/situation";

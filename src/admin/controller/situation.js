@@ -39,23 +39,30 @@ export default class extends Base {
   }
 
   async uploadcoverAction() {
-    var _this = this;
-    let filename = this.post().filename;
-    console.log(filename);
+    let _this = this;
     let uploadInfo = this.file('situation_cover');
     console.log(uploadInfo);
     var fs = require('fs');
-    var newFileName = think.isEmpty(filename) ? moment().format('YYYYMMDDHHmmss') + ".jpg" : filename;
+    var newFileName = moment().format('YYYYMMDDHHmmss') + ".jpg";
 
 
     var oldPath = uploadInfo.path;
-    var newPath = think.RESOURCE_PATH + '/static/img/indexCover/' ;
+    var newPath = think.RESOURCE_PATH + '/static/img/indexCover/';
+
     fs.rename(oldPath, newPath + newFileName, function (err) {
       if (err) {
         console.error(err);
       } else {
         _this.success(newFileName);
       }
+    });
+  }
+
+  async delcoverAction() {
+    var fs = require('fs');
+    let imgPath = think.RESOURCE_PATH + '/static/img/indexCover/' + this.post().filename;
+    fs.unlink(imgPath, (err)=> {
+      err ? this.fail() : this.success();
     });
   }
 
@@ -68,5 +75,6 @@ export default class extends Base {
       err ? this.fail() : this.success();
     });
   }
+
 
 }
