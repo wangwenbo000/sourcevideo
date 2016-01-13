@@ -15,13 +15,14 @@
 
   getlistAction = function getlistAction() {var 
     id, 
+    page, 
     news, 
 
 
 
 
-    data;return _regeneratorRuntime.async(function getlistAction$(context$2$0) {while (1) switch (context$2$0.prev = context$2$0.next) {case 0:id = this.post().id;news = this.model('news');if (!think.isEmpty(id)) {context$2$0.next = 9;break;}context$2$0.next = 5;return _regeneratorRuntime.awrap(news.page(1, 10).order('id DESC').countSelect());case 5:data = context$2$0.sent;this.success(data);context$2$0.next = 13;break;case 9:context$2$0.next = 11;return _regeneratorRuntime.awrap(news.where({ id: id }).select());case 11:data = context$2$0.sent;
-          this.success(data);case 13:case 'end':return context$2$0.stop();}}, null, this);};_default.prototype.
+    data;return _regeneratorRuntime.async(function getlistAction$(context$2$0) {while (1) switch (context$2$0.prev = context$2$0.next) {case 0:id = this.post().id;page = this.post().page || 1;news = this.model('news');if (!think.isEmpty(id)) {context$2$0.next = 10;break;}context$2$0.next = 6;return _regeneratorRuntime.awrap(news.page(1, 10).order('id DESC').countSelect());case 6:data = context$2$0.sent;this.success(data);context$2$0.next = 14;break;case 10:context$2$0.next = 12;return _regeneratorRuntime.awrap(news.where({ id: id }).select());case 12:data = context$2$0.sent;
+          this.success(data);case 14:case 'end':return context$2$0.stop();}}, null, this);};_default.prototype.
 
 
 
