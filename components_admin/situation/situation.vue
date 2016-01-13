@@ -13,6 +13,7 @@
                     <th>#</th>
                     <th>新闻标题</th>
                     <th>分类</th>
+                    <th>首页显示</th>
                     <th>发布时间</th>
                     <th>操作</th>
                 </tr>
@@ -22,14 +23,13 @@
                     <th scope="row">{{l.id}}</th>
                     <td>{{l.title}}</td>
                     <td>{{l.catagory}}</td>
+                    <td><span class="label" :class="[l.show == 0 ? 'label-success':'label-default']">{{l.show | isShowIndex}}</span></td>
                     <td>{{l.date | dateTime}}</td>
                     <td>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                            <a class="btn btn-secondary" v-link="{name:'addSituation',params:{newsId:l.id}}"><i
+                            <a class="btn btn-secondary btn-primary-outline btn-sm" v-link="{name:'addSituation',params:{newsId:l.id}}"><i
                                     class="fa fa-pencil-square-o"></i></a>
-                            <a class="btn btn-secondary" @click="isDelete(l,$index)"><i
+                            <a class="btn btn-secondary btn-danger-outline btn-sm" @click="isDelete(l,$index)"><i
                                     class="fa fa-trash-o text-danger"></i></a>
-                        </div>
                     </td>
                 </tr>
                 </tbody>
@@ -37,11 +37,21 @@
             <div class="alert alert-info text-center" role="alert" v-show="showEmptyAlert">
                 <strong>人生在勤!</strong> 到目前为止你还没有发布过一篇文章:/
             </div>
-            {{$data|json}}
+            <!--{{$data|json}}-->
             <nav>
                 <ul class="pager">
-                    <li class="pager-prev disabled"><a href="javascript:;" @click="getData('older')">Older</a></li>
-                    <li class="pager-next"><a href="javascript:;" @click="getData(newslist.currentPage++)">Newer</a></li>
+                    <li class="pager-prev" v-show="newslist.currentPage>1">
+                        <a href="javascript:;"
+                           @click="getData(newslist.currentPage-1)">
+                            上一页
+                        </a>
+                    </li>
+                    <li class="pager-next" v-show="newslist.data.length>=20">
+                        <a href="javascript:;"
+                           @click="getData(newslist.currentPage+1)">
+                            下一页
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -53,40 +63,34 @@
     import moment from 'moment';
     export default{
         ready(){
+            this.totalPages = 0;
             this.getData(0);
         },
         filters: {
             dateTime(value){
                 return moment(value).format('L');
+            },
+            isShowIndex(value){
+                return value==0?"显示":"不显示";
             }
         },
         methods: {
             isDelete(news, index){
-                var isDel=window.confirm("确定要删除这条记录么?");
-                if(isDel){
-                    var delStiuationAPI='/admin/situation/delnews';
-                    this.$http.post(delStiuationAPI, {id: news.id, filename: news.cover}).then((response)=>{
-                        this.newslist.$remove(this.newslist[index]);
-                        this.showEmptyAlert=true;
+                var isDel = window.confirm("确定要删除这条记录么?");
+                if (isDel) {
+                    var delStiuationAPI = '/admin/situation/delnews';
+                    this.$http.post(delStiuationAPI, {id: news.id, filename: news.cover}).then((response)=> {
+                        this.newslist.data.$remove(this.newslist.data[index]);
+                        this.showEmptyAlert = true;
                     });
                 }
             },
             getData(page){
-                console.log(page);
-//                switch(page){
-//                    case 'newer':
-//                        this.pageindex = this.$data.newslist.currentPage++;
-//                        break;
-//                    case 'older':
-//                        this.pageindex = this.$data.newslist.currentPage--;
-//                        break;
-//                };
-                var getStiuationAPI='/admin/situation/getlist';
-                this.$http.post(getStiuationAPI, {page: page}).then((response)=>{
+                this.totalPages < page ? page = 1 : page;
+                var getStiuationAPI = '/admin/situation/getlist';
+                this.$http.post(getStiuationAPI, {page: page}).then((response)=> {
                     this.$set('newslist', response.data.data);
-                    page<=response.data.data.totalPages && page>0 ? page : page=1;
-                    console.log(response.data);
-                    this.$data.newslist.data.length ? this.showEmptyAlert=false : this.showEmptyAlert=true;
+                    this.totalPages = response.data.data.totalPages;
                 })
             }
         }

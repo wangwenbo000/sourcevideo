@@ -42,7 +42,7 @@
                     <small class="text-muted">请撰写文章内容,请不要再编辑器内使用代码,保证板式正确</small>
                 </fieldset>
                 <fieldset class="form-group">
-                    <input type="checkbox">
+                    <input type="checkbox" value="0" v-model="input.show">
                     <small class="text-muted">该篇文章不显示在首页,(可以修改,但首页显示最新5篇文章超过5篇首页可能不显示)</small>
                 </fieldset>
                 <button type="submit" @click="add" class="btn btn-primary">发布新公告</button>
@@ -53,6 +53,13 @@
 
 <script type="text/babel">
     export default{
+        data(){
+            return{
+                input:{
+                    show:false
+                }
+            }
+        },
         ready(){
             //初始化编辑器
             tinymce.init({
@@ -126,6 +133,7 @@
                 var resource = this.$resource('/admin/situation/addlist');
                 this.$data.input.content = tinymce.activeEditor.getContent();
                 this.$data.input.date = moment().format('YYYY-MM-DD HH:mm:ss');
+                this.$data.input.show == true ? this.$data.input.show = 0 : this.$data.input.show = 1;
                 resource.save(this.$data.input).then((response)=> {
                     window.location.href = "#!/situation";
                 });

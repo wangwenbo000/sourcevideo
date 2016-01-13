@@ -15,10 +15,10 @@ export default class extends Base {
 
   async getlistAction(){
     let id=this.post().id;
-    let pageIndex=think.isEmpty(this.post().page) ? 1 : parseInt(this.post().page);
+    let pageIndex = this.post().page || 1;
     let news=this.model('news');
     if(think.isEmpty(id)){
-      let data=await news.page(pageIndex, 10).order('id DESC').countSelect();
+      let data=await news.page(pageIndex, 20).order('id DESC').countSelect();
       this.success(data);
     }else{
       let data=await news.where({id: id}).select();
