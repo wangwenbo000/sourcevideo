@@ -23,13 +23,13 @@
                     <th scope="row">{{l.id}}</th>
                     <td>{{l.title}}</td>
                     <td>{{l.catagory}}</td>
-                    <td><span class="label" :class="[l.show == 0 ? 'label-success':'label-default']">{{l.show | isShowIndex}}</span></td>
+                    <td><span :class="[l.show == 0 ? 'text-primary':'text-muted']">{{l.show | isShowIndex}}</span></td>
                     <td>{{l.date | dateTime}}</td>
                     <td>
-                            <a class="btn btn-secondary btn-primary-outline btn-sm" v-link="{name:'addSituation',params:{newsId:l.id}}"><i
+                            <a class="btn btn-secondary btn-sm" v-link="{name:'addSituation',params:{newsId:l.id}}"><i
                                     class="fa fa-pencil-square-o"></i></a>
-                            <a class="btn btn-secondary btn-danger-outline btn-sm" @click="isDelete(l,$index)"><i
-                                    class="fa fa-trash-o text-danger"></i></a>
+                            <a class="btn btn-secondary btn-sm" @click="isDelete(l,$index)"><i
+                                    class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                 </tbody>
