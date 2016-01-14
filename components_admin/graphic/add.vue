@@ -29,11 +29,6 @@
                     </div>
                     <small class="text-muted">请选择最新分类</small>
                 </fieldset>
-                <fieldset class="form-group">
-                    <label for="category">上传封面图</label>
-                    <input id="input-20" type="file" class="file-loading">
-                    <small class="text-muted">作为项目列表封面,尺寸任意,但大小不超过800Kb</small>
-                </fieldset>
                 <fieldset class="form-group uploadForm">
                     <label for="category">上传封面图</label>
                     <input id="input-dim-1" name="inputdim1[]" type="file" multiple class="file-loading" accept="image/*">
@@ -53,13 +48,6 @@
                 selector: '#editor',
                 plugins: "image imagetools",
                 height: 200
-            });
-            $("#input-20").fileinput({
-                browseClass: "btn btn-primary btn-block",
-                showCancel:false,
-                showCaption: false,
-                showRemove: false,
-                showUpload: false
             });
             $("#input-dim-1").fileinput({
                 uploadUrl: "/file-upload-batch/2",

@@ -4,7 +4,7 @@ var ReplacePlugin = require('replace-webpack-plugin');
 //nawb8MTidY>?
 module.exports = {
   entry:{
-    index:'./components_index/app.js',
+    //index:'./components_index/app.js',
     admin:'./components_admin/admin.js'
 
   },

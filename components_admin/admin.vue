@@ -17,7 +17,6 @@
     import Slider from './slider/slider.vue'
     export default{
         ready(){
-
         },
         components: {
             Topnav,

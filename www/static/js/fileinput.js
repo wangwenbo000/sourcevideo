@@ -2683,7 +2683,7 @@
         msgImageHeightLarge: 'Height of image file "{name}" cannot exceed {size} px.',
         msgImageResizeError: 'Could not get the image dimensions to resize.',
         msgImageResizeException: 'Error while resizing the image.<pre>{errors}</pre>',
-        dropZoneTitle: 'Drag & drop files here &hellip;'
+        dropZoneTitle: '拖拽文件到此区域'
     };
 
     $.extend($.fn.fileinput.defaults, $.fn.fileinputLocales.en);
