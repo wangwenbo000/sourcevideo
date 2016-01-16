@@ -72,7 +72,7 @@
     mixins: [init],
     filters: {
       isShowIndex(value){
-        return value==0 ? "显示" : "不显示";
+        return value ? "不显示" : "显示";
       }
     }
   }
