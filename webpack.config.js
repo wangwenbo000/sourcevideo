@@ -68,7 +68,7 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
 
     new ReplacePlugin({
-      skip: process.env.NODE_ENV === 'development',
+      skip: process.env.NODE_ENV === 'production',
       entry: './components_admin/admin.html',
       hash: '[hash]',
       output: './view/admin/index_index.html',
