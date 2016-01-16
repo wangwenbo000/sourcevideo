@@ -40,15 +40,15 @@
       <!--{{$data|json}}-->
       <nav>
         <ul class="pager">
-          <li class="pager-prev" v-show="newslist.currentPage>1">
+          <li class="pager-prev" v-show="showPREV">
             <a href="javascript:;"
-               @click="getData(newslist.currentPage-1)">
+               @click="getData('prev')">
               上一页
             </a>
           </li>
-          <li class="pager-next" v-show="newslist.data.length>=20">
+          <li class="pager-next" v-show="showNEXT">
             <a href="javascript:;"
-               @click="getData(newslist.currentPage+1)">
+               @click="getData('next')">
               下一页
             </a>
           </li>
@@ -56,18 +56,31 @@
       </nav>
     </div>
   </div>
-
 </template>
 
 <script type="text/babel">
   import moment from 'moment';
   export default{
-    ready(){
-      this.totalPages=1;
+    data(){
+      return{
+        pageIndex :null,
+      }
+    },
+    computed:{
+      showPREV(){
+        return this.newslist.currentPage>1?true:false;
+      },
+      showNEXT(){
+        return this.newslist.data.length>=20?true:false;
+      }
     },
     route: {
       activate(complete){
-        this.getData(1, complete);
+        var getStiuationAPI='/admin/situation/getlist';
+        this.$http.post(getStiuationAPI, {page: 1}).then((response)=>{
+          this.$set('newslist', response.data.data);
+          complete.next();
+        })
       }
     },
     filters: {
@@ -89,13 +102,18 @@
           });
         }
       },
-      getData(page, complete){
-        this.totalPages<page ? page=1 : page;
+      getData(action){
+        switch(action){
+          case 'prev':
+          this.pageIndex = this.newslist.currentPage-1;
+          break;
+          case 'next':
+          this.pageIndex = this.newslist.currentPage+1;
+          break;
+        };
         var getStiuationAPI='/admin/situation/getlist';
-        this.$http.post(getStiuationAPI, {page: page}).then((response)=>{
+        this.$http.post(getStiuationAPI, {page: this.pageIndex}).then((response)=>{
           this.$set('newslist', response.data.data);
-          this.totalPages=response.data.data.totalPages;
-          arguments.length>1 && complete.next();
         })
       }
     }

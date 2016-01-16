@@ -19,7 +19,7 @@
                 <tbody>
                 <tr v-for="v in videolist">
                     <th scope="row">{{v.id}}</th>
-                    <td><img src="" alt=""></td>
+                    <td><img v-bind:src="'/static/img/videoCover/'+v.cover" width="80" alt=""></td>
                     <td>{{v.title}}</td>
                     <td>{{v.date}}</td>
                     <td>

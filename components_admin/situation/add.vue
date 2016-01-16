@@ -53,6 +53,11 @@
 
 <script type="text/babel">
     export default{
+        data(){
+            return{
+                input:{}
+            }
+        },
         ready(){
             //初始化编辑器
             tinymce.init({
