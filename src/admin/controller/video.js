@@ -9,52 +9,45 @@ export default class extends Base {
    * index action
    * @return {Promise} []
    */
-  indexAction() {
-    //auto render template file index_index.html
-    return this.display();
+
+  M(){
+    return this.model('video');
   }
 
-  async getlistAction() {
+  async getAction() {
     let id = this.post().id;
-    let video = this.model('video');
+    let pageIndex = this.post().page || 1;
     if (think.isEmpty(id)) {
-      let data = await video.page(1, 10).order('id DESC').countSelect();
+      let data = await this.M().page(pageIndex, 20).order('id DESC').countSelect();
       this.success(data);
     } else {
-      let data = await video.where({id: id}).select();
+      let data = await this.M().where({id: id}).select();
       this.success(data);
     }
   }
-  async addAction(){
-    let id = this.post().id;
-    let video = this.model('video');
-    if (think.isEmpty(id)) {
-      //增加新纪录
-      let isGetAccessToken = await this.session("access_token");
-      if(think.isEmpty(isGetAccessToken)){
-        var options = {
-          uri: 'https://openapi.iqiyi.com/api/oauth2/authorize',
-          qs: {
-            client_id:'48dbe76f47d7458690f08bbcb17d5f2c',
-            redirect_uri:'http://www.sourcevideo.net',
-            response_type:'code'
-          },
-          headers: {
-            'User-Agent': 'Request-Promise'
-          },
-          json: true // Automatically parses the JSON string in the response
-        };
 
-        let response = await rp(options);
-        console.log(response);
-      }
-    } else {
-      //更新记录
-      let data = await video.where({id: id}).update(this.post());
-      this.success(data);
-    }
+  async addAction() {
+
   }
-  async uploadvideocoverAction(){
+
+  async delAction() {
+    var fs = require('fs');
+    let delvideo = await this.M().where({id: this.post().id}).delete();
+    let imgPath = think.RESOURCE_PATH + '/static/img/videoCover/' + this.post().filename;
+    fs.unlink(imgPath, (err)=> {
+      err ? this.fail() : this.success();
+    });
+  }
+
+  async delcoverAction() {
+    var fs = require('fs');
+    let imgPath = think.RESOURCE_PATH + '/static/img/indexCover/' + this.post().filename;
+    fs.unlink(imgPath, (err)=> {
+      err ? this.fail() : this.success();
+    });
+  }
+
+  async uploadvideocoverAction() {
     var _this = this;
     let filename = this.post().filename;
     let uploadInfo = this.file('video_cover');
@@ -70,7 +63,8 @@ export default class extends Base {
       }
     });
   }
-  async uploadvideoAction(){
+
+  async uploadvideoAction() {
     this.success(this.file('video').path);
   }
 }

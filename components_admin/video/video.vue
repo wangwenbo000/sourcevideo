@@ -1,84 +1,78 @@
 <template>
-    <div class="card">
-        <div class="card-header">
-            视频列表 <small class="text-muted">视频托管服务商为爱奇艺视频</small>
-        </div>
-        <div class="card-block">
-            <a v-link="{name:'addVideo',params:{videoId:'upload'}}" class="btn btn-primary btn-sm text-right"><i class="fa fa-cloud-upload"></i>上传视频</a>
-            <div class="dropdown-divider"></div>
-            <table class="table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>预览</th>
-                    <th>视频标题</th>
-                    <th>发布时间</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="v in videolist">
-                    <th scope="row">{{v.id}}</th>
-                    <td><img v-bind:src="'/static/img/videoCover/'+v.cover" width="80" alt=""></td>
-                    <td>{{v.title}}</td>
-                    <td>{{v.date}}</td>
-                    <td>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                            <button type="button" class="btn btn-secondary"><i class="fa fa-pencil-square-o"></i></button>
-                            <button type="button" class="btn btn-secondary" @click="isDelete"><i class="fa fa-trash-o text-danger"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <nav>
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+  <div class="card">
+    <div class="card-header">
+      视频列表
+      <small class="text-muted">视频托管服务商为爱奇艺视频</small>
     </div>
+    <div class="card-block">
+      <a v-link="{name:'addVideo',params:{videoId:'upload'}}" class="btn btn-primary btn-sm text-right"><i
+            class="fa fa-cloud-upload"></i>上传视频</a>
+      <div class="dropdown-divider"></div>
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>预览</th>
+          <th>视频标题</th>
+          <th>发布时间</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="v in listData.data">
+          <th scope="row">{{v.id}}</th>
+          <td><img :src="'/static/img/videoCover/'+v.cover" width="80" alt=""></td>
+          <td>{{v.title}}</td>
+          <td>{{v.date}}</td>
+          <td>
+            <a href="javascript:;" class="btn btn-secondary btn-sm"
+               v-link="{name:'addVideo',params:{videoId:v.id}}">
+              <i class="fa fa-pencil-square-o"></i>
+            </a>
+            <a href="javascript:;" class="btn btn-secondary btn-sm"
+               @click="delete(v,$index)">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="alert alert-info text-center" role="alert" v-show="showEmptyAlert">
+        <strong>人生在勤!</strong> 到目前为止你还没有发布过一篇文章:/ &nbsp;&nbsp;
+        <a v-link="{name:'addVideo',params:{videoId:'upload'}}" class="btn btn-success btn-sm">发布第一条记录！</a>
+      </div>
+      <nav>
+        <ul class="pager">
+          <li class="pager-prev" v-show="showPREV">
+            <a href="javascript:;"
+               @click="getData('prev')">
+              上一页
+            </a>
+          </li>
+          <li class="pager-next" v-show="showNEXT">
+            <a href="javascript:;"
+               @click="getData('next')">
+              下一页
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 
 </template>
 
 <script type="text/babel">
-    export default{
-        ready(){
-            var getVideoAPI = '/admin/video/getlist';
-            this.$http.get(getVideoAPI).then((response)=>{
-                this.$set('videolist',response.data.data.data);
-            })
-        },
-        methods:{
-            isDelete(id){
-                var isDel = window.confirm("确定要删除这条记录么?");
-                if(isDel){
-                    var delVideoAPI = '/admin/video/delnews';
-                    this.$http.post(delVideoAPI,{id:news.id,filename:news.cover}).then((response)=>{
-                        this.newslist.$remove(this.newslist[index]);
-                    });
-                }
-            }
-        }
-    }
+  import init from '../mixin/mixin_initPage';
+  export default{
+    data(){
+      return {
+        getAPI: '/admin/video/get',
+        delAPI: '/admin/video/del',
+        pageIndex: null,
+        listData: {}
+      }
+    },
+    mixins: [init]
+  }
 </script>
-
-<style lang="sass?outputStyle=expanded">
-
-</style>

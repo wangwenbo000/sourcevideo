@@ -7,7 +7,7 @@
             </li>
             <li class="nav-item active">
                 <div class="dropdown">
-                    <a class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-secondary-outline dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         快速通道
                     </a>
                     <div class="dropdown-menu quickroad" aria-labelledby="dropdownMenu1">

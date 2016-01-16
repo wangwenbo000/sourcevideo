@@ -6,7 +6,7 @@
 export default {
   type: 'mysql',
   host: 'localhost',
-  port: '3307',
+  port: '3306',
   name: 'sourcevideo',
   user: 'root',
   pwd: '15117909848',

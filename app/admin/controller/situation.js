@@ -8,10 +8,6 @@
    * index action
    * @return {Promise} []
    */_default.prototype.
-  indexAction = function indexAction() {
-    //auto render template file index_index.html
-    return this.display();};_default.prototype.
-
 
   getlistAction = function getlistAction() {var 
     id, 

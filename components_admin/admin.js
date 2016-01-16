@@ -85,8 +85,8 @@ router.map({
     name: 'photos',
     component: Photos
   },
-  'addPhotos': {
-    name: 'photos',
+  '/addPhotos/:photoId': {
+    name: 'addPhotos',
     component: addPhotos
   }
 });

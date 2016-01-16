@@ -9,49 +9,42 @@ var _inherits = require('babel-runtime/helpers/inherits')['default'];var _classC
    * index action
    * @return {Promise} []
    */_default.prototype.
-  indexAction = function indexAction() {
-    //auto render template file index_index.html
-    return this.display();};_default.prototype.
+
+  M = function M() {
+    return this.model('video');};_default.prototype.
 
 
-  getlistAction = function getlistAction() {var 
+  getAction = function getAction() {var 
     id, 
-    video, 
+    pageIndex, 
 
 
 
 
-    data;return _regeneratorRuntime.async(function getlistAction$(context$2$0) {while (1) switch (context$2$0.prev = context$2$0.next) {case 0:id = this.post().id;video = this.model('video');if (!think.isEmpty(id)) {context$2$0.next = 9;break;}context$2$0.next = 5;return _regeneratorRuntime.awrap(video.page(1, 10).order('id DESC').countSelect());case 5:data = context$2$0.sent;this.success(data);context$2$0.next = 13;break;case 9:context$2$0.next = 11;return _regeneratorRuntime.awrap(video.where({ id: id }).select());case 11:data = context$2$0.sent;
+    data;return _regeneratorRuntime.async(function getAction$(context$2$0) {while (1) switch (context$2$0.prev = context$2$0.next) {case 0:id = this.post().id;pageIndex = this.post().page || 1;if (!think.isEmpty(id)) {context$2$0.next = 9;break;}context$2$0.next = 5;return _regeneratorRuntime.awrap(this.M().page(pageIndex, 20).order('id DESC').countSelect());case 5:data = context$2$0.sent;this.success(data);context$2$0.next = 13;break;case 9:context$2$0.next = 11;return _regeneratorRuntime.awrap(this.M().where({ id: id }).select());case 11:data = context$2$0.sent;
           this.success(data);case 13:case 'end':return context$2$0.stop();}}, null, this);};_default.prototype.
 
 
-  addAction = function addAction() {var 
-    id, 
-    video, 
 
-
-    isGetAccessToken, 
-
-    options, 
+  addAction = function addAction() {return _regeneratorRuntime.async(function addAction$(context$2$0) {while (1) switch (context$2$0.prev = context$2$0.next) {case 0:case 'end':return context$2$0.stop();}}, null, this);};_default.prototype.
 
 
 
+  delAction = function delAction() {var 
+    fs, 
+    delvideo, 
+    imgPath;return _regeneratorRuntime.async(function delAction$(context$2$0) {var _this2 = this;while (1) switch (context$2$0.prev = context$2$0.next) {case 0:fs = require('fs');context$2$0.next = 3;return _regeneratorRuntime.awrap(this.M().where({ id: this.post().id })['delete']());case 3:delvideo = context$2$0.sent;imgPath = think.RESOURCE_PATH + '/static/img/videoCover/' + this.post().filename;
+          fs.unlink(imgPath, function (err) {
+            err ? _this2.fail() : _this2.success();});case 6:case 'end':return context$2$0.stop();}}, null, this);};_default.prototype.
 
 
 
+  delcoverAction = function delcoverAction() {var 
+    fs, 
+    imgPath;return _regeneratorRuntime.async(function delcoverAction$(context$2$0) {var _this3 = this;while (1) switch (context$2$0.prev = context$2$0.next) {case 0:fs = require('fs');imgPath = think.RESOURCE_PATH + '/static/img/indexCover/' + this.post().filename;
+          fs.unlink(imgPath, function (err) {
+            err ? _this3.fail() : _this3.success();});case 3:case 'end':return context$2$0.stop();}}, null, this);};_default.prototype.
 
-
-
-
-
-
-    response, 
-
-
-
-
-    data;return _regeneratorRuntime.async(function addAction$(context$2$0) {while (1) switch (context$2$0.prev = context$2$0.next) {case 0:id = this.post().id;video = this.model('video');if (!think.isEmpty(id)) {context$2$0.next = 14;break;}context$2$0.next = 5;return _regeneratorRuntime.awrap(this.session("access_token"));case 5:isGetAccessToken = context$2$0.sent;if (!think.isEmpty(isGetAccessToken)) {context$2$0.next = 12;break;}options = { uri: 'https://openapi.iqiyi.com/api/oauth2/authorize', qs: { client_id: '48dbe76f47d7458690f08bbcb17d5f2c', redirect_uri: 'http://www.sourcevideo.net', response_type: 'code' }, headers: { 'User-Agent': 'Request-Promise' }, json: true // Automatically parses the JSON string in the response
-          };context$2$0.next = 10;return _regeneratorRuntime.awrap(_requestPromise2['default'](options));case 10:response = context$2$0.sent;console.log(response);case 12:context$2$0.next = 18;break;case 14:context$2$0.next = 16;return _regeneratorRuntime.awrap(video.where({ id: id }).update(this.post()));case 16:data = context$2$0.sent;this.success(data);case 18:case 'end':return context$2$0.stop();}}, null, this);};_default.prototype.
 
 
   uploadvideocoverAction = function uploadvideocoverAction() {var 
@@ -70,6 +63,6 @@ var _inherits = require('babel-runtime/helpers/inherits')['default'];var _classC
 
 
 
+
   uploadvideoAction = function uploadvideoAction() {return _regeneratorRuntime.async(function uploadvideoAction$(context$2$0) {while (1) switch (context$2$0.prev = context$2$0.next) {case 0:
-          this.success(this.file('video').path);case 1:case 'end':return context$2$0.stop();}}, null, this);};return _default;})(_baseJs2['default']);exports['default'] = _default;module.exports = exports['default']; //增加新纪录
-//更新记录
+          this.success(this.file('video').path);case 1:case 'end':return context$2$0.stop();}}, null, this);};return _default;})(_baseJs2['default']);exports['default'] = _default;module.exports = exports['default'];
