@@ -37,22 +37,16 @@
     <strong>人员充足</strong> 到目前为止公司还没有发布过招聘:/ &nbsp;&nbsp;
     <a v-link="{name:'addJob',params:{jobId:'upload'}}" class="btn btn-success btn-sm">发布第一条记录！</a>
   </div>
-  <nav>
-    <ul class="pager">
-      <li class="pager-prev" v-show="showPREV">
-        <a href="javascript:;"
-           @click="getData('prev')">
-          上一页
-        </a>
-      </li>
-      <li class="pager-next" v-show="showNEXT">
-        <a href="javascript:;"
-           @click="getData('next')">
-          下一页
-        </a>
-      </li>
-    </ul>
-  </nav>
+  <div class="card-footer text-muted clearfix">
+    <div class="pagebox pull-right">
+      <div class="pagination-info">共有{{listData.count}}条，每页显示：{{listData.numsPerPage}}条</div>
+      <nav id="pagination"></nav>
+      <div class="pagination-go">
+        <input type="text" class="form-control ipt" v-model="pagego">
+        <a class="btn btn-primary" @click="getData(pagego)">GO</a>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script type="text/babel">
@@ -62,7 +56,6 @@
       return {
         getAPI: '/admin/joblist/get',
         delAPI: '/admin/joblist/del',
-        pageIndex: null,
         listData: {}
       }
     },

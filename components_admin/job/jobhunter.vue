@@ -33,22 +33,16 @@
   <div class="alert alert-info text-center" role="alert" v-show="showEmptyAlert">
     <strong>:/</strong> 还没有相应的应聘信息记录! &nbsp;&nbsp;
   </div>
-  <nav>
-    <ul class="pager">
-      <li class="pager-prev" v-show="showPREV">
-        <a href="javascript:;"
-           @click="getData('prev')">
-          上一页
-        </a>
-      </li>
-      <li class="pager-next" v-show="showNEXT">
-        <a href="javascript:;"
-           @click="getData('next')">
-          下一页
-        </a>
-      </li>
-    </ul>
-  </nav>
+  <div class="card-footer text-muted clearfix">
+    <div class="pagebox pull-right">
+      <div class="pagination-info">共有{{listData.count}}条，每页显示：{{listData.numsPerPage}}条</div>
+      <nav id="pagination"></nav>
+      <div class="pagination-go">
+        <input type="text" class="form-control ipt" v-model="pagego">
+        <a class="btn btn-primary" @click="getData(pagego)">GO</a>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script type="text/babel">

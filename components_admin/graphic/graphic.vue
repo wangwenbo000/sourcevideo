@@ -1,4 +1,4 @@
-<template>
+狗raphic<template>
   <div class="card">
     <div class="card-header">
       <strong>设计作品列表</strong>
@@ -37,35 +37,16 @@
         <strong>人生在勤!</strong> 到目前为止你还没有发布过一篇文章:/ &nbsp;&nbsp;
         <a v-link="{name:'addGraphic',params:{graphicId:'upload'}}" class="btn btn-success btn-sm">发布第一条记录！</a>
       </div>
-      <!--<nav>-->
-      <!--<ul class="pager">-->
-      <!--<li class="pager-prev" v-show="showPREV">-->
-      <!--<a href="javascript:;"-->
-      <!--@click="getData('prev')">-->
-      <!--上一页-->
-      <!--</a>-->
-      <!--</li>-->
-      <!--<li class="pager-next" v-show="showNEXT">-->
-      <!--<a href="javascript:;"-->
-      <!--@click="getData('next')">-->
-      <!--下一页-->
-      <!--</a>-->
-      <!--</li>-->
-      <!--</ul>-->
-      <!--</nav>-->
     </div>
     <div class="card-footer text-muted clearfix">
       <div class="pagebox pull-right">
-        <div class="pagination-info">共有5条，每页显示：20条</div>
+        <div class="pagination-info">共有{{listData.count}}条，每页显示：{{listData.numsPerPage}}条</div>
         <nav id="pagination"></nav>
         <div class="pagination-go">
           <input type="text" class="form-control ipt">
           <a class="btn btn-primary">GO</a>
         </div>
       </div>
-      <div class=""></div>
-
-
     </div>
   </div>
 
@@ -74,31 +55,10 @@
 <script type="text/babel">
   import init from '../mixin/mixin_initPage';
   export default{
-    ready(){
-      $('#pagination').bootpag({
-        total: 50,
-        page: 1,
-        maxVisible: 5,
-        leaps: true,
-        firstLastUse: true,
-        first: '<i class="fa fa-angle-double-left"></i>',
-        last: '<i class="fa fa-angle-double-right"></i>',
-        wrapClass: 'pagination',
-        activeClass: 'active',
-        disabledClass: 'disabled',
-        nextClass: 'next',
-        prevClass: 'prev',
-        lastClass: 'last',
-        firstClass: 'first'
-      }).on("page", function (event, num) {
-        $(this).bootpag({total: 50, maxVisible: 5});
-      });
-    },
     data(){
       return {
         getAPI: '/admin/graphic/get',
         delAPI: '/admin/graphic/del',
-        pageIndex: null,
         listData: {}
       }
     },

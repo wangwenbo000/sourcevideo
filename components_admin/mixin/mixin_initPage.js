@@ -1,9 +1,9 @@
 import moment from 'moment';
 export default{
   /*
-  系统列表渲染
-  删除单条记录
-  翻页
+   系统列表渲染
+   删除单条记录
+   翻页
    numsPerPage() 实时更新每页显示的记录数量
    showPREV() 展示上一页按钮
    showNEXT() 展示下一页按钮
@@ -11,27 +11,18 @@ export default{
 
    组件中的配置参数
    data(){
-    return {
-    =========================================
-    getAPI: '/admin/photo/get', 查询
-    delAPI: '/admin/photo/del', 删除
-    pageIndex: null,            当前页指针
-    listData:{}                 获取的主要数据存储在这个对象中
-    =========================================
-    }
+   return {
+   =========================================
+   getAPI: '/admin/photo/get', 查询
+   delAPI: '/admin/photo/del', 删除
+   pageIndex: null,            当前页指针
+   listData:{}                 获取的主要数据存储在这个对象中
+   =========================================
    }
-  */
+   }
+   */
 
   computed: {
-    numsPerPage(){
-      return this.listData.numsPerPage;
-    },
-    showPREV(){
-      return this.listData.currentPage > 1 ? true : false;
-    },
-    showNEXT(){
-      return this.listData.data.length >= this.numsPerPage && this.listData.count > this.numsPerPage ? true : false;
-    },
     showEmptyAlert(){
       return this.listData.count > 0 && this.listData.data.length > 0 ? false : true;
     }
@@ -43,6 +34,31 @@ export default{
         complete.next();
       })
     }
+  },
+  ready(){
+    var self = this;
+    $('#pagination').bootpag({
+      total: this.listData.totalPages,
+      page: this.listData.currentPage,
+      maxVisible: 5,
+      leaps: true,
+      firstLastUse: true,
+      first: '<i class="fa fa-angle-double-left"></i>',
+      last: '<i class="fa fa-angle-double-right"></i>',
+      wrapClass: 'pagination',
+      activeClass: 'active',
+      disabledClass: 'disabled',
+      nextClass: 'next',
+      prevClass: 'prev',
+      lastClass: 'last',
+      firstClass: 'first'
+    }).on("page", function (event, num) {
+      self.getData(num);
+      $(this).bootpag({
+        total: self.listData.totalPages,
+        maxVisible: 5
+      });
+    });
   },
   filters: {
     dateTime(value){
@@ -58,16 +74,14 @@ export default{
         });
       }
     },
-    getData(action){
-      switch (action) {
-        case 'prev':
-          this.pageIndex = this.listData.currentPage - 1;
-          break;
-        case 'next':
-          this.pageIndex = this.listData.currentPage + 1;
-          break;
+    getData(page){
+      page = parseInt(page);
+      if (page > this.listData.totalPages || page <= 0) {
+        alert("输入范围不符合要求");
+        this.pagego = "";
+        return false;
       }
-      this.$http.post(this.getAPI, {page: this.pageIndex}).then(response=> {
+      this.$http.post(this.getAPI, {page: page}).then(response=> {
         this.$set('listData', response.data.data);
       })
     }
