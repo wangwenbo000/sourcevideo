@@ -2,6 +2,7 @@
 
 .container {
   margin-top: 56px;
+  min-width: 1200px;
 }
 
 .slider {
@@ -26,4 +27,32 @@
 }
 .file-preview-frame{
   box-shadow: none;
+}
+#pagination {
+  height: 34px;
+  ul{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+.pagination-info,
+.pagination-go,
+#pagination
+{
+  vertical-align:middle;
+  display: inline-block;
+}
+.pagination-info{
+  padding: 0 10px;
+}
+.pagination-go{
+  .ipt{
+    width: 40px;
+    display: inline-block;
+    margin: 0 10px;
+    height: 34px;
+  }
+  a{
+    vertical-align: bottom;
+  }
 }

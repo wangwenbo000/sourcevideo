@@ -1,20 +1,14 @@
 'use strict';
 
 import Base from './base.js';
-import moment from 'moment';
 
 export default class extends Base {
   /**
-   * photo action
+   * index action
    * @return {Promise} []
    */
-
-  M() {
-    return this.model('photo');
-  }
-
-  async addAction() {
-
+  M(){
+    return this.model('graphic');
   }
 
   async getAction() {
@@ -31,8 +25,8 @@ export default class extends Base {
 
   async delAction() {
     var fs = require('fs');
-    let delphoto = await this.M().where({id: this.post().id}).delete();
-    let imgPath = think.RESOURCE_PATH + '/static/img/photo/' + this.post().filename;
+    let delGraphic = await this.M().where({id: this.post().id}).delete();
+    let imgPath = think.RESOURCE_PATH + '/static/img/graphic/' + this.post().filename;
     fs.unlink(imgPath, (err)=> {
       err ? this.fail() : this.success();
     });

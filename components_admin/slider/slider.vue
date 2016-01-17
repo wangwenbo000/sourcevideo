@@ -28,8 +28,8 @@
        :class="[$route.name=='team'?'active':'']">
       <i class="fa fa-users"></i> 团队管理
     </a>
-    <a href="#!/job" class="list-group-item"
-       :class="[$route.name=='job'?'active':'']">
+    <a v-link="{name:'joblist'}" class="list-group-item"
+       :class="[$route.name=='job' || $route.name=='addJob' || $route.name=='joblist' || $route.name=='jobhunter' ?'active':'']">
       <i class="fa fa-eye"></i> 人才招聘
       <span class="label label-pill label-danger pull-right">2</span>
     </a>

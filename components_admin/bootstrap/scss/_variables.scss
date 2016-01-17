@@ -135,7 +135,7 @@ $container-max-widths: (
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns:               12 !default;
-$grid-gutter-width:          1.875rem !default; // 30px
+$grid-gutter-width:          0.875rem !default; // 30px
 
 
 // Typography
@@ -208,9 +208,9 @@ $list-inline-padding:         5px !default;
 $line-height-lg:         (4 / 3) !default;
 $line-height-sm:         1.5 !default;
 
-$border-radius:          .25rem !default;
-$border-radius-lg:       .3rem !default;
-$border-radius-sm:       .2rem !default;
+$border-radius:          0rem !default;
+$border-radius-lg:       0rem !default;
+$border-radius-sm:       0rem !default;
 
 $component-active-color: #fff !default;
 $component-active-bg:    $brand-primary !default;

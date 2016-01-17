@@ -1,70 +1,109 @@
 <template>
-    <div class="card">
-        <div class="card-header">
-            设计作品列表
-        </div>
-        <div class="card-block">
-            <a href="#!/addGraphic" class="btn btn-primary btn-sm text-right"><i class="fa fa-plus-circle"></i> 上传新的设计作品</a>
-            <div class="dropdown-divider"></div>
-            <table class="table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>缩略图</th>
-                    <th>新闻标题</th>
-                    <th>发布时间</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td><img src="" alt=""></td>
-                    <td>政治局召开民主生活会 习近平讲话</td>
-                    <td>2015-08-08</td>
-                    <td>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                            <button type="button" class="btn btn-secondary"><i class="fa fa-pencil-square-o"></i></button>
-                            <button type="button" class="btn btn-secondary" @click="isDelete"><i class="fa fa-trash-o text-danger"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <nav>
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+  <div class="card">
+    <div class="card-header">
+      <strong>设计作品列表</strong>
     </div>
+    <div class="card-block">
+      <a href="#!/addGraphic" class="btn btn-primary btn-sm text-right"><i class="fa fa-plus-circle"></i> 上传新的设计作品</a>
+      <div class="dropdown-divider"></div>
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>新闻标题</th>
+          <th>发布时间</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="g in listData.data">
+          <th scope="row">{{g.id}}</th>
+          <td>{{g.title}}</td>
+          <td>{{g.date}}</td>
+          <td>
+            <a href="javascript:;" class="btn btn-secondary btn-sm"
+               v-link="{name:'addGraphic',params:{graphicId:g.id}}">
+              <i class="fa fa-pencil-square-o"></i>
+            </a>
+            <a href="javascript:;" class="btn btn-secondary btn-sm"
+               @click="delete(g,$index)">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="alert alert-info text-center" role="alert" v-show="showEmptyAlert">
+        <strong>人生在勤!</strong> 到目前为止你还没有发布过一篇文章:/ &nbsp;&nbsp;
+        <a v-link="{name:'addGraphic',params:{graphicId:'upload'}}" class="btn btn-success btn-sm">发布第一条记录！</a>
+      </div>
+      <!--<nav>-->
+      <!--<ul class="pager">-->
+      <!--<li class="pager-prev" v-show="showPREV">-->
+      <!--<a href="javascript:;"-->
+      <!--@click="getData('prev')">-->
+      <!--上一页-->
+      <!--</a>-->
+      <!--</li>-->
+      <!--<li class="pager-next" v-show="showNEXT">-->
+      <!--<a href="javascript:;"-->
+      <!--@click="getData('next')">-->
+      <!--下一页-->
+      <!--</a>-->
+      <!--</li>-->
+      <!--</ul>-->
+      <!--</nav>-->
+    </div>
+    <div class="card-footer text-muted clearfix">
+      <div class="pagebox pull-right">
+        <div class="pagination-info">共有5条，每页显示：20条</div>
+        <nav id="pagination"></nav>
+        <div class="pagination-go">
+          <input type="text" class="form-control ipt">
+          <a class="btn btn-primary">GO</a>
+        </div>
+      </div>
+      <div class=""></div>
+
+
+    </div>
+  </div>
 
 </template>
 
 <script type="text/babel">
-    export default{
-        methods:{
-            isDelete(id){
-                window.confirm("确定要删除这条记录么?");
-            }
-        }
-    }
+  import init from '../mixin/mixin_initPage';
+  export default{
+    ready(){
+      $('#pagination').bootpag({
+        total: 50,
+        page: 1,
+        maxVisible: 5,
+        leaps: true,
+        firstLastUse: true,
+        first: '<i class="fa fa-angle-double-left"></i>',
+        last: '<i class="fa fa-angle-double-right"></i>',
+        wrapClass: 'pagination',
+        activeClass: 'active',
+        disabledClass: 'disabled',
+        nextClass: 'next',
+        prevClass: 'prev',
+        lastClass: 'last',
+        firstClass: 'first'
+      }).on("page", function (event, num) {
+        $(this).bootpag({total: 50, maxVisible: 5});
+      });
+    },
+    data(){
+      return {
+        getAPI: '/admin/graphic/get',
+        delAPI: '/admin/graphic/del',
+        pageIndex: null,
+        listData: {}
+      }
+    },
+    mixins: [init]
+  }
 </script>
 
 <style lang="sass?outputStyle=expanded">
