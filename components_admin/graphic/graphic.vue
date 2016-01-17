@@ -44,7 +44,7 @@
         <nav id="pagination"></nav>
         <div class="pagination-go">
           <input type="text" class="form-control ipt">
-          <a class="btn btn-primary">GO</a>
+          <a class="btn btn-secondary">GO</a>
         </div>
       </div>
     </div>

@@ -47,7 +47,7 @@
         <nav id="pagination"></nav>
         <div class="pagination-go">
           <input type="text" class="form-control ipt" v-model="pagego">
-          <a class="btn btn-primary" @click="getData(pagego)">GO</a>
+          <a class="btn btn-secondary" @click="getData(pagego)">GO</a>
         </div>
       </div>
     </div>
