@@ -18,11 +18,9 @@
           </a>
         </li>
       </ul>
-      <!-- Tab panes -->
       <div class="tab-content">
         <div role="tabpanel " class="tab-pane active p-t-md">
-          <!--<component :is="currentView" :list-data="listData"></component>-->
-          <router-view></router-view>
+          <router-view transition="fade" transition-mode="out-in"></router-view>
         </div>
       </div>
     </div>
@@ -30,7 +28,6 @@
 </template>
 
 <script type="text/babel">
-
   export default{
 
   }

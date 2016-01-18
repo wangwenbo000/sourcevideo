@@ -2,61 +2,56 @@
 
 import Base from './base.js';
 import moment from 'moment';
+var fs = require('fs');
 
 export default class extends Base {
   /**
    * index action
    * @return {Promise} []
    */
+  M() {
+    return this.model('news');
+  }
 
+  //查询
   async getlistAction() {
     let id = this.post().id;
     let pageIndex = this.post().page || 1;
-    let news = this.model('news');
     if (think.isEmpty(id)) {
-      let data = await news.page(pageIndex, 20).order('id DESC').countSelect();
+      let data = await this.M().page(pageIndex, 20).order('id DESC').countSelect();
       this.success(data);
     } else {
-      let data = await news.where({id: id}).select();
+      let data = await this.M().where({id: id}).select();
       this.success(data);
     }
-
   }
 
+  //增加&更新
   async addlistAction() {
     let id = this.post().id;
-    let news = this.model('news');
     if (think.isEmpty(id)) {
-      let insertId = await news.add(this.post());
+      let insertId = await this.M().add(this.post());
       this.success(insertId);
     } else {
-      let data = await news.where({id: id}).update(this.post());
+      let data = await this.M().where({id: id}).update(this.post());
       this.success(data);
     }
   }
 
+  //改
   async uploadcoverAction() {
     let _this = this;
     let uploadInfo = this.file('situation_cover');
-    console.log(uploadInfo);
-    var fs = require('fs');
     var newFileName = moment().format('YYYYMMDDHHmmss') + ".jpg";
-
-
     var oldPath = uploadInfo.path;
     var newPath = think.RESOURCE_PATH + '/static/img/indexCover/';
 
     fs.rename(oldPath, newPath + newFileName, function (err) {
-      if (err) {
-        console.error(err);
-      } else {
-        _this.success(newFileName);
-      }
+      err ? _this.error(err) : _this.success(newFileName);
     });
   }
 
   async delcoverAction() {
-    var fs = require('fs');
     let imgPath = think.RESOURCE_PATH + '/static/img/indexCover/' + this.post().filename;
     fs.unlink(imgPath, (err)=> {
       err ? this.fail() : this.success();
@@ -64,9 +59,7 @@ export default class extends Base {
   }
 
   async delnewsAction() {
-    var fs = require('fs');
-    let news = this.model('news');
-    let delNews = await news.where({id: this.post().id}).delete();
+    let delNews = await this.M().where({id: this.post().id}).delete();
     let imgPath = think.RESOURCE_PATH + '/static/img/indexCover/' + this.post().filename;
     fs.unlink(imgPath, (err)=> {
       err ? this.fail() : this.success();

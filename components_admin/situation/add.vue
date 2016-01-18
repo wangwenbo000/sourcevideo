@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <strong>公告列表</strong>
+      <strong>{{actionName}}</strong>
     </div>
     <div class="card-block">
       <form>
@@ -65,80 +65,69 @@
           minImageWidth: 50,
           minImageHeight: 50
         },
+        tinyMCEConfig:{
+          selector: '#editor',
+          plugins: "image imagetools",
+          height: 360
+        },
+        actionName:'',
         uploadDom: "#upload_situation_cover",
-        getStiuationAPI: '/admin/situation/getlist'
+        getAPI: '/admin/situation/getlist',
+        saveAPI:'/admin/situation/addlist'
       }
     },
-    computed: {
-      isUpdate(){
-        return this.$route.params.newsId!='upload' && typeof parseInt(this.updateId)==='number' ? true : false;
-      },
-      updateId(){
-        return parseInt(this.$route.params.newsId);
+    route: {
+      activate(transition){
+        var id = transition.to.params.newsId;
+        if (id == 'upload') {
+          this.$set("actionName","增加新的公告");
+          transition.next();
+        } else if (!isNaN(parseInt(id))) {
+          this.$http.post(this.getAPI, {id: id}).then(response=> {
+            var response = response.data.data[0];
+            this.$set("actionName","更新公告ID:"+response.id);
+            this.$set("input", response);
+            this.$set("fileInputConfig.uploadExtraData",{filename: response.cover});
+            this.$set("fileInputConfig.initialPreview",["<img src='/static/img/indexCover/" + response.cover + "' class='file-preview-image'>"]);
+            this.$set("fileInputConfig.initialPreviewConfig",[{caption: response.cover,width: '120px',url: '/admin/situation/delcover',extra: {filename: response.cover}}]);
+          });
+          transition.next();
+        } else {
+          alert("非法转入,操作被终端");
+          transition.abort();
+        }
       }
     },
     ready(){
-      //初始化编辑器
-      tinymce.init({
-        selector: '#editor',
-        plugins: "image imagetools",
-        height: 360
-      });
-      if(this.isUpdate){
-        //更新配置
-        this.update(this.updateId);
-      }else{
-        //添加配置
-        $(this.uploadDom).fileinput(this.fileInputConfig);
-      }
+      $(this.uploadDom).fileinput(this.fileInputConfig);
       //上传结束后更新图片文件名
-      $(this.uploadDom).on('fileuploaded', (event, data)=>{
-        this.$data.input.cover=data.response.data;
+      $(this.uploadDom).on('fileuploaded', (event, data)=> {
+        this.$set("input.cover",data.response.data);
       });
       //删除提示
-      $(this.uploadDom).on("filepredelete", (jqXHR)=>{
-        var abort=true;
-        if(confirm("你确定删除这张照片么?")){
-          abort=false;
-        }
-        return abort;
+      $(this.uploadDom).on("filepredelete", ()=> {
+        return confirm("你确定删除这张照片么?") ? false:true;
       });
+
+      //初始化编辑器
+      tinymce.init(this.tinyMCEConfig);
+      tinymce.activeEditor.setContent(this.input.content);
     },
     beforeDestroy(){
       tinymce.remove("#editor");
+      $(this.uploadDom).fileinput('disable');
     },
     methods: {
       add(event){
         event.preventDefault();
         this.saveData();
       },
-      update(id){
-        this.$http.post(this.getStiuationAPI, {id: id}).then((response)=>{
-          var response=response.data.data[0];
-          this.$set("input", response);
-          tinymce.activeEditor.setContent(response.content);
-          this.fileInputConfig.uploadExtraData={
-            filename: response.cover
-          };
-          this.fileInputConfig.initialPreview=[
-            "<img src='/static/img/indexCover/" + response.cover + "' class='file-preview-image'>"
-          ];
-          this.fileInputConfig.initialPreviewConfig=[{
-            caption: response.cover,
-            width: '120px',
-            url: '/admin/situation/delcover',
-            extra: {filename: response.cover}
-          }];
-          $(this.uploadDom).fileinput(this.fileInputConfig);
-        });
-      },
       saveData(){
-        var resource=this.$resource('/admin/situation/addlist');
-        this.$data.input.content=tinymce.activeEditor.getContent();
-        this.$data.input.date=moment().format('YYYY-MM-DD HH:mm:ss');
-        this.$data.input.show==true ? this.$data.input.show=1 : this.$data.input.show=0;
-        resource.save(this.$data.input).then((response)=>{
-          window.location.href="#!/situation";
+        this.input.content = tinymce.activeEditor.getContent();
+        this.input.date = moment().format('YYYY-MM-DD HH:mm:ss');
+        this.input.show == true ? this.input.show = 1 : this.input.show = 0;
+        this.$http.post(this.saveAPI, this.input).then(response=> {
+          window.location.href = "#!/situation";
         });
       }
     }
