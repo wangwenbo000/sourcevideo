@@ -3,7 +3,6 @@
         <div class="card-header">
             <strong><i class="fa fa-cloud-upload"></i> 上传视频</strong>
         </div>
-        {{$data|json}}
         <div class="card-block">
             <div class="alert alert-info" role="alert">
                 <strong>请求信息:</strong> {"code": "A00000", "data": {"upload_url": "http://220.181.184.157/upload",

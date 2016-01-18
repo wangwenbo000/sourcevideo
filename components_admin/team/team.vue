@@ -43,22 +43,16 @@
         <strong>人生在勤!</strong> 到目前为止你还没有发布过一篇文章:/ &nbsp;&nbsp;
         <a v-link="{name:'addGraphic',params:{graphicId:'upload'}}" class="btn btn-success btn-sm">发布第一条记录！</a>
       </div>
-      <nav>
-        <ul class="pager">
-          <li class="pager-prev" v-show="showPREV">
-            <a href="javascript:;"
-               @click="getData('prev')">
-              上一页
-            </a>
-          </li>
-          <li class="pager-next" v-show="showNEXT">
-            <a href="javascript:;"
-               @click="getData('next')">
-              下一页
-            </a>
-          </li>
-        </ul>
-      </nav>
+    </div>
+    <div class="card-footer text-muted clearfix">
+      <div class="pagebox pull-right">
+        <div class="pagination-info">共有{{listData.count}}条，每页显示：{{listData.numsPerPage}}条</div>
+        <nav id="pagination"></nav>
+        <div class="pagination-go">
+          <input type="text" class="form-control ipt">
+          <a class="btn btn-secondary">GO</a>
+        </div>
+      </div>
     </div>
   </div>
 

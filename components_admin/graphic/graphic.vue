@@ -1,10 +1,11 @@
-狗raphic<template>
+狗raphic
+<template>
   <div class="card">
     <div class="card-header">
       <strong>设计作品列表</strong>
     </div>
     <div class="card-block">
-      <a href="#!/addGraphic" class="btn btn-primary btn-sm text-right"><i class="fa fa-plus-circle"></i> 上传新的设计作品</a>
+      <a v-link="{name:'addGraphic',params:{graphicId:'upload'}}" class="btn btn-primary btn-sm text-right"><i class="fa fa-plus-circle"></i> 上传新的设计作品</a>
       <div class="dropdown-divider"></div>
       <table class="table table-striped table-hover">
         <thead>

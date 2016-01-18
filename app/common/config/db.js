@@ -6,10 +6,10 @@
 { 
   type: 'mysql', 
   host: 'localhost', 
-  port: '3307',
+  port: '3306', 
   name: 'sourcevideo', 
   user: 'root', 
-  pwd: '15117909848', 
+  pwd: '', 
   prefix: 'sv_', 
   encoding: 'utf8mb4', 
   nums_per_page: 10, 

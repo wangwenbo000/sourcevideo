@@ -11,21 +11,21 @@
        :class="[$route.name=='situation' || $route.name=='addSituation'?'active':'']">
       <i class="fa fa-newspaper-o"></i> 新闻发布
     </a>
-    <a href="#!/video" class="list-group-item"
+    <a v-link="{name:'video'}" class="list-group-item"
        :class="[$route.name=='video' || $route.name=='addVideo'?'active':'']">
       <i class="fa fa-youtube-play"></i> 视频管理
     </a>
 
-    <a href="#!/photos" class="list-group-item"
-       :class="[$route.name=='photos'?'active':'']">
+    <a v-link="{name:'photos'}" class="list-group-item"
+       :class="[$route.name=='photos' || $route.name=='addPhotos' ? 'active':'']">
       <i class="fa fa-camera"></i> 项目剧照
     </a>
-    <a href="#!/graphic" class="list-group-item"
-       :class="[$route.name=='graphic'?'active':'']">
+    <a v-link="{name:'graphic'}" class="list-group-item"
+       :class="[$route.name=='graphic' || $route.name=='addGraphic' ? 'active':'']">
       <i class="fa fa-diamond"></i> 平面管理
     </a>
-    <a href="#!/team" class="list-group-item"
-       :class="[$route.name=='team'?'active':'']">
+    <a v-link="{name:'team'}" class="list-group-item"
+       :class="[$route.name=='team' || $route.name == 'addMember' ? 'active':'']">
       <i class="fa fa-users"></i> 团队管理
     </a>
     <a v-link="{name:'joblist'}" class="list-group-item"
@@ -33,8 +33,8 @@
       <i class="fa fa-eye"></i> 人才招聘
       <span class="label label-pill label-danger pull-right">2</span>
     </a>
-    <a href="#!/job" class="list-group-item"
-       :class="[$route.name=='admin'?'active':'']">
+    <a  class="list-group-item"
+       :class="[$route.name=='manage'?'active':'']">
       <i class="fa fa-user-secret"></i> 账号管理
     </a>
     <a href="javascript:;" class="list-group-item"

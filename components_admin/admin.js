@@ -73,7 +73,7 @@ router.map({
     component: Team
   },
   'addMember': {
-    name: 'team',
+    name: 'addMember',
     component: addMember
   },
   '/job': {
