@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <form class="form-signin">
-      <h2 class="form-signin-heading">索斯光影后台管理</h2>
-      <input type="email" id="inputEmail" class="form-control" placeholder="username" required autofocus>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <h2 class="form-signin-heading">Admin Panel</h2>
+      <input type="email" id="inputEmail" class="form-control" placeholder="username" required autofocus v-model="login.username">
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required v-model="login.password">
+      <a class="btn btn-lg btn-primary btn-block" @click="login">Sign in</a>
     </form>
   </div>
 </template>
@@ -12,6 +12,12 @@
 <script type="text/babel">
   export default{
     ready(){
+    },
+    methods:{
+      login(event){
+        event.preventDefault();
+
+      }
     }
   }
 </script>
@@ -38,6 +44,10 @@
     box-sizing: border-box;
     padding: 10px;
     font-size: 16px;
+  }
+  .form-signin-heading{
+    margin-bottom: 20px;
+    text-align: center;
   }
   .form-signin .form-control:focus {
     z-index: 2;
