@@ -7,29 +7,23 @@
       <form>
         <fieldset class="form-group">
           <label for="title">姓名</label>
-          <input type="text" class="form-control" id="title" placeholder="请输入团队人员姓名">
+          <input type="text" class="form-control" id="title" placeholder="请输入团队人员姓名" v-model="input.name">
           <small class="text-muted">请输入团队人员姓名</small>
         </fieldset>
         <fieldset class="form-group">
           <label for="title">位置排序</label>
-          <input type="text" class="form-control" id="title" placeholder="请输入排序序号">
+          <input type="text" class="form-control" id="title" placeholder="请输入排序序号" v-model="input.order">
           <small class="text-muted">按照倒序排列,请按照需求调整人员位置</small>
         </fieldset>
         <fieldset class="form-group">
           <label for="category">职业标签</label>
           <div class="row">
             <div class="col-xs-4">
-              <select class="c-select">
-                <option>摄影师</option>
-                <option>摄影指导</option>
-                <option>电影美术</option>
+              <select class="c-select" v-model="input.profession">
+                <option value="摄影师">摄影师</option>
+                <option value="摄影指导">摄影指导</option>
+                <option value="电影美术">电影美术</option>
               </select>
-            </div>
-            <div class="col-xs-4">
-              <div class="input-group">
-                <input type="text" class="form-control" id="exampleInputAmount" placeholder="添加新分类">
-                <a class="input-group-addon btn btn-primary">增加分类</a>
-              </div>
             </div>
           </div>
           <small class="text-muted">请选择最新分类</small>
@@ -39,7 +33,7 @@
           <input id="upload_face" name="face" type="file" multiple class="file-loading" accept="image/*">
           <small class="text-muted">请选择最新分类</small>
         </fieldset>
-        <button type="submit" class="btn btn-primary">添加新成员</button>
+        <a class="btn btn-primary" @click="add">添加新成员</a>
       </form>
     </div>
   </div>
@@ -78,13 +72,13 @@
             var response=response.data.data[0];
             this.$set("actionName", "更新平面作品ID:" + response.id);
             this.$set("input", response);
-            this.$set("fileInputConfig.uploadExtraData", {filename: response.face});
+            this.$set("fileInputConfig.uploadExtraData", {filename: response.cover});
             this.$set("fileInputConfig.initialPreview", ["<img src='/static/img/face/" + response.cover + "' class='file-preview-image'>"]);
             this.$set("fileInputConfig.initialPreviewConfig", [{
-              caption: response.face,
+              caption: response.cover,
               width: '120px',
               url: '/admin/team/delcover',
-              extra: {filename: response.face}
+              extra: {filename: response.cover}
             }]);
           });
           transition.next();
@@ -98,7 +92,7 @@
       $(this.uploadDom).fileinput(this.fileInputConfig);
       //上传结束后更新图片文件名
       $(this.uploadDom).on('fileuploaded', (event, data)=>{
-        this.$set("input.face", data.response.data);
+        this.$set("input.cover", data.response.data);
       });
       //删除提示
       $(this.uploadDom).on("filepredelete", ()=>{

@@ -7,7 +7,7 @@
       <form>
         <fieldset class="form-group">
           <label for="title">标题</label>
-          <input type="text" class="form-control" id="title" placeholder="请输入文章大标题" v-model="input.title">
+          <input type="text" class="form-control" placeholder="请输入文章大标题" v-model="input.title">
           <small class="text-muted">这个标题是显示在公告页面首页的</small>
         </fieldset>
         <fieldset class="form-group">
@@ -21,24 +21,17 @@
                 <option value="update">更新</option>
               </select>
             </div>
-            <div class="col-xs-4 form-group">
-              <div class="input-group">
-                <input type="text" class="form-control" id="exampleInputAmount" placeholder="添加新分类">
-                <a class="input-group-addon btn btn-primary">增加分类</a>
-              </div>
-            </div>
           </div>
           <small class="text-muted">请选择最新分类</small>
         </fieldset>
         <fieldset class="form-group uploadForm">
           <label for="category">上传封面图</label>
-          <input id="upload_situation_cover" name="situation_cover" type="file" multiple class="file-loading"
-                 accept="image/*">
+          <input id="upload_situation_cover" name="situation_cover" type="file" multiple class="file-loading" accept="image/*">
           <small class="text-muted">请选择最新分类</small>
         </fieldset>
         <fieldset class="form-group">
           <label for="category">撰写文章内容</label>
-          <textarea id="editor" placeholder="Enter text ..." style=""></textarea>
+          <textarea id="editor"></textarea>
           <small class="text-muted">请撰写文章内容,请不要再编辑器内使用代码,保证板式正确</small>
         </fieldset>
         <fieldset class="form-group">
@@ -67,7 +60,18 @@
         },
         tinyMCEConfig:{
           selector: '#editor',
-          plugins: "image imagetools",
+          theme: 'modern',
+          plugins: [
+            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            'searchreplace wordcount visualblocks visualchars code fullscreen',
+            'insertdatetime media nonbreaking save table contextmenu directionality',
+            'emoticons template paste textcolor colorpicker textpattern imagetools upload'
+          ],
+          toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | upload',
+          toolbar2: 'print preview media | forecolor backcolor emoticons',
+          upload_action: '/admin/editor/imgupload',//required
+          upload_file_name: 'tinymce_img',//required
+          image_advtab: true,
           height: 360
         },
         actionName:'',
@@ -111,7 +115,7 @@
 
       //初始化编辑器
       tinymce.init(this.tinyMCEConfig);
-      tinymce.activeEditor.setContent(this.input.content);
+      tinymce.activeEditor.insertContent(this.input.content);
     },
     beforeDestroy(){
       tinymce.remove("#editor");
@@ -135,4 +139,5 @@
 </script>
 
 <style lang="sass?outputStyle=expanded">
+
 </style>

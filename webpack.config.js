@@ -5,7 +5,8 @@ var ReplacePlugin = require('replace-webpack-plugin');
 module.exports = {
   entry:{
     //index:'./components_index/app.js',
-    admin:'./components_admin/admin.js'
+    //admin:'./components_admin/admin.js',
+    login:'./components_admin/login.js'
 
   },
   output:{
@@ -75,6 +76,16 @@ module.exports = {
       data: {
         css: '<link type="text/css" rel="stylesheet" href="static/css/admin.style.css?hash=[hash]">',
         js: '<script src="static/app/admin.build.js?hash=[hash]"></script>'
+      }
+    }),
+    new ReplacePlugin({
+      skip: process.env.NODE_ENV === 'production',
+      entry: './components_admin/login.html',
+      hash: '[hash]',
+      output: './view/admin/login_index.html',
+      data: {
+        css: '<link type="text/css" rel="stylesheet" href="/static/css/login.style.css?hash=[hash]">',
+        js: '<script src="/static/app/login.build.js?hash=[hash]"></script>'
       }
     })
   ]

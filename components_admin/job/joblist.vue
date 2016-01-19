@@ -18,11 +18,11 @@
       <th scope="row">{{jl.id}}</th>
       <td>{{jl.position}}</td>
       <td>{{jl.quantity}}</td>
-      <td>{{jl.compensation}}</td>
+      <td class="text-primary">{{jl.compensation | currency '￥'}}</td>
       <td>{{jl.date | dateTime}}</td>
       <td>
         <a href="javascript:;" class="btn btn-secondary btn-sm"
-           v-link="{name:'addJob',params:{jobId:g.id}}">
+           v-link="{name:'addJob',params:{jobId:jl.id}}">
           <i class="fa fa-pencil-square-o"></i>
         </a>
         <a href="javascript:;" class="btn btn-secondary btn-sm"

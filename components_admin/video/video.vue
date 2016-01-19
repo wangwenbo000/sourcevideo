@@ -7,7 +7,6 @@
     <div class="card-block">
       <a v-link="{name:'addVideo',params:{videoId:'upload'}}" class="btn btn-primary btn-sm text-right"><i
             class="fa fa-cloud-upload"></i>上传视频</a>
-      <a @click="" class="btn btn-danger btn-sm pull-right"><i class="fa fa-trash-o"></i> 批量删除</a>
       <div class="dropdown-divider"></div>
       <table class="table table-striped table-hover">
         <thead>
@@ -18,7 +17,6 @@
           <th>分类</th>
           <th>发布时间</th>
           <th>操作</th>
-          <th>选择 <input type="checkbox" value="{{listData.data[id]}}" v-model="checkId"></th>
         </tr>
         </thead>
         <tbody>
@@ -38,7 +36,6 @@
               <i class="fa fa-trash-o"></i>
             </a>
           </td>
-          <td><input type="checkbox" value="{{l.id}}" v-model="checkId" number></td>
         </tr>
         </tbody>
       </table>

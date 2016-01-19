@@ -29,12 +29,6 @@
               </select>
             </div>
             <div class="col-xs-4">
-              <div class="input-group">
-                <input type="text" class="form-control" id="exampleInputAmount" placeholder="添加新分类">
-                <a class="input-group-addon btn btn-primary">增加分类</a>
-              </div>
-            </div>
-            <div class="col-xs-4">
               <div class='input-group date' id='datetimepicker10'>
                 <input type='text' class="form-control" placeholder="影片拍摄时间" v-model="input.maketime"/>
                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
@@ -45,7 +39,7 @@
         </fieldset>
         <fieldset class="form-group">
           <label for="title"><strong class="text-primary">请输入优酷视频ID</strong></label>
-          <input type="text" class="form-control" placeholder="请输入id" v-model="input.youkuid">
+          <input type="text" class="form-control text-primary" placeholder="请输入id" v-model="input.youkuid">
           <small class="text-muted">上传的时候会得到一个优酷视频id,系统将根据id请求播放视频</small>
         </fieldset>
         <fieldset class="form-group uploadForm">

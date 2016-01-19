@@ -16,10 +16,10 @@
       <i class="fa fa-youtube-play"></i> 视频管理
     </a>
 
-    <a v-link="{name:'photos'}" class="list-group-item"
-       :class="[$route.name=='photos' || $route.name=='addPhotos' ? 'active':'']">
-      <i class="fa fa-camera"></i> 项目剧照
-    </a>
+    <!--<a v-link="{name:'photos'}" class="list-group-item"-->
+       <!--:class="[$route.name=='photos' || $route.name=='addPhotos' ? 'active':'']">-->
+      <!--<i class="fa fa-camera"></i> 项目剧照-->
+    <!--</a>-->
     <a v-link="{name:'graphic'}" class="list-group-item"
        :class="[$route.name=='graphic' || $route.name=='addGraphic' ? 'active':'']">
       <i class="fa fa-diamond"></i> 平面管理
@@ -33,10 +33,10 @@
       <i class="fa fa-eye"></i> 人才招聘
       <span class="label label-pill label-danger pull-right">2</span>
     </a>
-    <a  class="list-group-item"
-       :class="[$route.name=='manage'?'active':'']">
-      <i class="fa fa-user-secret"></i> 账号管理
-    </a>
+    <!--<a  class="list-group-item"-->
+       <!--:class="[$route.name=='manage'?'active':'']">-->
+      <!--<i class="fa fa-user-secret"></i> 账号管理-->
+    <!--</a>-->
     <a href="javascript:;" class="list-group-item"
        :class="[$route.name=='opensource'?'active':'']" data-toggle="modal" data-target="#myModal">
       <i class="fa fa-github-alt"></i> 开源库

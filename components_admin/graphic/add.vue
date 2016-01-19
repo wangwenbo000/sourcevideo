@@ -21,12 +21,6 @@
               </select>
             </div>
             <div class="col-xs-4">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="添加新分类">
-                <a class="input-group-addon btn btn-primary">增加分类</a>
-              </div>
-            </div>
-            <div class="col-xs-4">
               <div class='input-group date' id='datetimepicker10'>
                 <input type='text' class="form-control" placeholder="影片拍摄时间" v-model="input.maketime" v-model="input.maketime">
                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
@@ -84,7 +78,7 @@
             this.$set("actionName", "更新平面作品ID:" + response.id);
             this.$set("input", response);
             this.$set("fileInputConfig.uploadExtraData", {filename: response.graphic});
-            this.$set("fileInputConfig.initialPreview", ["<img src='/static/img/videoCover/" + response.cover + "' class='file-preview-image'>"]);
+            this.$set("fileInputConfig.initialPreview", ["<img src='/static/img/graphic/" + response.graphic + "' class='file-preview-image'>"]);
             this.$set("fileInputConfig.initialPreviewConfig", [{
               caption: response.graphic,
               width: '120px',
@@ -103,7 +97,7 @@
       $(this.uploadDom).fileinput(this.fileInputConfig);
       //上传结束后更新图片文件名
       $(this.uploadDom).on('fileuploaded', (event, data)=>{
-        this.$set("input.cover", data.response.data);
+        this.$set("input.graphic", data.response.data);
       });
       //删除提示
       $(this.uploadDom).on("filepredelete", ()=>{

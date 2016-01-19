@@ -21,14 +21,14 @@
         <tbody>
         <tr v-for="t in listData.data">
           <th scope="row">{{t.id}}</th>
-          <th><img :src="'/static/img/'+t.face" alt="" class="img-circle"></th>
+          <th><img :src="'/static/img/face/'+t.cover" alt="" class="img-circle" width="60"></th>
           <td>{{t.name}}</td>
           <td>{{t.profession}}</td>
           <td>{{t.order}}</td>
           <td>{{t.date}}</td>
           <td>
             <a href="javascript:;" class="btn btn-secondary btn-sm"
-               v-link="{name:'addTeam',params:{teamId:g.id}}">
+               v-link="{name:'addMember',params:{memberId:t.id}}">
               <i class="fa fa-pencil-square-o"></i>
             </a>
             <a href="javascript:;" class="btn btn-secondary btn-sm"
@@ -41,7 +41,7 @@
       </table>
       <div class="alert alert-info text-center" role="alert" v-show="showEmptyAlert">
         <strong>人生在勤!</strong> 到目前为止你还没有发布过一篇文章:/ &nbsp;&nbsp;
-        <a v-link="{name:'addGraphic',params:{graphicId:'upload'}}" class="btn btn-success btn-sm">发布第一条记录！</a>
+        <a v-link="{name:'addMember',params:{memberId:'upload'}}" class="btn btn-success btn-sm">发布第一条记录！</a>
       </div>
     </div>
     <div class="card-footer text-muted clearfix">
@@ -55,7 +55,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script type="text/babel">

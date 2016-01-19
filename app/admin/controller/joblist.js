@@ -23,9 +23,17 @@
 
 
 
+  addAction = function addAction() {var 
+    id, 
+
+    insertId, 
+
+
+    data;return _regeneratorRuntime.async(function addAction$(context$2$0) {while (1) switch (context$2$0.prev = context$2$0.next) {case 0:id = this.post().id;if (!think.isEmpty(id)) {context$2$0.next = 8;break;}context$2$0.next = 4;return _regeneratorRuntime.awrap(this.M().add(this.post()));case 4:insertId = context$2$0.sent;this.success(insertId);context$2$0.next = 12;break;case 8:context$2$0.next = 10;return _regeneratorRuntime.awrap(this.M().where({ id: id }).update(this.post()));case 10:data = context$2$0.sent;
+          this.success(data);case 12:case 'end':return context$2$0.stop();}}, null, this);};_default.prototype.
+
+
+
   delAction = function delAction() {var 
-    fs, 
-    delGraphic, 
-    imgPath;return _regeneratorRuntime.async(function delAction$(context$2$0) {var _this = this;while (1) switch (context$2$0.prev = context$2$0.next) {case 0:fs = require('fs');context$2$0.next = 3;return _regeneratorRuntime.awrap(this.M().where({ id: this.post().id })['delete']());case 3:delGraphic = context$2$0.sent;imgPath = think.RESOURCE_PATH + '/static/img/graphic/' + this.post().filename;
-          fs.unlink(imgPath, function (err) {
-            err ? _this.fail() : _this.success();});case 6:case 'end':return context$2$0.stop();}}, null, this);};return _default;})(_baseJs2['default']);exports['default'] = _default;module.exports = exports['default'];
+    deljob;return _regeneratorRuntime.async(function delAction$(context$2$0) {while (1) switch (context$2$0.prev = context$2$0.next) {case 0:context$2$0.next = 2;return _regeneratorRuntime.awrap(this.M().where({ id: this.post().id })['delete']());case 2:deljob = context$2$0.sent;
+          this.success();case 4:case 'end':return context$2$0.stop();}}, null, this);};return _default;})(_baseJs2['default']);exports['default'] = _default;module.exports = exports['default'];

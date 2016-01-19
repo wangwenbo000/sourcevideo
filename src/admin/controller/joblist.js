@@ -23,12 +23,19 @@ export default class extends Base {
     }
   }
 
+  async addAction() {
+    let id = this.post().id;
+    if (think.isEmpty(id)) {
+      let insertId = await this.M().add(this.post());
+      this.success(insertId);
+    } else {
+      let data = await this.M().where({id: id}).update(this.post());
+      this.success(data);
+    }
+  }
+
   async delAction() {
-    var fs = require('fs');
-    let delGraphic = await this.M().where({id: this.post().id}).delete();
-    let imgPath = think.RESOURCE_PATH + '/static/img/graphic/' + this.post().filename;
-    fs.unlink(imgPath, (err)=> {
-      err ? this.fail() : this.success();
-    });
+    let deljob = await this.M().where({id: this.post().id}).delete();
+    this.success();
   }
 }

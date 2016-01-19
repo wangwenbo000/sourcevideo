@@ -27,5 +27,4 @@
 
 <style lang="sass">
 @import "style.scss";
-@import "style.scss";
 </style>

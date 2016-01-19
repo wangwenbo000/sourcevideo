@@ -9,7 +9,7 @@
   port: '3306', 
   name: 'sourcevideo', 
   user: 'root', 
-  pwd: '', 
+  pwd: '15117909848', 
   prefix: 'sv_', 
   encoding: 'utf8mb4', 
   nums_per_page: 10, 
