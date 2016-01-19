@@ -5,6 +5,7 @@
     </div>
     <div class="card-block">
       <a v-link="{name:'addSituation',params:{newsId:'upload'}}" class="btn btn-primary btn-sm text-right"><i class="fa fa-plus-circle"></i> 增加公告</a>
+      <a @click="" class="btn btn-danger btn-sm pull-right"><i class="fa fa-trash-o"></i> 批量删除</a>
       <div class="dropdown-divider"></div>
       <table class="table table-striped table-hover">
         <thead>
@@ -15,6 +16,7 @@
           <th>首页显示</th>
           <th>发布时间</th>
           <th>操作</th>
+          <th>选择 <input type="checkbox" value="{{listData.data[id]}}" v-model="checkId"></th>
         </tr>
         </thead>
         <tbody>
@@ -33,6 +35,7 @@
               <i class="fa fa-trash-o"></i>
             </a>
           </td>
+          <td><input type="checkbox" value="{{l.id}}" v-model="checkId" number></td>
         </tr>
         </tbody>
       </table>
@@ -61,7 +64,8 @@
       return {
         getAPI: '/admin/situation/getlist',
         delAPI: '/admin/situation/delnews',
-        listData: {}
+        listData: {},
+        checkId:[]
       }
     },
     mixins: [init],

@@ -3,6 +3,7 @@
 import Base from './base.js';
 import moment from 'moment';
 import rp from 'request-promise';
+var fs = require('fs');
 
 export default class extends Base {
   /**
@@ -27,11 +28,17 @@ export default class extends Base {
   }
 
   async addAction() {
-
+    let id = this.post().id;
+    if (think.isEmpty(id)) {
+      let insertId = await this.M().add(this.post());
+      this.success(insertId);
+    } else {
+      let data = await this.M().where({id: id}).update(this.post());
+      this.success(data);
+    }
   }
 
   async delAction() {
-    var fs = require('fs');
     let delvideo = await this.M().where({id: this.post().id}).delete();
     let imgPath = think.RESOURCE_PATH + '/static/img/videoCover/' + this.post().filename;
     fs.unlink(imgPath, (err)=> {
@@ -40,31 +47,21 @@ export default class extends Base {
   }
 
   async delcoverAction() {
-    var fs = require('fs');
-    let imgPath = think.RESOURCE_PATH + '/static/img/indexCover/' + this.post().filename;
+    let imgPath = think.RESOURCE_PATH + '/static/img/videoCover/' + this.post().filename;
     fs.unlink(imgPath, (err)=> {
       err ? this.fail() : this.success();
     });
   }
 
-  async uploadvideocoverAction() {
-    var _this = this;
-    let filename = this.post().filename;
+  async uploadcoverAction() {
+    let _this = this;
     let uploadInfo = this.file('video_cover');
-    var fs = require('fs');
-    var newFileName = think.isEmpty(filename) ? moment().format('YYYYMMDDHHmmss') + ".jpg" : filename;
+    var newFileName = moment().format('YYYYMMDDHHmmss') + ".jpg";
     var oldPath = uploadInfo.path;
     var newPath = think.RESOURCE_PATH + '/static/img/videoCover/';
-    fs.rename(oldPath, newPath + newFileName, function (err) {
-      if (err) {
-        console.error(err);
-      } else {
-        _this.success(newFileName);
-      }
-    });
-  }
 
-  async uploadvideoAction() {
-    this.success(this.file('video').path);
+    fs.rename(oldPath, newPath + newFileName, function (err) {
+      err ? _this.error(err) : _this.success(newFileName);
+    });
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <strong><i class="fa fa-cloud-upload"></i> 上传视频</strong>
+      <strong><i class="fa fa-cloud-upload"></i> {{actionName}}</strong>
     </div>
     <div class="card-block">
       <form>
@@ -45,7 +45,7 @@
         </fieldset>
         <fieldset class="form-group">
           <label for="title"><strong class="text-primary">请输入优酷视频ID</strong></label>
-          <input type="text" class="form-control" id="title" placeholder="请输入id" v-model="input.videoid">
+          <input type="text" class="form-control" placeholder="请输入id" v-model="input.youkuid">
           <small class="text-muted">上传的时候会得到一个优酷视频id,系统将根据id请求播放视频</small>
         </fieldset>
         <fieldset class="form-group uploadForm">
@@ -62,52 +62,78 @@
 
 <script type="text/babel">
   export default{
-    ready(){
-      $('#datetimepicker10').datetimepicker({
-        viewMode: 'years',
-        format: 'YYYY/MM'
-      });
-      this.fileInputConfig = {
-        uploadUrl: "/admin/video/uploadvideocover",
-        showCancel: false,
-        showRemove: false,
-        showUpload: false,
-        allowedFileExtensions: ["jpg", "png", "gif"],
-        maxFileCount: 1,
-        minImageWidth: 50,
-        minImageHeight: 50
-      };
-
-      $("#upload_video_cover").fileinput(this.fileInputConfig);
-      if (this.$route.params.videoId != 'upload') {
-        this.isEdit(parseInt(this.$route.params.videoId));
+    data(){
+      return {
+        input: {},
+        fileInputConfig: {
+          uploadUrl: "/admin/video/uploadcover",
+          showCancel: false,
+          showRemove: false,
+          allowedFileExtensions: ["jpg", "png", "gif"],
+          maxFileCount: 1,
+          minImageWidth: 50,
+          minImageHeight: 50
+        },
+        datePickerConfig: {
+          viewMode: 'years',
+          format: 'YYYY/MM'
+        },
+        actionName: '',
+        uploadDom: "#upload_video_cover",
+        dateDom: "#datetimepicker10",
+        getAPI: '/admin/video/get',
+        saveAPI: '/admin/video/add'
       }
     },
-    beforeDestroy(){
-      tinymce.remove("#editor");
+    route: {
+      activate(transition){
+        var id=transition.to.params.videoId;
+        if(id=='upload'){
+          this.$set("actionName", "增加新的视频记录");
+          transition.next();
+        }else if(!isNaN(parseInt(id))){
+          this.$http.post(this.getAPI, {id: id}).then(response=>{
+            var response=response.data.data[0];
+            this.$set("actionName", "更新视频youkuID:" + response.youkuid);
+            this.$set("input", response);
+            this.$set("fileInputConfig.uploadExtraData", {filename: response.cover});
+            this.$set("fileInputConfig.initialPreview", ["<img src='/static/img/videoCover/" + response.cover + "' class='file-preview-image'>"]);
+            this.$set("fileInputConfig.initialPreviewConfig", [{
+              caption: response.cover,
+              width: '120px',
+              url: '/admin/video/delcover',
+              extra: {filename: response.cover}
+            }]);
+          });
+          transition.next();
+        }else{
+          alert("非法转入,操作被终端");
+          transition.abort();
+        }
+      }
+    },
+    ready(){
+      $(this.uploadDom).fileinput(this.fileInputConfig);
+      //上传结束后更新图片文件名
+      $(this.uploadDom).on('fileuploaded', (event, data)=>{
+        this.$set("input.cover", data.response.data);
+      });
+      //删除提示
+      $(this.uploadDom).on("filepredelete", ()=>{
+        return confirm("你确定删除这张照片么?") ? false : true;
+      });
+      $(this.dateDom).datetimepicker(this.datePickerConfig);
     },
     methods: {
       add(event){
         event.preventDefault();
-        var resource = this.$resource('/admin/video/add');
-        $('#upload_video_cover').fileinput('upload');
-        $('#upload_video_cover').on('fileuploaded', (event, data)=> {
-          this.$data.input.content = tinymce.activeEditor.getContent();
-          this.$data.input.cover = data.response.data;
-          this.$data.input.date = moment().format('YYYY-MM-DD HH:mm:ss');
-          $('#upload_video').fileinput('upload');
-          $('#upload_video').on('fileuploaded', (event, data)=> {
-            this.$data.input.runtime = data.response.data;
-            resource.save(this.$data.input).then((response)=> {
-//                            window.location.href = "#!/situation";
-            });
-          })
-        });
-
-
+        this.saveData();
       },
-      isEdit(id){
-
+      saveData(){
+        this.input.date=moment().format('YYYY-MM-DD HH:mm:ss');
+        this.$http.post(this.saveAPI, this.input).then(response=>{
+          window.location.href="#!/video";
+        });
       }
     }
   }

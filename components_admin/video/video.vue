@@ -2,11 +2,12 @@
   <div class="card">
     <div class="card-header">
       视频列表
-      <small class="text-muted">视频托管服务商为爱奇艺视频</small>
+      <small class="text-muted">视频托管服务商为优酷视频</small>
     </div>
     <div class="card-block">
       <a v-link="{name:'addVideo',params:{videoId:'upload'}}" class="btn btn-primary btn-sm text-right"><i
             class="fa fa-cloud-upload"></i>上传视频</a>
+      <a @click="" class="btn btn-danger btn-sm pull-right"><i class="fa fa-trash-o"></i> 批量删除</a>
       <div class="dropdown-divider"></div>
       <table class="table table-striped table-hover">
         <thead>
@@ -14,8 +15,10 @@
           <th>#</th>
           <th>预览</th>
           <th>视频标题</th>
+          <th>分类</th>
           <th>发布时间</th>
           <th>操作</th>
+          <th>选择 <input type="checkbox" value="{{listData.data[id]}}" v-model="checkId"></th>
         </tr>
         </thead>
         <tbody>
@@ -23,7 +26,8 @@
           <th scope="row">{{v.id}}</th>
           <td><img :src="'/static/img/videoCover/'+v.cover" width="80" alt=""></td>
           <td>{{v.title}}</td>
-          <td>{{v.date}}</td>
+          <td>{{v.catagory}}</td>
+          <td>{{v.date | dateTime}}</td>
           <td>
             <a href="javascript:;" class="btn btn-secondary btn-sm"
                v-link="{name:'addVideo',params:{videoId:v.id}}">
@@ -34,6 +38,7 @@
               <i class="fa fa-trash-o"></i>
             </a>
           </td>
+          <td><input type="checkbox" value="{{l.id}}" v-model="checkId" number></td>
         </tr>
         </tbody>
       </table>

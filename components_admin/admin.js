@@ -12,9 +12,9 @@ import App from './admin.vue'
 //admin Components
 import Index from './index/index.vue'
 import Situation from './situation/situation.vue'
-import Addstiuation from './situation/add.vue'
+import addStiuation from './situation/add.vue'
 import Video from './video/video.vue'
-import AddVideo from './video/add.vue'
+import addVideo from './video/add.vue'
 import Graphic from './graphic/graphic.vue'
 import addGraphic from './graphic/add.vue'
 import Team from './team/team.vue'
@@ -50,7 +50,7 @@ router.map({
   },
   '/addSituation/:newsId': {
     name: 'addSituation',
-    component: Addstiuation
+    component: addStiuation
   },
   '/video': {
     name: 'video',
@@ -58,7 +58,7 @@ router.map({
   },
   '/addVideo/:videoId': {
     name: 'addVideo',
-    component: AddVideo
+    component: addVideo
   },
   'graphic': {
     name: 'graphic',
@@ -72,7 +72,7 @@ router.map({
     name: 'team',
     component: Team
   },
-  'addMember': {
+  '/addMember/:memberId': {
     name: 'addMember',
     component: addMember
   },

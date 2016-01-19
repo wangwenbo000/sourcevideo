@@ -20,7 +20,7 @@
         <tr v-for="g in listData.data">
           <th scope="row">{{g.id}}</th>
           <td>{{g.title}}</td>
-          <td>{{g.date}}</td>
+          <td>{{g.date | dateTime}}</td>
           <td>
             <a href="javascript:;" class="btn btn-secondary btn-sm"
                v-link="{name:'addGraphic',params:{graphicId:g.id}}">

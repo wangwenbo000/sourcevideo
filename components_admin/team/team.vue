@@ -4,7 +4,7 @@
       团队人员列表
     </div>
     <div class="card-block">
-      <a href="#!/addMember" class="btn btn-primary btn-sm text-right"><i class="fa fa-plus-circle"></i> 增加团队人员</a>
+      <a v-link="{name:'addMember', params:{memberId:'upload'}}" class="btn btn-primary btn-sm text-right"><i class="fa fa-plus-circle"></i> 增加团队人员</a>
       <div class="dropdown-divider"></div>
       <table class="table table-striped table-hover">
         <thead>
