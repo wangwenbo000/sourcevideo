@@ -5,11 +5,9 @@
         <div class="alert alert-info" role="alert">
           <strong>Heads up!</strong>
         </div>
-        <input type="text" class="form-control" placeholder="username" required autofocus
-               v-model="login.username">
-        <input type="password" class="form-control" placeholder="Password" required
-               v-model="login.password">
-        <a class="btn btn-lg btn-primary btn-block" @click="login">Sign in</a>
+        <input type="text" class="form-control" placeholder="username" autofocus v-model="login.username">
+        <input type="password" class="form-control" placeholder="Password" v-model="login.password">
+        <a class="btn btn-lg btn-primary btn-block" @click="loginInfo">Sign in</a>
       </form>
   </div>
 </template>
@@ -18,15 +16,17 @@
   export default{
     data(){
       return{
-        input:{}
+        login:{},
+        loginAPI:'/admin/login/login'
       }
     },
     ready(){
     },
     methods: {
-      login(event){
-        event.preventDefault();
+      loginInfo(event){
+        this.$http.post(this.loginAPI, this.login).then(()=> {
 
+        });
       }
     }
   }
