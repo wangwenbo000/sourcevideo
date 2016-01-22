@@ -26,12 +26,13 @@
         </fieldset>
         <fieldset class="form-group uploadForm">
           <label for="category">上传封面图</label>
-          <input id="upload_situation_cover" name="situation_cover" type="file" multiple class="file-loading" accept="image/*">
+          <input id="upload_situation_cover" name="situation_cover" type="file" multiple class="file-loading"
+                 accept="image/*">
           <small class="text-muted">请选择最新分类</small>
         </fieldset>
         <fieldset class="form-group">
           <label for="category">撰写文章内容</label>
-          <textarea id="editor"></textarea>
+          <script id="editor" name="content" type="text/plain"></script>
           <small class="text-muted">请撰写文章内容,请不要再编辑器内使用代码,保证板式正确</small>
         </fieldset>
         <fieldset class="form-group">
@@ -48,7 +49,9 @@
   export default{
     data(){
       return {
-        input: {},
+        input: {
+          content:''
+        },
         fileInputConfig: {
           uploadUrl: "/admin/situation/uploadcover",
           showCancel: false,
@@ -58,42 +61,35 @@
           minImageWidth: 50,
           minImageHeight: 50
         },
-        tinyMCEConfig:{
-          selector: '#editor',
-          theme: 'modern',
-          plugins: [
-            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-            'searchreplace wordcount visualblocks visualchars code fullscreen',
-            'insertdatetime media nonbreaking save table contextmenu directionality',
-            'emoticons template paste textcolor colorpicker textpattern imagetools upload'
-          ],
-          toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | upload',
-          toolbar2: 'print preview media | forecolor backcolor emoticons',
-          upload_action: '/admin/editor/imgupload',//required
-          upload_file_name: 'tinymce_img',//required
-          image_advtab: true,
-          height: 360
+        ueditorConfig: {
+          initialFrameHeight: 500
         },
-        actionName:'',
+        actionName: '',
+        ueditorDom: 'editor',
         uploadDom: "#upload_situation_cover",
         getAPI: '/admin/situation/getlist',
-        saveAPI:'/admin/situation/addlist'
+        saveAPI: '/admin/situation/addlist',
       }
     },
     route: {
       activate(transition){
         var id = transition.to.params.newsId;
         if (id == 'upload') {
-          this.$set("actionName","增加新的公告");
+          this.$set("actionName", "增加新的公告");
           transition.next();
         } else if (!isNaN(parseInt(id))) {
           this.$http.post(this.getAPI, {id: id}).then(response=> {
             var response = response.data.data[0];
-            this.$set("actionName","更新公告ID:"+response.id);
+            this.$set("actionName", "更新公告ID:" + response.id);
             this.$set("input", response);
-            this.$set("fileInputConfig.uploadExtraData",{filename: response.cover});
-            this.$set("fileInputConfig.initialPreview",["<img src='/static/img/indexCover/" + response.cover + "' class='file-preview-image'>"]);
-            this.$set("fileInputConfig.initialPreviewConfig",[{caption: response.cover,width: '120px',url: '/admin/situation/delcover',extra: {filename: response.cover}}]);
+            this.$set("fileInputConfig.uploadExtraData", {filename: response.cover});
+            this.$set("fileInputConfig.initialPreview", ["<img src='/static/img/indexCover/" + response.cover + "' class='file-preview-image'>"]);
+            this.$set("fileInputConfig.initialPreviewConfig", [{
+              caption: response.cover,
+              width: '120px',
+              url: '/admin/situation/delcover',
+              extra: {filename: response.cover}
+            }]);
           });
           transition.next();
         } else {
@@ -106,20 +102,21 @@
       $(this.uploadDom).fileinput(this.fileInputConfig);
       //上传结束后更新图片文件名
       $(this.uploadDom).on('fileuploaded', (event, data)=> {
-        this.$set("input.cover",data.response.data);
+        this.$set("input.cover", data.response.data);
       });
       //删除提示
       $(this.uploadDom).on("filepredelete", ()=> {
-        return confirm("你确定删除这张照片么?") ? false:true;
+        return confirm("你确定删除这张照片么?") ? false : true;
       });
-
-      //初始化编辑器
-      tinymce.init(this.tinyMCEConfig);
-      tinymce.activeEditor.insertContent(this.input.content);
+      UE.getEditor(this.ueditorDom, this.ueditorConfig);
+      this.ueSelf = UE.getEditor('editor');
+      var _this = this;
+      this.ueSelf.ready(function () {
+        _this.ueSelf.setContent(_this.input.content);
+      });
     },
-    beforeDestroy(){
-      tinymce.remove("#editor");
-      $(this.uploadDom).fileinput('disable');
+    destroyed(){
+      this.ueSelf.destroy();
     },
     methods: {
       add(event){
@@ -127,8 +124,8 @@
         this.saveData();
       },
       saveData(){
-        this.input.content = tinymce.activeEditor.getContent();
         this.input.date = moment().format('YYYY-MM-DD HH:mm:ss');
+        this.input.content = this.ueSelf.getContent(this.input.content);
         this.input.show == true ? this.input.show = 1 : this.input.show = 0;
         this.$http.post(this.saveAPI, this.input).then(response=> {
           window.location.href = "#!/situation";

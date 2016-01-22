@@ -22,7 +22,7 @@
         </fieldset>
         <fieldset class="form-group">
           <label for="category">职位描述</label>
-          <textarea id="editor"></textarea>
+          <script id="editor" name="content" type="text/plain"></script>
           <small class="text-muted">请撰写文章内容,主要描述项目的图文细节,类似博客文章</small>
         </fieldset>
         <a class="btn btn-primary" @click="add">发布新职位</a>
@@ -36,11 +36,17 @@
   export default{
     data(){
       return {
-        input: {},
-        tinyMCEConfig:{
-          selector: '#editor',
-          height: 360
+        input: {
+          content:''
         },
+        ueditorConfig: {
+          initialFrameHeight: 500,
+          toolbars: [
+            ['fullscreen', 'source', 'undo', 'redo'],
+            ['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc']
+          ]
+        },
+        ueditorDom: 'editor',
         getAPI: '/admin/joblist/get',
         saveAPI: '/admin/joblist/add',
         actionName:''
@@ -66,11 +72,15 @@
       }
     },
     ready(){
-      tinymce.init(this.tinyMCEConfig);
-      tinymce.activeEditor.setContent(this.input.content);
+      UE.getEditor(this.ueditorDom,this.ueditorConfig);
+      this.ueSelf = UE.getEditor('editor');
+      var _this = this;
+      this.ueSelf.ready(function () {
+        _this.ueSelf.setContent(_this.input.content);
+      });
     },
-    beforeDestroy(){
-      tinymce.remove("#editor");
+    destroyed(){
+      this.ueSelf.destroy();
     },
     methods: {
       add(event){
@@ -78,8 +88,8 @@
         this.saveData();
       },
       saveData(){
+        this.input.content = this.ueSelf.getContent(this.input.content);
         this.input.date = moment().format('YYYY-MM-DD HH:mm:ss');
-        this.input.content = tinymce.activeEditor.getContent();
         this.$http.post(this.saveAPI, this.input).then(response=> {
           window.location.href = "#!/job/joblist";
         });

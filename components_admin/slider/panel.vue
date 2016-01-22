@@ -1,11 +1,34 @@
 <template>
-  <div class="card">
+  <div class="card card-block" style="text-align: center">
     <!--<img class="card-img-top" data-src="img/admintop.jpg" src="../img/admintop.jpg" style="width:100%" alt="Card image cap">-->
-    <div class="card-block">
-      <h4 class="card-title">咔花叔叔</h4>
-      <p class="card-text">上次:2015-09-09</p>
-      <a class="btn btn-secondary btn-sm">改密码</a>
-      <a class="btn btn-secondary btn-sm">退出</a>
-    </div>
+    <h4 class="card-title">
+      {{adminInfo.nickname}}
+      <small text-muted>{{adminInfo.username}}</small>
+    </h4>
+    <a class="btn btn-danger btn-sm"><i class="fa fa-user-secret"></i></a>
+    <a class="btn btn-secondary btn-sm">修改密码</a>
+    <a class="btn btn-secondary btn-sm" href="/admin/login/logout">
+      <i class="fa fa-power-off"></i>
+    </a>
   </div>
 </template>
+
+<script type="text/babel">
+  export default{
+    data(){
+      return{
+        getInfoAPI:'/admin/index/logininfo'
+      }
+    },
+    ready(){
+      this.$http.post(this.getInfoAPI).then(response=> {
+        this.$set("adminInfo", response.data.data);
+      });
+    },
+    computed: {
+      serverLastDay(){
+        return moment([2016, 9, 30]).toNow();
+      }
+    }
+  }
+</script>

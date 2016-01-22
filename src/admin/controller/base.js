@@ -7,13 +7,12 @@ export default class extends think.controller.base {
    */
   async __before(){
     let adminInfo = await this.session('adminInfo');
-    console.log(http);
     let whereFrom = this.http.controller;
     if(whereFrom === 'login'){
+      
       return;
     }
     if(think.isEmpty(adminInfo)){
-      console.log(this.http.controller);
       return this.redirect("/admin/login");
     }
   }

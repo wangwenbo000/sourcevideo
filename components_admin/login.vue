@@ -2,8 +2,8 @@
   <div class="container">
       <form class="form-signin">
         <h2 class="form-signin-heading">Admin Panel</h2>
-        <div class="alert alert-info" role="alert">
-          <strong>Heads up!</strong>
+        <div class="alert alert-danger" role="alert" v-show="isShowAlert">
+          {{alertMsg}}
         </div>
         <input type="text" class="form-control" placeholder="username" autofocus v-model="login.username">
         <input type="password" class="form-control" placeholder="Password" v-model="login.password">
@@ -17,16 +17,30 @@
     data(){
       return{
         login:{},
-        loginAPI:'/admin/login/login'
+        loginAPI:'/admin/login/login',
+        isShowAlert:false,
+        alertMsg:''
       }
     },
     ready(){
     },
     methods: {
       loginInfo(event){
-        this.$http.post(this.loginAPI, this.login).then(()=> {
-
+        this.$http.post(this.loginAPI, this.login).then((response)=> {
+          if(response.data.errmsg==""&&response.data.errno==0){
+            window.location.href = "/admin#!"+this.$route.path;
+          }else{
+            this.alertInfo("账号或者密码出错请核对");
+          }
         });
+      },
+      alertInfo(msg){
+        this.isShowAlert = true;
+        this.alertMsg = msg;
+        var self = this;
+        setTimeout(function(){
+          self.$set('isShowAlert',false);
+        },3000);
       }
     }
   }
