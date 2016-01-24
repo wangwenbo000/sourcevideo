@@ -1,30 +1,30 @@
 <template>
+  <div>
     <Topnav></Topnav>
     <div class="container">
-        <div class="row">
-            <div class="col-xs-2">
-                <Slider></Slider>
-            </div>
-            <div class="col-xs-10">
-                <router-view transition="fade" transition-mode="out-in"></router-view>
-            </div>
+      <div class="row">
+        <div class="col-xs-2">
+          <Slider></Slider>
         </div>
+        <div class="col-xs-10">
+          <router-view transition="fade" transition-mode="out-in"></router-view>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script type="text/babel">
-    import Topnav from './nav/nav.vue'
-    import Slider from './slider/slider.vue'
-    export default{
-        ready(){
-        },
-        components: {
-            Topnav,
-            Slider
-        }
+  import Topnav from './nav/nav.vue'
+  import Slider from './slider/slider.vue'
+  export default{
+    components: {
+      Topnav,
+      Slider
     }
+  }
 </script>
 
 <style lang="sass">
-@import "style.scss";
+  @import "style.scss";
 </style>

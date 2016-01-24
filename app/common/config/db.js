@@ -2,14 +2,14 @@
 /**
  * db config
  * @type {Object}
- */exports.__esModule = true;exports['default'] = 
+ */exports.__esModule = true;exports.default = 
 { 
   type: 'mysql', 
   host: 'localhost', 
   port: '3306', 
-  name: 'sourcevideo', 
+  database: 'sourcevideo', 
   user: 'root', 
-  pwd: '15117909848', 
+  password: '15117909848', 
   prefix: 'sv_', 
   encoding: 'utf8mb4', 
   nums_per_page: 10, 
@@ -22,4 +22,4 @@
 
   adapter: { 
     mysql: {}, 
-    mongo: {} } };module.exports = exports['default'];
+    mongo: {} } };

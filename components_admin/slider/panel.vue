@@ -17,7 +17,11 @@
   export default{
     data(){
       return{
-        getInfoAPI:'/admin/index/logininfo'
+        getInfoAPI:'/admin/index/logininfo',
+        adminInfo:{
+          nickname:'',
+          username:''
+        }
       }
     },
     ready(){

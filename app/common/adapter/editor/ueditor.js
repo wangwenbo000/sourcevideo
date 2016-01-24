@@ -1,15 +1,15 @@
 'use strict';
 /**
  * base adapter
- */var _inherits = require('babel-runtime/helpers/inherits')['default'];var _classCallCheck = require('babel-runtime/helpers/class-call-check')['default'];var _regeneratorRuntime = require('babel-runtime/regenerator')['default'];var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];exports.__esModule = true;var _fs = require(
-'fs');var _fs2 = _interopRequireDefault(_fs);var _path = require(
-'path');var _path2 = _interopRequireDefault(_path);var _http = require(
-'http');var _http2 = _interopRequireDefault(_http);var _default = (function (_think$adapter$base) {_inherits(_default, _think$adapter$base);function _default() {_classCallCheck(this, _default);_think$adapter$base.apply(this, arguments);}
+ */var _regenerator = require('babel-runtime/regenerator');var _regenerator2 = _interopRequireDefault(_regenerator);var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = require('babel-runtime/helpers/inherits');var _inherits3 = _interopRequireDefault(_inherits2);exports.__esModule = true;var _fs = require('fs');var _fs2 = _interopRequireDefault(_fs);var _path = require('path');var _path2 = _interopRequireDefault(_path);var _http = require('http');var _http2 = _interopRequireDefault(_http);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _class = function (_think$adapter$base) {(0, _inherits3.default)(_class, _think$adapter$base);function _class() {(0, _classCallCheck3.default)(this, _class);return (0, _possibleConstructorReturn3.default)(this, _think$adapter$base.apply(this, arguments));}
+
+
+
 
   /**
    * init
    * @return {[]}         []
-   */_default.prototype.
+   */_class.prototype.
   init = function init(fileField, config, type, http) {
     type = type || "upload";
     //super.init(http);
@@ -30,7 +30,7 @@
   /**
    * 上传文件的主处理方法
    * @return mixed
-   */_default.prototype.
+   */_class.prototype.
   upFile = function upFile() {
     var http = this.http;
     var file = http.file(this.fileField);
@@ -58,7 +58,7 @@
       return;}
 
     //移动文件
-    _fs2['default'].renameSync(file.path, this.filePath);
+    _fs2.default.renameSync(file.path, this.filePath);
     if (think.isFile(this.filePath)) {
       this.stateInfo = "SUCCESS";} else 
     {
@@ -69,7 +69,7 @@
   /**
    * 处理base64编码的图片上传
    * @return mixed
-   */_default.prototype.
+   */_class.prototype.
   upBase64 = function upBase64() 
   {
     var http = this.http;
@@ -97,18 +97,18 @@
     //}
     //移动文件
     //fs.renameSync(img, this.filePath);
-    _fs2['default'].writeFileSync(this.filePath, img);
+    _fs2.default.writeFileSync(this.filePath, img);
     if (think.isFile(this.filePath)) {
       this.stateInfo = "SUCCESS";} else 
     {
-      this.stateInfo = '文件保存时出错';}};_default.prototype.
+      this.stateInfo = '文件保存时出错';}};_class.prototype.
 
 
 
 
   spiderImage = function spiderImage(imgUrl, filePath) {
     var deferred = think.defer();
-    _http2['default'].get(imgUrl, function (res) {
+    _http2.default.get(imgUrl, function (res) {
       var imgData = "";
       res.setEncoding("binary");
       res.on("data", function (chunk) {
@@ -116,7 +116,7 @@
 
 
       res.on("end", function () {
-        _fs2['default'].writeFileSync(filePath, imgData, "binary");
+        _fs2.default.writeFileSync(filePath, imgData, "binary");
         deferred.resolve(filePath);});});
 
 
@@ -125,9 +125,9 @@
   /**
    * 拉取远程图片
    * @return mixed
-   */_default.prototype.
-  saveRemote = function saveRemote() {var 
-    imgUrl, 
+   */_class.prototype.
+  saveRemote = function () {var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {var 
+      imgUrl, 
 
 
 
@@ -135,7 +135,7 @@
 
 
 
-    m, 
+      m, 
 
 
 
@@ -143,30 +143,30 @@
 
 
 
-    filePath, 
-    fullName, 
+      filePath, 
+      fullName, 
 
-    promises;return _regeneratorRuntime.async(function saveRemote$(context$2$0) {while (1) switch (context$2$0.prev = context$2$0.next) {case 0:imgUrl = this.fileField;if (!(imgUrl.indexOf("http") !== 0)) {context$2$0.next = 4;break;}this.stateInfo = "链接不是http链接";return context$2$0.abrupt('return');case 4:m = imgUrl.match(/[\/]([^\/]*)[\.]?[^\.\/]*$/)[1];this.oriName = m ? m : ""; //console.log(this.oriName);
-          this.fileSize = imgUrl.length; //TODO 这里有问题，后面弄
-          this.fileType = this.getFileExt();this.fullName = this.getFullName();this.filePath = this.getFilePath();this.fileName = this.getFileName();filePath = this.filePath;fullName = this.fullName;think.mkdir(this.filePath.replace(this.fileName, ""));context$2$0.next = 16;return _regeneratorRuntime.awrap(this.spiderImage(imgUrl, filePath));case 16:promises = context$2$0.sent; // console.log(promises);
-          if (think.isFile(promises)) {this.stateInfo = "SUCCESS";} else 
-          {
-            this.stateInfo = '文件保存时出错';}return context$2$0.abrupt('return', 
-
-          { 
-            "state": this.stateInfo, 
-            "url": this.fullName, 
-            "title": this.fileName, 
-            "original": this.oriName, 
-            "type": this.fileType, 
-            "size": this.fileSize });case 19:case 'end':return context$2$0.stop();}}, null, this);};
+      promises;return _regenerator2.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:imgUrl = this.fileField; //imgUrl = imgUrl.replace(/&amp;/,"&");
+              //http开头验证
+              if (!(imgUrl.indexOf("http") !== 0)) {_context.next = 4;break;}this.stateInfo = "链接不是http链接";return _context.abrupt('return');case 4: //TODO 各种验证后面弄
+              m = imgUrl.match(/[\/]([^\/]*)[\.]?[^\.\/]*$/)[1];this.oriName = m ? m : ""; //console.log(this.oriName);
+              this.fileSize = imgUrl.length; //TODO 这里有问题，后面弄
+              this.fileType = this.getFileExt();this.fullName = this.getFullName();this.filePath = this.getFilePath();this.fileName = this.getFileName();filePath = this.filePath;fullName = this.fullName;think.mkdir(this.filePath.replace(this.fileName, ""));_context.next = 16;return this.spiderImage(imgUrl, filePath);case 16:promises = _context.sent; // console.log(promises);
+              if (think.isFile(promises)) {this.stateInfo = "SUCCESS";} else {this.stateInfo = '文件保存时出错';}return _context.abrupt('return', 
+              { 
+                "state": this.stateInfo, 
+                "url": this.fullName, 
+                "title": this.fileName, 
+                "original": this.oriName, 
+                "type": this.fileType, 
+                "size": this.fileSize });case 19:case 'end':return _context.stop();}}}, _callee, this);}));return function saveRemote() {return ref.apply(this, arguments);};}();
 
 
 
   /**
    * 获取文件扩展名
    * @return string
-   */_default.prototype.
+   */_class.prototype.
   getFileExt = function getFileExt() 
   {
 
@@ -176,7 +176,7 @@
   /**
    * 重命名文件
    * @return string
-   */_default.prototype.
+   */_class.prototype.
   getFullName = function getFullName() {
     //替换目录日期事件
     ///ueditor/php/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}
@@ -209,7 +209,7 @@
   /**
    * 获取文件完整路径
    * @return string
-   */_default.prototype.
+   */_class.prototype.
   getFilePath = function getFilePath() 
   {
 
@@ -222,24 +222,24 @@
   /**
    * 获取文件名
    * @return string
-   */_default.prototype.
+   */_class.prototype.
   getFileName = function getFileName() {
-    return _path2['default'].basename(this.filePath);};
+    return _path2.default.basename(this.filePath);};
 
 
   /**
    * 文件类型检测
    * @return bool
-   */_default.prototype.
+   */_class.prototype.
   checkType = function checkType() 
   {
-    return in_array(this.getFileExt(), this.config["allowFiles"]);};
+    return this.in_array(this.getFileExt(), this.config["allowFiles"]);};
 
 
   /**
    * 文件大小检测
    * @return bool
-   */_default.prototype.
+   */_class.prototype.
   checkSize = function checkSize() 
   {
     return this.fileSize <= this.config["maxSize"];};
@@ -247,7 +247,7 @@
   /**
    * 获取当前上传成功文件的各项信息
    * @return array
-   */_default.prototype.
+   */_class.prototype.
   getFileInfo = function getFileInfo() 
   {
     return { 
@@ -256,6 +256,46 @@
       "title": this.fileName, 
       "original": this.oriName, 
       "type": this.fileType, 
-      "size": this.fileSize };};return _default;})(think.adapter.base);exports['default'] = _default;module.exports = exports['default']; //imgUrl = imgUrl.replace(/&amp;/,"&");
-//http开头验证
-//TODO 各种验证后面弄
+      "size": this.fileSize };};_class.prototype.
+
+
+
+  in_array = function in_array(needle, haystack, argStrict) {
+    //  discuss at: http://phpjs.org/functions/in_array/
+    // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // improved by: vlado houba
+    // improved by: Jonas Sciangula Street (Joni2Back)
+    //    input by: Billy
+    // bugfixed by: Brett Zamir (http://brett-zamir.me)
+    //   example 1: in_array('van', ['Kevin', 'van', 'Zonneveld']);
+    //   returns 1: true
+    //   example 2: in_array('vlado', {0: 'Kevin', vlado: 'van', 1: 'Zonneveld'});
+    //   returns 2: false
+    //   example 3: in_array(1, ['1', '2', '3']);
+    //   example 3: in_array(1, ['1', '2', '3'], false);
+    //   returns 3: true
+    //   returns 3: true
+    //   example 4: in_array(1, ['1', '2', '3'], true);
+    //   returns 4: false
+
+    var key = '', 
+    strict = !!argStrict;
+
+    //we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] == ndl)
+    //in just one for, in order to improve the performance
+    //deciding wich type of comparation will do before walk array
+    if (strict) {
+      for (key in haystack) {
+        if (haystack[key] === needle) {
+          return true;}}} else 
+
+
+    {
+      for (key in haystack) {
+        if (haystack[key] == needle) {
+          return true;}}}
+
+
+
+
+    return false;};return _class;}(think.adapter.base);exports.default = _class;

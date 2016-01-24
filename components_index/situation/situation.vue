@@ -1,8 +1,8 @@
 <template>
     <div id="situation">
         <div class="content">
-            <a href="#/index" class="close"></a>
-            <router-view ></router-view>
+            <a v-link="{name:'Index'}" class="close"></a>
+            <router-view transition="fade" transition-mode="out-in"></router-view>
         </div>
     </div>
 </template>

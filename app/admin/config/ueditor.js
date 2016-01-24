@@ -2,7 +2,7 @@
 /**
  * ueditor config
  * @type {Object}
- */exports.__esModule = true;exports["default"] = 
+ */exports.__esModule = true;exports.default = 
 /* 前后端通信相关的配置,注释只允许使用多行方式 */
 { 
     /* 上传图片配置项 */
@@ -94,4 +94,4 @@
     ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid", 
     ".rar", ".zip", ".tar", ".gz", ".7z", ".bz2", ".cab", ".iso", 
     ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".pdf", ".txt", ".md", ".xml"]
-    /* 列出的文件类型 */ };module.exports = exports["default"];
+    /* 列出的文件类型 */ };

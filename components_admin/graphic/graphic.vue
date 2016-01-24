@@ -27,7 +27,7 @@
               <i class="fa fa-pencil-square-o"></i>
             </a>
             <a href="javascript:;" class="btn btn-secondary btn-sm"
-               @click="delete(g,$index)">
+               @click="deleteItem(g,$index)">
               <i class="fa fa-trash-o"></i>
             </a>
           </td>

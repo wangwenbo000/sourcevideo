@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar navbar-dark bg-primary navbar-fixed-top">
-        <a class="navbar-brand" href="!#/">AdminPanel</a>
+        <a class="navbar-brand" href="/admin!#/">AdminPanel</a>
         <ul class="nav navbar-nav pull-right">
             <li class="nav-item active">
                 <a class="nav-link" href="javascript:;">网站首页</a>

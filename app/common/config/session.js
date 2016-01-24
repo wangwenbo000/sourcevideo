@@ -2,7 +2,7 @@
 
 /**
  * session configs
- */exports.__esModule = true;exports['default'] = 
+ */exports.__esModule = true;exports.default = 
 { 
   name: 'thinkjs', 
   type: 'file', 
@@ -14,4 +14,4 @@
 
   adapter: { 
     file: { 
-      path: think.getPath('common', 'runtime') + '/session' } } };module.exports = exports['default'];
+      path: think.getPath('common', 'runtime') + '/session' } } };

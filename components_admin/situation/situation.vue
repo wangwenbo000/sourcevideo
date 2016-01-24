@@ -29,7 +29,7 @@
                v-link="{name:'addSituation',params:{newsId:l.id}}">
               <i class="fa fa-pencil-square-o"></i>
             </a>
-            <a class="btn btn-secondary btn-sm" @click="delete(l,$index)">
+            <a class="btn btn-secondary btn-sm" @click="deleteItem(l,$index)">
               <i class="fa fa-trash-o"></i>
             </a>
           </td>
