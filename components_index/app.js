@@ -30,40 +30,40 @@ router.redirect({
   '/index/situation':'/index/situation/newslist'
 });
 router.map({
-  '/': {
-    name:'Index',
-    component: Index
-  },
-  '/index': {
-    name:'Index',
-    component: Index,
-    subRoutes: {
-      '/situation': {
-        name:'Situation',
-        component: Situation,
-        subRoutes: {
-          '/newslist': {
-            name:'Newslist',
-            component: Newslist
-          },
-          '/content/:id':{
-            name:'Newscontent',
-            component:Newscontent
-          }
-        }
-      }
-    }
-  },
+  //'/': {
+  //  name:'index',
+  //  component: Index
+  //},
+  //'/index': {
+  //  name:'index',
+  //  component: Index,
+  //  subRoutes: {
+  //    '/situation': {
+  //      name:'situation',
+  //      component: Situation,
+  //      subRoutes: {
+  //        '/newslist': {
+  //          name:'newslist',
+  //          component: Newslist
+  //        },
+  //        '/content/:id':{
+  //          name:'newscontent',
+  //          component:Newscontent
+  //        }
+  //      }
+  //    }
+  //  }
+  //},
   '/work': {
-    name:'Work',
+    name:'work',
     component: Work
   },
   '/design': {
-    name:'Design',
+    name:'design',
     component: Design
   },
   '/video': {
-    name:'Video',
+    name:'video',
     component: Video,
     subRoutes:{
       '/player/:id':{
@@ -73,11 +73,11 @@ router.map({
     }
   },
   '/about': {
-    name:'About',
+    name:'about',
     component: About
   },
   '/join': {
-    name:'Join',
+    name:'join',
     component: Join
   }
 });

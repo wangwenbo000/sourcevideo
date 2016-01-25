@@ -1,17 +1,17 @@
-var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var ReplacePlugin = require('replace-webpack-plugin');
+var webpack=require('webpack');
+var ExtractTextPlugin=require("extract-text-webpack-plugin");
+var ReplacePlugin=require('replace-webpack-plugin');
 //nawb8MTidY>?
-module.exports = {
-  entry:{
-    index:'./components_index/app.js',
+module.exports={
+  entry: {
+    index: './components_index/app.js',
     //admin:'./components_admin/admin.js',
     //login:'./components_admin/login.js'
 
   },
-  output:{
-    path:__dirname+'/www/',
-    filename:'/static/app/[name].build.js'
+  output: {
+    path: __dirname + '/www/',
+    filename: '/static/app/[name].build.js'
   },
   module: {
     loaders: [
@@ -27,17 +27,17 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|ttf|svg)$/,
         loader: 'url',
-        query:{
-          limit:1,
-          name:'/static/fonts/'+'[name].[ext]'
+        query: {
+          limit: 1,
+          name: '/static/fonts/' + '[name].[ext]'
         }
       },
       {
         test: /\.(jpg|png|gif)$/,
         loader: 'url',
-        query:{
-          limit:10000,
-          name:'/static/img/'+'[name].[ext]'
+        query: {
+          limit: 10000,
+          name: '/static/img/' + '[name].[ext]'
         }
       }
     ]
@@ -47,8 +47,8 @@ module.exports = {
     presets: ['es2015'],
     plugins: ['transform-runtime']
   },
-  vue:{
-    loaders:{
+  vue: {
+    loaders: {
       css: ExtractTextPlugin.extract("css"),
       sass: ExtractTextPlugin.extract("css!sass")
     }
@@ -56,20 +56,31 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('/static/css/[name].style.css'),
     //进入生产环境
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
+    //new webpack.DefinePlugin({
+    //  'process.env': {
+    //    NODE_ENV: '"production"'
+    //  }
+    //}),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       }
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
-
+//首页应用
     new ReplacePlugin({
-      skip: process.env.NODE_ENV === 'production',
+      skip: process.env.NODE_ENV==='production',
+      entry: './components_index/app.html',
+      hash: '[hash]',
+      output: './view/home/index_index.html',
+      data: {
+        css: '<link type="text/css" rel="stylesheet" href="static/css/index.style.css?hash=[hash]">',
+        js: '<script src="static/app/index.build.js?hash=[hash]"></script>'
+      }
+    }),
+    //后台首页
+    new ReplacePlugin({
+      skip: process.env.NODE_ENV==='production',
       entry: './components_admin/admin.html',
       hash: '[hash]',
       output: './view/admin/index_index.html',
@@ -78,8 +89,9 @@ module.exports = {
         js: '<script src="static/app/admin.build.js?hash=[hash]"></script>'
       }
     }),
+    //登录页
     new ReplacePlugin({
-      skip: process.env.NODE_ENV === 'production',
+      skip: process.env.NODE_ENV==='production',
       entry: './components_admin/login.html',
       hash: '[hash]',
       output: './view/admin/login_index.html',

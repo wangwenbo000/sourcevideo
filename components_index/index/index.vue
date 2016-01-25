@@ -7,10 +7,10 @@
         <!--<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>-->
       </li>
     </ul>
-    <a v-link="{name:'Newslist'}" class="moreNews">MORE+</a>
+    <a v-link="{name:'newslist'}" class="moreNews">MORE+</a>
     <ul class="slider-bar">
       <li v-for="list in newlist.data" @mouseenter="slideTo($index)" @mouseleave="swiperAutoPlay">
-        <a v-link="{name:'Newscontent',params:{id:list.id}}">
+        <a v-link="{name:'newscontent',params:{id:list.id}}">
           <span>{{list.catagory}}</span>
           <time>{{list.date | dateTime}}</time>
           <h2>{{list.title}}</h2>
@@ -19,23 +19,17 @@
     </ul>
     <router-view transition="fade" transition-mode="out-in"></router-view>
   </div>
+
 </template>
 
 <script type="text/babel">
   import moment from 'moment'
   export default{
-    ready(){
-      this.swiper = new Swiper('#index', {
-        autoplay: 5000,//可选选项，自动滑动
-        effect: 'fade',
-        speed: 1000,
-        loop: true,
-        fade: {
-          crossFade: true
-        },
-        preloadImages: false,
-//        lazyLoading: true
-      })
+    data(){
+      return {
+        getIndexData:'/home/index/getindexdata',
+        newlist: []
+      }
     },
     route: {
       activate(complete){
@@ -45,17 +39,20 @@
         })
       }
     },
+    ready(){
+      this.swiper = new Swiper('#index', {
+        autoplay: 5000,//可选选项，自动滑动
+        effect: 'fade',
+        speed: 1000,
+        loop: true,
+        fade: {
+          crossFade: true
+        }
+      });
+    },
     filters: {
       dateTime(value){
         return moment(value).format('L');
-      }
-    },
-    data(){
-      return {
-        location: 'index',
-        getIndexData:'/home/index/getindexdata',
-        show: false,
-        newlist: []
       }
     },
     methods: {

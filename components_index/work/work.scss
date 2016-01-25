@@ -2,20 +2,20 @@ $linkColor: #d6b264;
 #work {
   background: #2b2b2b url("img/screen2bg.jpg") no-repeat center;
   background-size: cover;
-  position: absolute;
+  position: fixed;
   left: 20px;
   right: 20px;
   top: 20px;
   bottom: 0;
   .workTitle {
-    position: absolute;
+    position: fixed;
     left: 50%;
     top: 50%;
     margin-left: -187px;
     margin-top: -206px;
   }
   .workNav {
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
