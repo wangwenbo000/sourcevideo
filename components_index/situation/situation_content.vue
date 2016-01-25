@@ -1,11 +1,21 @@
 <template>
-  <div id="situation_content">
-    <h1>{{newlist.title}}</h1>
-    <p>{{{newlist.content}}}</p>
+  <div id="situation_content" class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <h1>{{newlist.title}}</h1>
+        <time>{{newlist.date | dateTime}} / </time>
+        <span class="catagory">{{newlist.catagory}}</span>
+        <hr>
+        <p style="font-family:microsoft yahei; line-height:1.8;">{{{newlist.content}}}</p>
+      </div>
+    </div>
+    <!-- Add Scroll Bar -->
+    <div class="swiper-scrollbar"></div>
   </div>
 </template>
 
 <script type="text/babel">
+  import moment from 'moment'
   export default{
     data(){
       return {
@@ -15,6 +25,15 @@
         show: false,
         newlist: []
       }
+    },
+    ready(){
+      this.swiper = new Swiper('.swiper-container', {
+        scrollbar: '.swiper-scrollbar',
+        direction: 'vertical',
+        slidesPerView: 'auto',
+        mousewheelControl: true,
+        freeMode: true
+      });
     },
     route: {
       activate(complete){
@@ -26,7 +45,7 @@
     },
     filters: {
       dateTime(value){
-        return moment(value).format('L');
+        return moment(value).format('LLL');
       }
     },
   }

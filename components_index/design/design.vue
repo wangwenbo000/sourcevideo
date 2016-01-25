@@ -1,9 +1,19 @@
 <template>
+  <div>
+  <div class="designNav">
+
+  </div>
   <div class="design" >
-    <div class="grid-item"></div>
+    <div class="grid-item">graphic design</div>
     <div class="grid-item" v-for="d in designlist.data">
-      <img :src="'./static/img/graphic/'+d.graphic">
+      <div class="imgInfo">
+        <h2>{{d.title}}</h2>
+        <span>{{d.catagory}}</span>
+        <time>{{d.date | dateTime}}</time>
+      </div>
+      <img :src="'./static/img/graphic/'+d.graphic" class="gray">
     </div>
+  </div>
   </div>
 </template>
 
@@ -18,17 +28,6 @@
       }
     },
     ready(){
-//      this.M = new Masonry('.design', {
-////        itemSelector: '.grid-item',
-////        columnWidth: 1
-//        itemSelector: '.grid-item',
-//        columnWidth: 1,
-//        isFitWidth: true
-//      });
-//      this.M.imagesLoaded().progress( function() {
-//        this.M.masonry('layout');
-//      });
-
       var $grid = $('.design').imagesLoaded( function() {
         // init Masonry after all images have loaded
         $grid.masonry({
@@ -48,7 +47,7 @@
     },
     filters: {
       dateTime(value){
-        return moment(value).format('L');
+        return moment(value).format('LLL');
       }
     }
   }

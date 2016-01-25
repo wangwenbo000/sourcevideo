@@ -5,7 +5,7 @@
       <div class="videoInfo">
         <h3>{{videoinfo.title}}</h3>
       </div>
-      <a v-link="{name:'Video'}" class="close"></a>
+      <a v-link="{name:'video'}" class="close"></a>
     </div>
   </div>
 </template>

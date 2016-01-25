@@ -42,6 +42,7 @@ module.exports={
       }
     ]
   },
+  devtool: 'source-map',
   babel: {
     cacheDirectory: true,
     presets: ['es2015'],

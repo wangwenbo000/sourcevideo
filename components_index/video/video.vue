@@ -3,7 +3,7 @@
     <ul class="videoCover">
       <li v-for="video in videolist | filterBy query in 'catagory' | filterBy search in 'title'"
            transition="cover" stagger="60">
-        <a v-link="{name:'Videoplayer',params:{id:video.id}}" @mouseenter="showVideoCover($index)" @mouseleave="video.state = false">
+        <a v-link="{name:'videoplayer',params:{id:video.id}}" @mouseenter="showVideoCover($index)" @mouseleave="video.state = false">
           <img v-bind:src="'./static/img/videoCover/'+video.cover" class="gray">
           <div class="videoCoverHover" v-show="video.state" transition="modal">
             <span class="videoDate">{{video.maketime}}</span>

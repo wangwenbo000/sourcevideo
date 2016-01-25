@@ -6,8 +6,8 @@
     <li><a v-link="{name:'about'}">About <h2>关于</h2></a></li>
     <li><a v-link="{name:'join'}">Join us <h2>加入</h2></a></li>
   </ul>
-  <router-view transition="fade" transition-mode="in-out"></router-view>
   <Share></Share>
+  <!--<router-view transition="fade" transition-mode="in-out"></router-view>-->
 </template>
 
 <script type="text/babel">

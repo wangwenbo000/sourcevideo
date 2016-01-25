@@ -33,7 +33,7 @@
           stagger="60">
         <time>{{list.date | dateTime}}</time>
         <span>/ 23:59:34</span>
-        <a v-link="{name:'Newscontent',params:{id:list.id}}">
+        <a v-link="{name:'newscontent',params:{id:list.id}}">
           <h2>{{list.title}}</h2>
         </a>
       </li>

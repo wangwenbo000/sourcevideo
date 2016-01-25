@@ -1,10 +1,12 @@
 $borderColor: #000;
 $borderWidth: 20px;
-$linkColor:#d6b264;
+$linkColor: #d6b264;
 html {
   height: 100%;
   padding: 0;
-  background: #000;
+  background: #000 url("./static/globalBG.jpg") no-repeat center;
+  background-size: cover;
+  background-attachment:fixed;
 }
 
 body {
@@ -19,6 +21,7 @@ ul {
   list-style: none;
   padding: 0;
 }
+
 .blur {
   -webkit-filter: blur(10px); /* Chrome, Opera */
   -moz-filter: blur(10px);
@@ -27,6 +30,7 @@ ul {
 
   filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
 }
+
 .gray {
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
@@ -35,6 +39,7 @@ ul {
   filter: grayscale(100%);
   filter: gray;
 }
+
 //四个边缘
 .border-left, .border-right, .border-top, .border-bottom {
   position: fixed;
@@ -84,13 +89,15 @@ ul {
   position: absolute;
   right: 10px;
   top: 10px;
+  z-index: 1000;
   -webkit-transition: background-color .4s;
   -moz-transition: background-color .4s;
   -ms-transition: background-color .4s;
   -o-transition: background-color .4s;
   transition: background-color .4s;
 }
-.close:hover{
+
+.close:hover {
   background: $linkColor url("nav/img/close.png") no-repeat center;
 }
 
@@ -115,6 +122,7 @@ ul {
   margin: 0;
   height: 62px;
 }
+
 .staggered-enter, .staggered-leave {
   opacity: 0;
   height: 0;
@@ -124,10 +132,12 @@ ul {
   transition: all .10s ease;
   overflow: hidden;
 }
+
 .cover-enter {
   opacity: 0;
   margin: 0;
 }
+
 .cover-leave {
   opacity: 0;
   margin: -25%;
@@ -199,26 +209,46 @@ ul {
 }
 
 @-webkit-keyframes pace-theme-center-circle-spin {
-  from { -webkit-transform: rotateY(0deg) }
-  to { -webkit-transform: rotateY(360deg) }
+  from {
+    -webkit-transform: rotateY(0deg)
+  }
+  to {
+    -webkit-transform: rotateY(360deg)
+  }
 }
 
 @-moz-keyframes pace-theme-center-circle-spin {
-  from { -moz-transform: rotateY(0deg) }
-  to { -moz-transform: rotateY(360deg) }
+  from {
+    -moz-transform: rotateY(0deg)
+  }
+  to {
+    -moz-transform: rotateY(360deg)
+  }
 }
 
 @-ms-keyframes pace-theme-center-circle-spin {
-  from { -ms-transform: rotateY(0deg) }
-  to { -ms-transform: rotateY(360deg) }
+  from {
+    -ms-transform: rotateY(0deg)
+  }
+  to {
+    -ms-transform: rotateY(360deg)
+  }
 }
 
 @-o-keyframes pace-theme-center-circle-spin {
-  from { -o-transform: rotateY(0deg) }
-  to { -o-transform: rotateY(360deg) }
+  from {
+    -o-transform: rotateY(0deg)
+  }
+  to {
+    -o-transform: rotateY(360deg)
+  }
 }
 
 @keyframes pace-theme-center-circle-spin {
-  from { transform: rotateY(0deg) }
-  to { transform: rotateY(360deg) }
+  from {
+    transform: rotateY(0deg)
+  }
+  to {
+    transform: rotateY(360deg)
+  }
 }

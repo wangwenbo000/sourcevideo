@@ -1,7 +1,7 @@
 <template>
     <div id="situation">
         <div class="content">
-            <a v-link="{name:'Index'}" class="close"></a>
+            <a href="#!/" class="close"></a>
             <router-view transition="fade" transition-mode="out-in"></router-view>
         </div>
     </div>

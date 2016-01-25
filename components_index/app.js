@@ -27,33 +27,28 @@ Vue.http.options.emulateJSON = true;
 var router=new Router();
 
 router.redirect({
-  '/index/situation':'/index/situation/newslist'
+  '/index/situation':'/index/situation/newslist',
+  '/index':'/index'
 });
 router.map({
-  //'/': {
-  //  name:'index',
-  //  component: Index
-  //},
-  //'/index': {
-  //  name:'index',
-  //  component: Index,
-  //  subRoutes: {
-  //    '/situation': {
-  //      name:'situation',
-  //      component: Situation,
-  //      subRoutes: {
-  //        '/newslist': {
-  //          name:'newslist',
-  //          component: Newslist
-  //        },
-  //        '/content/:id':{
-  //          name:'newscontent',
-  //          component:Newscontent
-  //        }
-  //      }
-  //    }
-  //  }
-  //},
+  '/': {
+    name:'index',
+    component: Index
+  },
+  '/situation': {
+    name: 'situation',
+    component: Situation,
+    subRoutes: {
+      '/newslist': {
+        name: 'newslist',
+        component: Newslist
+      },
+      '/content/:id': {
+        name: 'newscontent',
+        component: Newscontent
+      }
+    }
+  },
   '/work': {
     name:'work',
     component: Work
@@ -67,7 +62,7 @@ router.map({
     component: Video,
     subRoutes:{
       '/player/:id':{
-        name:'Videoplayer',
+        name:'videoplayer',
         component:Videoplayer
       }
     }
