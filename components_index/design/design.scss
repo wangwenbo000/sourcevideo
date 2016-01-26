@@ -7,7 +7,6 @@ $linkColor: #d6b264;
     img{
       width: 100%;
       display: block;
-
       -webkit-transition: all .10s ease;
       -moz-transition: all .10s ease;
       -ms-transition: all .10s ease;
@@ -15,9 +14,8 @@ $linkColor: #d6b264;
       transition: all .10s ease;
     }
     .imgInfo{
-      width: 160px;
-      height: 160px;
-      padding: 10px;
+      display: block;
+      padding: 4px;
       background: rgba(0,0,0,.6);
       position: absolute;
       bottom:6px;
@@ -25,16 +23,20 @@ $linkColor: #d6b264;
       z-index: 1;
       color: $linkColor;
       font-weight: 200;
-
-
-      h2{
-        font-size: 22px;
-      }
-      time{
-        display: block;
-        font-size: 14px;
-        font-weight: 100;
-      }
+      font-size: 14px;
+      font-weight: 100;
+    }
+    .designCatagory{
+      display: block;
+      position: absolute;
+      left: 6px;
+      padding: 4px;
+      bottom:34px;
+      background: $linkColor;
+      font-size: 12px;
+      font-weight: 100;
+      color: #fff;
+      z-index: 1;
     }
     img:hover{
       -webkit-filter: grayscale(0%);

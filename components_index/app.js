@@ -28,12 +28,15 @@ var router=new Router();
 
 router.redirect({
   '/index/situation':'/index/situation/newslist',
-  '/index':'/index'
 });
 router.map({
   '/': {
     name:'index',
     component: Index
+  },
+  '/index':{
+    name:'index',
+    component:Index
   },
   '/situation': {
     name: 'situation',

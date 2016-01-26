@@ -1,10 +1,9 @@
 <template>
   <div id="video">
-    <ul class="videoCover">
-      <li v-for="video in videolist | filterBy query in 'catagory' | filterBy search in 'title'"
-           transition="cover" stagger="60" @mouseenter="video.display = true" @mouseleave="video.display = false">
-        <a v-link="{name:'videoplayer',params:{id:video.id}}">
-          <img v-bind:src="'./static/img/videoCover/'+video.cover" class="gray">
+    <ul class="videoCover" transition="fade">
+      <li v-for="video in videolist | filterBy query in 'catagory' | filterBy search in 'title'">
+        <a v-link="{name:'videoplayer',params:{id:video.id}}" @mouseenter="video.display=true" @mouseleave="video.display=false">
+          <img :src="'./static/img/videoCover/'+video.cover" class="gray">
           <div class="videoCoverHover" v-show="video.display" transition="modal">
             <span class="videoDate">{{video.maketime}}</span>
             <h2>{{video.title}}<span class="enName">{{video.entitle}}</span></h2>
@@ -14,7 +13,7 @@
         </a>
       </li>
     </ul>
-    <div class="videoToolBar" transition="bounceInUp">
+    <div class="videoToolBar" class="ani" transition="fadeInUp">
       <ul>
         <li @click="query = ''"><a href="javascript:;"><h3>All</h3>全部分类</a></li>
         <li @click="query = 'Movie'"><a href="javascript:;"><h3>Movie</h3>电影</a></li>
@@ -26,7 +25,7 @@
       <input type="text" placeholder="输入影片关键词检索作品" v-model="search">
       <a v-link="{name:'design'}" class="goDesign">Design</a>
     </div>
-    <router-view transition="bounceInUp" transition-mode="out-in"></router-view>
+    <router-view transition="fade" transition-mode="out-in"></router-view>
   </div>
 </template>
 
@@ -36,13 +35,16 @@
       return {
         query: '',
         search: '',
-        getVideoData:'/home/index/getvideodata',
+        getVideoData: '/home/index/getvideodata',
         videolist: []
       }
     },
     route: {
       activate(complete){
         this.$http.post(this.getVideoData).then(response=> {
+          for(var i in response.data.data){
+            response.data.data[i].display = false;
+          }
           this.$set('videolist', response.data.data);
           complete.next();
         })
@@ -53,15 +55,12 @@
         return moment(value).format('L');
       }
     },
-    methods:{
-      showVideoCover(index){
-      }
-    }
   }
 </script>
 <style lang="sass">
   @import "video.scss";
-  .showVideoInfo{
+
+  .showVideoInfo {
     display: block;
   }
 </style>

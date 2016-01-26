@@ -1,14 +1,14 @@
 <template>
   <div id="index">
-    <img src="./img/logo.png" alt="" id="logo" transition="fadeInDown">
+    <img src="./img/logo.png" alt="" id="logo" class="ani ANI_delay" transition="fadeInDown">
     <ul class="slider swiper-wrapper">
-      <li v-for="img in newlist.data" class="swiper-slide">
-        <img :src="'./static/img/indexCover/'+img.cover">
+      <li v-for="img in newlist.data" class="swiper-slide" :style="{backgroundImage: 'url(/static/img/indexCover/'+img.cover+')'}">
+        <!--<img :src="'./static/img/indexCover/'+img.cover">-->
         <!--<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>-->
       </li>
     </ul>
     <a v-link="{name:'newslist'}" class="moreNews">MORE+</a>
-    <ul class="slider-bar" transition="bounceInUp">
+    <ul class="slider-bar ani" transition="fadeInUp">
       <li v-for="list in newlist.data" @mouseenter="slideTo($index)" @mouseleave="swiperAutoPlay">
         <a v-link="{name:'newscontent',params:{id:list.id}}">
           <span>{{list.catagory}}</span>
@@ -17,7 +17,7 @@
         </a>
       </li>
     </ul>
-    <router-view transition="fade" transition-mode="out-in"></router-view>
+    <router-view class="ani" transition="fade" transition-mode="out-in"></router-view>
   </div>
 
 </template>

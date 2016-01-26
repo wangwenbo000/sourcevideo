@@ -1,12 +1,12 @@
 <template>
   <div id="videoplayer">
-    <div id="content">
+    <div id="content" class="ani" transition="fadeInUp">
       <div id="player"></div>
-      <div class="videoInfo">
-        <h2>{{videoinfo.title}}</h2>
-        <h3>{{videoinfo.entitle}}</h3>
-        <time>{{videoinfo.maketime | dateTime}}</time>
-      </div>
+      <!--<div class="videoInfo">-->
+        <!--<h2>{{videoinfo.title}}</h2>-->
+        <!--<h3>{{videoinfo.entitle}}</h3>-->
+        <!--<time>{{videoinfo.maketime | dateTime}}</time>-->
+      <!--</div>-->
       <a v-link="{name:'video'}" class="close"></a>
     </div>
   </div>

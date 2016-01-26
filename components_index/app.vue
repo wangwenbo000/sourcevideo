@@ -25,4 +25,5 @@
   @import "fontface.scss";
   @import "normalize.scss";
   @import "style.scss";
+  @import "animate.scss";
 </style>

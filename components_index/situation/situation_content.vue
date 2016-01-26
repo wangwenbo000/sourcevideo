@@ -1,7 +1,7 @@
 <template>
   <div id="situation_content" class="swiper-container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" transition="bounceInUp">
+      <div class="swiper-slide ani" transition="fadeInUp">
         <h1>{{newlist.title}}</h1>
         <time>{{newlist.date | dateTime}} / </time>
         <span class="catagory">{{newlist.catagory}}</span>
@@ -9,7 +9,6 @@
         <p style="font-family:microsoft yahei; line-height:1.8;">{{{newlist.content}}}</p>
       </div>
     </div>
-    <!-- Add Scroll Bar -->
     <div class="swiper-scrollbar"></div>
   </div>
 </template>

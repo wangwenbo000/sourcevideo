@@ -6,12 +6,12 @@ $linkColor: #d6b264;
   right: 20px;
   top: 20px;
   bottom: 0;
-  .moreNews{
+  .moreNews {
     display: block;
     font-size: 14px;
     padding: 10px;
     border: 1px solid #707070;
-    color:#fff;
+    color: #fff;
     position: absolute;
     right: 20px;
     bottom: 160px;
@@ -22,9 +22,9 @@ $linkColor: #d6b264;
     -o-transition: all .5s;
     transition: all .5s;
   }
-  .moreNews:hover{
+  .moreNews:hover {
     color: $linkColor;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
   }
   #logo {
     position: absolute;
@@ -56,7 +56,7 @@ $linkColor: #d6b264;
       -ms-transition: all .3s;
       -o-transition: all .3s;
       transition: all .3s;
-      a{
+      a {
         display: block;
         color: #707070;
         -webkit-transition: all .3s;
@@ -76,7 +76,7 @@ $linkColor: #d6b264;
           font-weight: 200;
         }
       }
-      a:hover{
+      a:hover {
         color: $linkColor;
       }
     }
@@ -96,21 +96,9 @@ $linkColor: #d6b264;
     overflow: hidden;
     z-index: 1;
     li {
-
-      img {
-        width: 100%;
-        vertical-align: middle;
-      }
-    }
-  }
-}
-@media (max-width: 600px) {
-  .slider{
-    li{
-      overflow: hidden;
-      img{
-        height: 100%;
-      }
+      background-size: cover;
+      background-position: center;
+      height: 100%;
     }
   }
 }
