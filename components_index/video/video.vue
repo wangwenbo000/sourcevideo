@@ -2,10 +2,10 @@
   <div id="video">
     <ul class="videoCover">
       <li v-for="video in videolist | filterBy query in 'catagory' | filterBy search in 'title'"
-           transition="cover" stagger="60">
-        <a v-link="{name:'videoplayer',params:{id:video.id}}" @mouseenter="showVideoCover($index)" @mouseleave="video.state = false">
+           transition="cover" stagger="60" @mouseenter="video.display = true" @mouseleave="video.display = false">
+        <a v-link="{name:'videoplayer',params:{id:video.id}}">
           <img v-bind:src="'./static/img/videoCover/'+video.cover" class="gray">
-          <div class="videoCoverHover" v-show="video.state" transition="modal">
+          <div class="videoCoverHover" v-show="video.display" transition="modal">
             <span class="videoDate">{{video.maketime}}</span>
             <h2>{{video.title}}<span class="enName">{{video.entitle}}</span></h2>
             <span class="videoCategory">{{video.catagory}}</span>
@@ -14,7 +14,7 @@
         </a>
       </li>
     </ul>
-    <div class="videoToolBar">
+    <div class="videoToolBar" transition="bounceInUp">
       <ul>
         <li @click="query = ''"><a href="javascript:;"><h3>All</h3>全部分类</a></li>
         <li @click="query = 'Movie'"><a href="javascript:;"><h3>Movie</h3>电影</a></li>
@@ -24,9 +24,9 @@
         <li @click="query = 'Activity'"><a href="javascript:;"><h3>Documentary</h3>活动</a></li>
       </ul>
       <input type="text" placeholder="输入影片关键词检索作品" v-model="search">
-      <a href="" class="goDesign">Design</a>
+      <a v-link="{name:'design'}" class="goDesign">Design</a>
     </div>
-    <router-view transition="fade" transition-mode="out-in"></router-view>
+    <router-view transition="bounceInUp" transition-mode="out-in"></router-view>
   </div>
 </template>
 

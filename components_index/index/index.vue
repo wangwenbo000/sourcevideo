@@ -1,6 +1,6 @@
 <template>
   <div id="index">
-    <img src="./img/logo.png" alt="" id="logo">
+    <img src="./img/logo.png" alt="" id="logo" transition="fadeInDown">
     <ul class="slider swiper-wrapper">
       <li v-for="img in newlist.data" class="swiper-slide">
         <img :src="'./static/img/indexCover/'+img.cover">
@@ -8,7 +8,7 @@
       </li>
     </ul>
     <a v-link="{name:'newslist'}" class="moreNews">MORE+</a>
-    <ul class="slider-bar">
+    <ul class="slider-bar" transition="bounceInUp">
       <li v-for="list in newlist.data" @mouseenter="slideTo($index)" @mouseleave="swiperAutoPlay">
         <a v-link="{name:'newscontent',params:{id:list.id}}">
           <span>{{list.catagory}}</span>

@@ -3,7 +3,9 @@
     <div id="content">
       <div id="player"></div>
       <div class="videoInfo">
-        <h3>{{videoinfo.title}}</h3>
+        <h2>{{videoinfo.title}}</h2>
+        <h3>{{videoinfo.entitle}}</h3>
+        <time>{{videoinfo.maketime | dateTime}}</time>
       </div>
       <a v-link="{name:'video'}" class="close"></a>
     </div>
@@ -11,8 +13,8 @@
 </template>
 
 <script type="text/babel">
+  import moment from 'moment'
   export default{
-
     data(){
       return {
         getVideoData:'/home/index/getvideodatabyid',
@@ -32,7 +34,7 @@
         styleid: '1',
         client_id: '32094c383c670dbc',
         vid:this.videoinfo.fileid,
-        autoplay: true,
+        autoplay: false,
         show_related: false
       });
     },

@@ -1,3 +1,4 @@
+$linkColor: #d6b264;
 #videoplayer {
   position: absolute;
   left: 0;
@@ -27,7 +28,17 @@
     .videoInfo{
       height: 100px;
       margin-top: 20px;
-      color: #fff;
+      color: $linkColor;
+      h2,h3{
+        font-size: 26px;
+        font-weight: 100;
+      }
+      h3{
+        font-size: 18px;
+      }
+      time{
+        font-size: 12px;
+      }
     }
   }
 }
