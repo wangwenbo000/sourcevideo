@@ -41,4 +41,9 @@ export default class extends Base {
     let data = await model.where({id:this.post().id}).select();
     this.success(data);
   }
+  async getjobdataAction(){
+    let model = this.model('job');
+    let data = await model.order('id DESC').countSelect();
+    this.success(data);
+  }
 }

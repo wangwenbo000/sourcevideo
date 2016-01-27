@@ -39,4 +39,9 @@
   getdesigninfobyidAction = function () {var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee6() {var 
       model, 
       data;return _regenerator2.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:model = this.model('graphic');_context6.next = 3;return model.where({ id: this.post().id }).select();case 3:data = _context6.sent;
-              this.success(data);case 5:case 'end':return _context6.stop();}}}, _callee6, this);}));return function getdesigninfobyidAction() {return ref.apply(this, arguments);};}();return _class;}(_base2.default);exports.default = _class;
+              this.success(data);case 5:case 'end':return _context6.stop();}}}, _callee6, this);}));return function getdesigninfobyidAction() {return ref.apply(this, arguments);};}();_class.prototype.
+
+  getjobdataAction = function () {var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee7() {var 
+      model, 
+      data;return _regenerator2.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:model = this.model('job');_context7.next = 3;return model.order('id DESC').countSelect();case 3:data = _context7.sent;
+              this.success(data);case 5:case 'end':return _context7.stop();}}}, _callee7, this);}));return function getjobdataAction() {return ref.apply(this, arguments);};}();return _class;}(_base2.default);exports.default = _class;

@@ -25,10 +25,15 @@ $linkColor: #d6b264;
   }
   .graphicInfo{
     position: absolute;
+    background: #2b2b2b;
+    padding: 10px;
     left: 80px;
     bottom: 120px;
     color: $linkColor;
     font-weight: 100;
+    h2,span,time{
+      font-weight: 100;
+    }
     span{
       display: block;
     }
