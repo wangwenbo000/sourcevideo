@@ -1,8 +1,9 @@
 <template>
   <div id="index">
-    <img src="./img/logo.png" alt="" id="logo" class="ani ANI_delay" transition="fadeInDown">
-    <ul class="slider swiper-wrapper">
-      <li v-for="img in newlist.data" class="swiper-slide" :style="{backgroundImage: 'url(/static/img/indexCover/'+img.cover+')'}">
+    <img src="./img/logo2.png" alt="" id="logo" class="ani ANI_delay" transition="fadeInDown">
+    <ul class="slider swiper-wrapper ani" transition="fade">
+      <li v-for="img in newlist.data" class="swiper-slide"
+          :style="{backgroundImage: 'url(/static/img/indexCover/'+img.cover+')'}">
         <!--<img :src="'./static/img/indexCover/'+img.cover">-->
         <!--<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>-->
       </li>

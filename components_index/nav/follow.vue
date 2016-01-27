@@ -3,9 +3,8 @@
         <a href="javascript:;" class="close" @click="show = false"></a>
         <h3>Share</h3>
         <img src="./img/qrcode.jpg" alt="">
-        <a href="javascript:;" name="shareBtn"><i class="iconfont">&#xe600;</i></a>
+        <a href="javascript:;" name="shareBtn"><i class="iconfont">&#xe609;</i></a>
         <a href="javascript:;" name="shareBtn"><i class="iconfont">&#xe601;</i></a>
-        <a href="javascript:;" name="shareBtn"><i class="iconfont">&#xe607;</i></a>
     </div>
 </template>
 

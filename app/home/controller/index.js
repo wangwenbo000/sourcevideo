@@ -34,4 +34,9 @@
   getvideodatabyidAction = function () {var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee5() {var 
       model, 
       data;return _regenerator2.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:model = this.model('video');_context5.next = 3;return model.where({ id: this.post().id }).select();case 3:data = _context5.sent;
-              this.success(data[0]);case 5:case 'end':return _context5.stop();}}}, _callee5, this);}));return function getvideodatabyidAction() {return ref.apply(this, arguments);};}();return _class;}(_base2.default);exports.default = _class;
+              this.success(data[0]);case 5:case 'end':return _context5.stop();}}}, _callee5, this);}));return function getvideodatabyidAction() {return ref.apply(this, arguments);};}();_class.prototype.
+
+  getdesigninfobyidAction = function () {var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee6() {var 
+      model, 
+      data;return _regenerator2.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:model = this.model('graphic');_context6.next = 3;return model.where({ id: this.post().id }).select();case 3:data = _context6.sent;
+              this.success(data);case 5:case 'end':return _context6.stop();}}}, _callee6, this);}));return function getdesigninfobyidAction() {return ref.apply(this, arguments);};}();return _class;}(_base2.default);exports.default = _class;

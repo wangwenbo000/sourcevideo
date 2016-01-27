@@ -1,12 +1,10 @@
 <template>
   <div>
-    <div class="designNav">
-
-    </div>
+    <div class="designNav"></div>
     <div class="design">
       <div class="grid-item">graphic design</div>
-      <a href="javascript:;">
-        <div class="grid-item" v-for="d in designlist.data">
+      <div class="grid-item" v-for="d in designlist.data">
+        <a v-link="{name:'graphiclist', params:{id:d.id}}">
         <span class="designCatagory">
           {{d.catagory}}
         </span>
@@ -14,9 +12,10 @@
             {{d.date | dateTime}}
           </span>
           <img :src="'./static/img/graphic/'+d.graphic" class="gray">
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
+    <router-view transition="fade" transition-mode="out-in"></router-view>
   </div>
 </template>
 
@@ -31,18 +30,16 @@
       }
     },
     ready(){
-      var $grid = $('.design').imagesLoaded(function () {
-        // init Masonry after all images have loaded
+      var $grid=$('.design').imagesLoaded(function(){
         $grid.masonry({
           itemSelector: '.grid-item'
         });
-
         $grid.masonry('reloadItems')
       });
     },
     route: {
       activate(complete){
-        this.$http.post(this.getVideoData).then(response=> {
+        this.$http.post(this.getVideoData).then(response=>{
           this.$set('designlist', response.data.data);
           complete.next();
         })

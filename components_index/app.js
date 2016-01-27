@@ -9,6 +9,7 @@ import Work from './work/work.vue'
 import Video from './video/video.vue'
 import Videoplayer from './video/videoplayer.vue'
 import Design from './design/design.vue'
+import Designlist from './design/design_list.vue'
 import About from './about/about.vue'
 import Situation from './situation/situation.vue'
 import Join from './join/join.vue'
@@ -58,7 +59,13 @@ router.map({
   },
   '/design': {
     name:'design',
-    component: Design
+    component: Design,
+    subRoutes:{
+      '/showGraphic/:id':{
+        name:'graphiclist',
+        component:Designlist
+      }
+    }
   },
   '/video': {
     name:'video',

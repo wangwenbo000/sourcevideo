@@ -36,4 +36,9 @@ export default class extends Base {
     let data = await model.where({id:this.post().id}).select();
     this.success(data[0]);
   }
+  async getdesigninfobyidAction(){
+    let model = this.model('graphic');
+    let data = await model.where({id:this.post().id}).select();
+    this.success(data);
+  }
 }
