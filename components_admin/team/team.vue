@@ -21,7 +21,7 @@
         <tbody>
         <tr v-for="t in listData.data">
           <th scope="row">{{t.id}}</th>
-          <th><img :src="'/static/img/face/'+t.cover" alt="" class="img-circle" width="60"></th>
+          <th><img :src="'/static/img/face/'+t.face" alt="" class="img-circle" width="60"></th>
           <td>{{t.name}}</td>
           <td>{{t.profession}}</td>
           <td>{{t.order}}</td>

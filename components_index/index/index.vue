@@ -4,8 +4,6 @@
     <ul class="slider swiper-wrapper ani" transition="fade">
       <li v-for="img in newlist.data" class="swiper-slide"
           :style="{backgroundImage: 'url(/static/img/indexCover/'+img.cover+')'}">
-        <!--<img :src="'./static/img/indexCover/'+img.cover">-->
-        <!--<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>-->
       </li>
     </ul>
     <a v-link="{name:'newslist'}" class="moreNews">MORE+</a>
@@ -46,6 +44,8 @@
         effect: 'fade',
         speed: 1000,
         loop: true,
+        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents:true,//修改swiper的父元素时，自动初始化swiper
         fade: {
           crossFade: true
         }

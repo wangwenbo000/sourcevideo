@@ -67,9 +67,29 @@
       height: 240px;
       overflow: hidden;
       float: left;
+      position: relative;
       img{
         width: 100%;
         display: block;
+      }
+      .simpleInfo{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0,0,0,.8);
+        z-index: 1;
+        h4{
+          font-size: 16px;
+          color: #d6b264;
+          display: inline-block;
+          margin: 10px;
+        }
+        span{
+          font-size: 12px;
+          color: #707070;
+          display: inline-block;
+          text-indent: 4px;
+        }
       }
     }
     .joinUs{
@@ -77,6 +97,12 @@
       width: 236px;
       height: 236px;
       border: 2px solid #d6b264;
+      color: #d6b264;
+      font-size: 20px;
+      line-height: 18;
+      font-weight: 100;
+      text-align: center;
+      cursor: pointer;
     }
   }
 }

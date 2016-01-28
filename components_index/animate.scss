@@ -46,6 +46,11 @@
   animation-name: zoomOut;
 }
 
+.bounceInUp-transition {
+  -webkit-animation-name: bounceInUp;
+  animation-name: bounceInUp;
+}
+
 .fadeInDown-transition {
   -webkit-animation-name: fadeInDown;
   animation-name: fadeInDown;

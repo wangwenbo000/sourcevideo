@@ -29,6 +29,7 @@ export default class extends Base {
 
   async addAction() {
     let id = this.post().id;
+    console.log(this.post());
     if (think.isEmpty(id)) {
       let insertId = await this.M().add(this.post());
       this.success(insertId);

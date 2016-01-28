@@ -30,11 +30,12 @@ var fs = require('fs');var _class = function (_Base) {(0, _inherits3.default)(_c
   addAction = function () {var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2() {var 
       id, 
 
+
       insertId, 
 
 
-      _data;return _regenerator2.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:id = this.post().id;if (!think.isEmpty(id)) {_context2.next = 8;break;}_context2.next = 4;return this.M().add(this.post());case 4:insertId = _context2.sent;this.success(insertId);_context2.next = 12;break;case 8:_context2.next = 10;return this.M().where({ id: id }).update(this.post());case 10:_data = _context2.sent;
-              this.success(_data);case 12:case 'end':return _context2.stop();}}}, _callee2, this);}));return function addAction() {return ref.apply(this, arguments);};}();_class.prototype.
+      _data;return _regenerator2.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:id = this.post().id;console.log(this.post());if (!think.isEmpty(id)) {_context2.next = 9;break;}_context2.next = 5;return this.M().add(this.post());case 5:insertId = _context2.sent;this.success(insertId);_context2.next = 13;break;case 9:_context2.next = 11;return this.M().where({ id: id }).update(this.post());case 11:_data = _context2.sent;
+              this.success(_data);case 13:case 'end':return _context2.stop();}}}, _callee2, this);}));return function addAction() {return ref.apply(this, arguments);};}();_class.prototype.
 
 
 

@@ -13,6 +13,8 @@ import Designlist from './design/design_list.vue'
 import About from './about/about.vue'
 import Situation from './situation/situation.vue'
 import Join from './join/join.vue'
+import Membercard from './join/teamcard.vue'
+import Joblist from './join/job.vue'
 import Newslist from './situation/situation_list.vue'
 import Newscontent from './situation/situation_content.vue'
 
@@ -25,19 +27,19 @@ Vue.http.options.emulateJSON = true;
 
 //vue路由设置
 
-var router=new Router();
+var router = new Router();
 
 router.redirect({
-  '/index/situation':'/index/situation/newslist',
+  '/index/situation': '/index/situation/newslist',
 });
 router.map({
   '/': {
-    name:'index',
+    name: 'index',
     component: Index
   },
-  '/index':{
-    name:'index',
-    component:Index
+  '/index': {
+    name: 'index',
+    component: Index
   },
   '/situation': {
     name: 'situation',
@@ -54,36 +56,46 @@ router.map({
     }
   },
   '/work': {
-    name:'work',
+    name: 'work',
     component: Work
   },
   '/design': {
-    name:'design',
+    name: 'design',
     component: Design,
-    subRoutes:{
-      '/showGraphic/:id':{
-        name:'graphiclist',
-        component:Designlist
+    subRoutes: {
+      '/showGraphic/:id': {
+        name: 'graphiclist',
+        component: Designlist
       }
     }
   },
   '/video': {
-    name:'video',
+    name: 'video',
     component: Video,
-    subRoutes:{
-      '/player/:id':{
-        name:'videoplayer',
-        component:Videoplayer
+    subRoutes: {
+      '/player/:id': {
+        name: 'videoplayer',
+        component: Videoplayer
       }
     }
   },
   '/about': {
-    name:'about',
+    name: 'about',
     component: About
   },
   '/join': {
-    name:'join',
-    component: Join
+    name: 'join',
+    component: Join,
+    subRoutes: {
+      '/memberCard/:id': {
+        name: 'membercard',
+        component: Membercard
+      },
+      '/joblist': {
+        name: 'joblist',
+        component: Joblist
+      }
+    }
   }
 });
 

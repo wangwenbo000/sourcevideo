@@ -58,7 +58,9 @@
   export default{
     data(){
       return {
-        input: {},
+        input: {
+          youkuid:''
+        },
         fileInputConfig: {
           uploadUrl: "/admin/video/uploadcover",
           showCancel: false,

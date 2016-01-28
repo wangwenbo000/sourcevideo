@@ -33,7 +33,7 @@
       new YKU.Player('player',{
         styleid: '1',
         client_id: '32094c383c670dbc',
-        vid:this.videoinfo.fileid,
+        vid:this.videoinfo.youkuid,
         autoplay: false,
         show_related: false
       });

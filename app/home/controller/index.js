@@ -49,4 +49,9 @@
   getteamdataAction = function () {var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee8() {var 
       model, 
       data;return _regenerator2.default.wrap(function _callee8$(_context8) {while (1) {switch (_context8.prev = _context8.next) {case 0:model = this.model('team');_context8.next = 3;return model.order('id DESC').select();case 3:data = _context8.sent;
-              this.success(data);case 5:case 'end':return _context8.stop();}}}, _callee8, this);}));return function getteamdataAction() {return ref.apply(this, arguments);};}();return _class;}(_base2.default);exports.default = _class;
+              this.success(data);case 5:case 'end':return _context8.stop();}}}, _callee8, this);}));return function getteamdataAction() {return ref.apply(this, arguments);};}();_class.prototype.
+
+  getmemberinfobyidAction = function () {var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee9() {var 
+      model, 
+      data;return _regenerator2.default.wrap(function _callee9$(_context9) {while (1) {switch (_context9.prev = _context9.next) {case 0:model = this.model('team');_context9.next = 3;return model.where({ id: this.post().id }).select();case 3:data = _context9.sent;
+              this.success(data);case 5:case 'end':return _context9.stop();}}}, _callee9, this);}));return function getmemberinfobyidAction() {return ref.apply(this, arguments);};}();return _class;}(_base2.default);exports.default = _class;
