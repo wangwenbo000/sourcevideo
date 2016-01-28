@@ -72,13 +72,13 @@
             var response=response.data.data[0];
             this.$set("actionName", "更新平面作品ID:" + response.id);
             this.$set("input", response);
-            this.$set("fileInputConfig.uploadExtraData", {filename: response.cover});
-            this.$set("fileInputConfig.initialPreview", ["<img src='/static/img/face/" + response.cover + "' class='file-preview-image'>"]);
+            this.$set("fileInputConfig.uploadExtraData", {filename: response.face});
+            this.$set("fileInputConfig.initialPreview", ["<img src='/static/img/face/" + response.face + "' class='file-preview-image'>"]);
             this.$set("fileInputConfig.initialPreviewConfig", [{
-              caption: response.cover,
+              caption: response.face,
               width: '120px',
               url: '/admin/team/delcover',
-              extra: {filename: response.cover}
+              extra: {filename: response.face}
             }]);
           });
           transition.next();
@@ -92,7 +92,7 @@
       $(this.uploadDom).fileinput(this.fileInputConfig);
       //上传结束后更新图片文件名
       $(this.uploadDom).on('fileuploaded', (event, data)=>{
-        this.$set("input.cover", data.response.data);
+        this.$set("input.face", data.response.data);
       });
       //删除提示
       $(this.uploadDom).on("filepredelete", ()=>{

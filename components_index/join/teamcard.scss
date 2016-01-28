@@ -1,0 +1,17 @@
+@import "../shadow";
+.teamCard{
+  width: 800px;
+  height: 360px;
+  background: #fff;
+  position: fixed;
+  top:50%;
+  left: 50%;
+  margin-left: -400px;
+  margin-top: -180px;
+  overflow: hidden;
+  @include shadowOnSides(800px, 360px, 10px, rgba(0, 0, 0, .4));
+  img{
+    width: 360px;
+    display: block;
+  }
+}

@@ -13,8 +13,9 @@
       <p>索斯光影是一个充满活力，追求完美的团队，秉持整合优质业界资源与锐意创新的先锋理念，拥有一流的影视节目制作与平面设计团队，并致力于影视视频制作营销策划与文化传播经营整合。</p>
     </div>
     <div class="ge"></div>
-    <a href="" class="teamBtn">了解公司团队</a>
+    <a v-link="{name:'join'}" class="teamBtn">了解公司团队</a>
     <div class="ge"></div>
+    <br>
     <h1>Company Business<small>公司业务</small></h1>
 
     <div class="business">

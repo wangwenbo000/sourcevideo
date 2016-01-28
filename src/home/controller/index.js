@@ -46,4 +46,9 @@ export default class extends Base {
     let data = await model.order('id DESC').countSelect();
     this.success(data);
   }
+  async getteamdataAction(){
+    let model = this.model('team');
+    let data = await model.order('id DESC').select();
+    this.success(data);
+  }
 }

@@ -25,6 +25,9 @@ $linkColor:#d6b264;
     a:hover{
       color: $linkColor;
     }
+    .active{
+      color: $linkColor;
+    }
     h2{
       font-size: 10px;
       margin: 2px auto;

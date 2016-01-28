@@ -44,4 +44,9 @@
   getjobdataAction = function () {var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee7() {var 
       model, 
       data;return _regenerator2.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:model = this.model('job');_context7.next = 3;return model.order('id DESC').countSelect();case 3:data = _context7.sent;
-              this.success(data);case 5:case 'end':return _context7.stop();}}}, _callee7, this);}));return function getjobdataAction() {return ref.apply(this, arguments);};}();return _class;}(_base2.default);exports.default = _class;
+              this.success(data);case 5:case 'end':return _context7.stop();}}}, _callee7, this);}));return function getjobdataAction() {return ref.apply(this, arguments);};}();_class.prototype.
+
+  getteamdataAction = function () {var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee8() {var 
+      model, 
+      data;return _regenerator2.default.wrap(function _callee8$(_context8) {while (1) {switch (_context8.prev = _context8.next) {case 0:model = this.model('team');_context8.next = 3;return model.order('id DESC').select();case 3:data = _context8.sent;
+              this.success(data);case 5:case 'end':return _context8.stop();}}}, _callee8, this);}));return function getteamdataAction() {return ref.apply(this, arguments);};}();return _class;}(_base2.default);exports.default = _class;

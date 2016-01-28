@@ -1,28 +1,82 @@
 .join{
   width: 1200px;
-  height:800px;
-  position: absolute;
-  left: 50%;
-  top:50%;
-  margin-left: -600px;
-  margin-top: -400px;
-  background:#fff url("../work/img/bg.jpg")no-repeat center;
-  .joblist{
-    width: 400px;
-    float: left;
-    margin-left: 100px;
+  margin: 80px auto 30px auto;
+  .joinBg{
+    position: fixed;
+    background: #2b2b2b url("./img/join.jpg") no-repeat center;
+    background-size: cover;
+    left: 20px;
+    right: 20px;
+    top: 20px;
+    bottom: 20px;
+    z-index: -1;
   }
-  .jobInfo{
-    border-bottom: 1px solid #707070;
-    margin-top: 30px;
-
-    height: auto;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 30px;
-  }
-  .swiper-container {
+  .joinTop{
     width: 100%;
-    height: 100%;
+    .left,.center,.right{
+      float: left;
+    }
+    .left{
+      h1 {
+        width: 190px;
+        font-size: 60px;
+        color: #d6b264;
+        line-height: 1.2;
+        border-right: 1px solid #d6b264;
+        margin-top: 20px;
+        small {
+          display: block;
+          font-size: 32px;
+          color: #fff;
+        }
+      }
+    }
+    .center{
+      width: 400px;
+      p{
+        float: left;
+        display: block;
+        color: #707070;
+        font-size: 12px;
+        line-height: 1.5;
+        margin: 48px 20px;
+      }
+    }
+    .right{
+      .findJob{
+        display: block;
+        background: #d6b264;
+        width: 110px;
+        height: 22px;
+        font-size: 12px;
+        line-height: 22px;
+        text-align: center;
+        margin: 66px 20px 0 20px;
+        color: #2b2b2b;
+        border-radius: 50px;
+      }
+    }
+  }
+
+  ul{
+    width: 100%;
+    overflow: auto;
+    margin-top: 40px;
+    li,.joinUs{
+      width: 240px;
+      height: 240px;
+      overflow: hidden;
+      float: left;
+      img{
+        width: 100%;
+        display: block;
+      }
+    }
+    .joinUs{
+      background: url("./img/plus.png") no-repeat center;
+      width: 236px;
+      height: 236px;
+      border: 2px solid #d6b264;
+    }
   }
 }
