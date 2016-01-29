@@ -1,5 +1,5 @@
-@import "../shadow.scss";
-$linkColor: #d6b264;
+@import "../variable";
+
 $followWidth:300px;
 $followHeight:480px;
 .follow{
@@ -12,7 +12,9 @@ $followHeight:480px;
   margin-top: -$followHeight/2;
   background: #fff url("../work/img/bg.jpg") no-repeat center;
   z-index: 1000;
-  transition: all .3s ease;
+  @include transition-property(all);
+  @include transition-duration(.5s);
+  @include transition-timing-function(ease);
   @include shadowOnSides($followWidth, $followHeight, 10px, rgba(0,0,0,.4));
   img{
     display: block;
@@ -21,7 +23,7 @@ $followHeight:480px;
   }
   h3{
     text-indent: 22px;
-    font-size: 48px;
+    font-size: $font52;
     font-weight: 100;
     margin: 20px 0 0 0;
   }
@@ -29,7 +31,7 @@ $followHeight:480px;
     display: block;
     width: 60px;
     height: 60px;
-    border: 1px solid #707070;
+    border: 1px solid $smoke;
     text-align: center;
     line-height: 60px;
     margin-left: 28px;
@@ -38,19 +40,13 @@ $followHeight:480px;
     -moz-border-radius:50%;
     border-radius:50%;
     float: left;
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    -ms-transition: all .5s;
-    -o-transition: all .5s;
-    transition: all .5s;
+    @include transition-property(border-color);
+    @include transition-duration(.5s);
     i{
-      color: #707070;
+      color: $smoke;
       font-size: 38px;
-      -webkit-transition: all .5s;
-      -moz-transition: all .5s;
-      -ms-transition: all .5s;
-      -o-transition: all .5s;
-      transition: all .5s;
+      @include transition-property(color);
+      @include transition-duration(.5s);
     }
     i:hover{
       color: $linkColor;

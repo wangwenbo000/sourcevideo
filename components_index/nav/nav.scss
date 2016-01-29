@@ -1,26 +1,21 @@
-$linkColor:#d6b264;
+@import "../variable";
 
 #nav{
   position: fixed;
-  font-family: "roboto";
-  font-weight: 100;
   width: 600px;
   left: 50%;
   margin-left: -300px;
   z-index: 1000;
-  font-size: 12px;
-  top:20px;
+  font-size: $font12;
+  top:$borderWidth;
   li{
     width: 120px;
     float: left;
     text-align: center;
     a{
-      color: #fff;
-      -webkit-transition: color .5s;
-      -moz-transition: color .5s;
-      -ms-transition: color .5s;
-      -o-transition: color .5s;
-      transition: color .5s;
+      color: $white;
+      @include transition-property(color);
+      @include transition-duration(.5s);
     }
     a:hover{
       color: $linkColor;
@@ -29,7 +24,7 @@ $linkColor:#d6b264;
       color: $linkColor;
     }
     h2{
-      font-size: 10px;
+      font-size: $font12;
       margin: 2px auto;
       font-weight: 200;
     }

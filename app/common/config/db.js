@@ -9,7 +9,7 @@
   port: '3306', 
   database: 'sourcevideo', 
   user: 'root', 
-  password: '15117909848', 
+  password: '',
 
   prefix: 'sv_', 
   encoding: 'utf8mb4', 

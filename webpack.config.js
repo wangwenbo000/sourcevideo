@@ -1,11 +1,10 @@
 var webpack=require('webpack');
 var ExtractTextPlugin=require("extract-text-webpack-plugin");
 var ReplacePlugin=require('replace-webpack-plugin');
-//nawb8MTidY>?
 module.exports={
   entry: {
     index: './components_index/app.js',
-    admin:'./components_admin/admin.js',
+    //admin:'./components_admin/admin.js',
     //login:'./components_admin/login.js'
 
   },

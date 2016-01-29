@@ -1,29 +1,25 @@
-$linkColor: #d6b264;
-#situation_content{
-  //max-width: 1000px;
+@import "../variable";
+
+#situation_content {
   width: 100%;
   height: 100%;
-  //margin: 0 auto;
-  h1{
-    font-size: 32px;
+  h1 {
+    font-size: $font32;
   }
-  p{
+  p {
     line-height: 12px;
   }
-  hr{
-    height:1px;
-    border:none;
-    border-top:1px solid #ccc;
+  hr {
+    @include the1PX;
   }
-  time{
+  time {
     text-indent: 40px;
     display: inline-block;
-    font-size: 30px;
-    font-weight: 100;
-    color: #707070;
+    font-size: $font32;
+    color: $smoke;
     vertical-align: middle;
   }
-  .catagory{
+  .catagory {
     display: inline-block;
     vertical-align: middle;
     padding: 4px;
@@ -33,7 +29,6 @@ $linkColor: #d6b264;
     color: #fff;
   }
   .swiper-slide {
-    font-size: 18px;
     width: 94%;
     margin: 20px auto 0 auto;
     height: auto;

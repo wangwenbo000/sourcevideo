@@ -1,14 +1,15 @@
+$border_dis:40px;
 #follow,#contact{
   display: block;
   position: fixed;
   color: #fff;
-  top:40px;
+  top:$border_dis;
   z-index: 1000;
   text-decoration:line-through
 }
 #follow{
-  left: 40px;
+  left: $border_dis;
 }
 #contact{
-  right: 40px;
+  right: $border_dis;
 }

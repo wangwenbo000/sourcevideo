@@ -1,33 +1,27 @@
-$linkColor: #d6b264;
+@import "../variable";
+
 #index {
-  background: #2b2b2b;
   position: absolute;
-  left: 20px;
-  right: 20px;
-  top: 20px;
-  bottom: 0;
+  @include has20PX;
   .moreNews {
     display: block;
-    font-size: 14px;
+    font-size: $font14;
     padding: 10px;
-    border: 1px solid #707070;
+    border: 1px solid $smoke;
     color: #fff;
     position: absolute;
     right: 20px;
     bottom: 160px;
     z-index: 2;
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    -ms-transition: all .5s;
-    -o-transition: all .5s;
-    transition: all .5s;
+    @include transition-property(all);
+    @include transition-duration(.3s);
   }
   .moreNews:hover {
     color: $linkColor;
     background: rgba(0, 0, 0, 0.6);
   }
   #logo {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     margin-left: -115px;
@@ -42,38 +36,33 @@ $linkColor: #d6b264;
     bottom: 0;
     list-style: none;
     padding: 0;
+    margin: 0;
     border-top: 1px solid #585858;
     cursor: pointer;
     background: rgba(0, 0, 0, .2);
     li {
       width: calc(100% / 5 - 33px);
-      height: 120px;
+      height: 100%;
       float: left;
       border-right: 1px solid #585858;
       padding: 16px 16px 0 16px;
-      -webkit-transition: all .3s;
-      -moz-transition: all .3s;
-      -ms-transition: all .3s;
-      -o-transition: all .3s;
-      transition: all .3s;
+      @include transition-property(all);
+      @include transition-duration(.3s);
       a {
         display: block;
         color: #707070;
-        -webkit-transition: all .3s;
-        -moz-transition: all .3s;
-        -ms-transition: all .3s;
-        -o-transition: all .3s;
-        transition: all .3s;
+        @include transition-property(all);
+        @include transition-duration(.3s);
         span {
           display: block;
-          font-size: 12px;
+          font-size: $font12;
         }
         time {
-          font-size: 30px;
+          font-size: $font32;
         }
         h2 {
-          font-size: 14px;
-          font-weight: 200;
+          font-size: $font14;
+          //font-weight: 200;
         }
       }
       a:hover {
@@ -93,7 +82,7 @@ $linkColor: #d6b264;
     position: absolute;
     top: 0;
     bottom: 0;
-    overflow: hidden;
+    //overflow: hidden;
     z-index: 1;
     li {
       background-size: cover;

@@ -1,21 +1,18 @@
+@import "../variable";
 #situation {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background: rgba(0,0,0,.6);
+  position: fixed;
   z-index: 999;
-  justify-content:center;//子元素水平居中
-  align-items:center;//子元素垂直居中
-  display:-webkit-flex;
+  @include allBgAlpha;
+  @include has20PX;
+  @include display-flex;
+  @include align-items(center);
+  @include justify-content(center);
   .content {
     position: relative;
-    z-index: 1000;
     width: 90%;
-    max-width: 1600px;
     height: 90%;
-    background: #ffffff url("../work/img/bg.jpg");
+    max-width: 1600px;
+    background: #fff url("../work/img/bg.jpg");
     overflow: hidden;
   }
 }

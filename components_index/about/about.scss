@@ -1,56 +1,56 @@
-.aboutCenter{
+@import "../variable";
+
+.aboutCenter {
   width: 1000px;
   margin: 140px auto;
   font-weight: 100;
-  h1{
-    font-size: 40px;
-    color: #d6b264;
+  h1 {
+    font-size: $font40;
+    color: $linkColor;
     margin: 0 auto;
     line-height: 1.2;
     width: 400px;
     text-align: center;
     display: block;
-    small{
+    small {
       display: block;
-      font-size: 32px;
-      color: #fff;
+      font-size: $font32;
+      color: $white;
     }
   }
-  .contentLeft,.contentRight{
+  .contentLeft, .contentRight {
     width: 480px;
-    font-size: 12px;
-    color: #707070;
+    font-size: $font12;
+    color: $smoke;
     margin: 40px auto 0 auto;
     line-height: 1.6;
   }
-  .contentLeft{
-    color: #d6b264;
+  .contentLeft {
+    color: $linkColor;
     text-align: center;
   }
-  .ge{
+  .ge {
     width: 442px;
     height: 27px;
     background: url("./img/ge.png") no-repeat center;
     margin: 40px auto 0 auto;
   }
-  .teamBtn{
+  .teamBtn {
     display: block;
     width: 200px;
     height: 60px;
     margin: 20px auto 0 auto;
-    background: #d6b264;
+    background: $linkColor;
     text-align: center;
     line-height: 60px;
-    color: #2b2b2b;
-    -webkit-border-radius:50px;
-    -moz-border-radius:50px;
-    border-radius:50px;
+    color: $bodyBg;
+    @include border-radius(50px);
   }
-  .business{
+  .business {
     width: 660px;
     margin: 40px auto;
     overflow: auto;
-    dl{
+    dl {
       float: left;
       height: 200px;
       //padding: 20px;
@@ -58,20 +58,22 @@
       width: 300px;
       font-size: 12px;
       line-height: 1.4;
-      dt{
+      dt {
         color: #d6b264;
         font-size: 24px;
         margin-bottom: 16px;
       }
-      dd{margin: 0}
+      dd {
+        margin: 0
+      }
     }
-    dl:nth-child(odd){
+    dl:nth-child(odd) {
       margin: 20px 10px 0 20px;
     }
-    dl:nth-child(even){
+    dl:nth-child(even) {
       margin: 20px 20px 0 10px;
     }
-    dl:last-child{
+    dl:last-child {
       margin-top: 88px;
     }
   }

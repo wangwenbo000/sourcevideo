@@ -1,0 +1,37 @@
+@import "../node_modules/compass-mixins/lib/compass";
+@import "./shadow";
+
+$borderColor: #000;
+$linkColor: #d6b264;
+$bodyBg: #2b2b2b;
+$smoke: #707070;
+$easyMoney: #e8e8e8;
+$white: #fff;
+$borderWidth: 20px;
+
+$font12: 12px;
+$font14: 14px;
+$font16: 16px;
+$font20: 20px;
+$font22: 22px;
+$font32: 32px;
+$font40: 40px;
+$font52: 52px;
+$font60: 60px;
+
+@mixin has20PX() {
+  left: $borderWidth;
+  top: $borderWidth;
+  right: $borderWidth;
+  bottom: $borderWidth;
+}
+
+@mixin allBgAlpha($alpha:0.8) {
+  background: rgba(0, 0, 0, $alpha);
+}
+
+@mixin the1PX($bordercolor:#ccc) {
+  height: 1px;
+  border: none;
+  border-top: 1px solid $bordercolor;
+}

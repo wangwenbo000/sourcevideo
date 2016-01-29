@@ -1,12 +1,12 @@
-$borderColor: #000;
-$borderWidth: 20px;
-$linkColor: #d6b264;
+@import "./variable";
+
 html {
   height: 100%;
   padding: 0;
   background: #000 url("./static/globalBG.jpg") no-repeat center;
-  background-size: cover;
+  background-size: 30%;
   background-attachment: fixed;
+  font-weight: 100;
 }
 
 body {
@@ -23,21 +23,11 @@ ul {
 }
 
 .blur {
-  -webkit-filter: blur(10px); /* Chrome, Opera */
-  -moz-filter: blur(10px);
-  -ms-filter: blur(10px);
-  filter: blur(10px);
-
-  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+  @include filter(blur(10px));
 }
 
 .gray {
-  -webkit-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-  -ms-filter: grayscale(100%);
-  -o-filter: grayscale(100%);
-  filter: grayscale(100%);
-  filter: gray;
+  @include filter(grayscale(100%));
 }
 
 //四个边缘
@@ -80,7 +70,7 @@ ul {
   height: $borderWidth;
 }
 
-.close,.backList {
+.close, .backList {
   display: block;
   width: 60px;
   height: 60px;
@@ -90,17 +80,16 @@ ul {
   right: 10px;
   top: 10px;
   z-index: 1000;
-  -webkit-transition: background-color .4s;
-  -moz-transition: background-color .4s;
-  -ms-transition: background-color .4s;
-  -o-transition: background-color .4s;
-  transition: background-color .4s;
+  @include transition-property(background-color);
+  @include transition-duration(.4s);
 }
-.backList{
+
+.backList {
   top: 80px;
-  background: #2b2b2b url("situation/img/back.png") no-repeat center;
+  background: $bodyBg url("situation/img/back.png") no-repeat center;
   background-size: 74%;
 }
+
 .close:hover {
   background: $linkColor url("nav/img/close.png") no-repeat center;
 }
@@ -169,7 +158,7 @@ ul {
   display: block;
 }
 
-@-webkit-keyframes pace-theme-center-circle-spin {
+@mixin keyframes(pace-theme-center-circle-spin){
   from {
     -webkit-transform: rotateY(0deg)
   }
@@ -177,39 +166,47 @@ ul {
     -webkit-transform: rotateY(360deg)
   }
 }
-
-@-moz-keyframes pace-theme-center-circle-spin {
-  from {
-    -moz-transform: rotateY(0deg)
-  }
-  to {
-    -moz-transform: rotateY(360deg)
-  }
-}
-
-@-ms-keyframes pace-theme-center-circle-spin {
-  from {
-    -ms-transform: rotateY(0deg)
-  }
-  to {
-    -ms-transform: rotateY(360deg)
-  }
-}
-
-@-o-keyframes pace-theme-center-circle-spin {
-  from {
-    -o-transform: rotateY(0deg)
-  }
-  to {
-    -o-transform: rotateY(360deg)
-  }
-}
-
-@keyframes pace-theme-center-circle-spin {
-  from {
-    transform: rotateY(0deg)
-  }
-  to {
-    transform: rotateY(360deg)
-  }
-}
+//@-webkit-keyframes pace-theme-center-circle-spin {
+//  from {
+//    -webkit-transform: rotateY(0deg)
+//  }
+//  to {
+//    -webkit-transform: rotateY(360deg)
+//  }
+//}
+//
+//@-moz-keyframes pace-theme-center-circle-spin {
+//  from {
+//    -moz-transform: rotateY(0deg)
+//  }
+//  to {
+//    -moz-transform: rotateY(360deg)
+//  }
+//}
+//
+//@-ms-keyframes pace-theme-center-circle-spin {
+//  from {
+//    -ms-transform: rotateY(0deg)
+//  }
+//  to {
+//    -ms-transform: rotateY(360deg)
+//  }
+//}
+//
+//@-o-keyframes pace-theme-center-circle-spin {
+//  from {
+//    -o-transform: rotateY(0deg)
+//  }
+//  to {
+//    -o-transform: rotateY(360deg)
+//  }
+//}
+//
+//@keyframes pace-theme-center-circle-spin {
+//  from {
+//    transform: rotateY(0deg)
+//  }
+//  to {
+//    transform: rotateY(360deg)
+//  }
+//}
