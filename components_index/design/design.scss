@@ -1,15 +1,27 @@
 @import "../variable";
 
+.designBg {
+  position: fixed;
+  @include has20PX;
+  background: url("../static/globalBG.jpg") no-repeat center;
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: -1;
+}
+
 .design {
-  width: 88%;
-  margin: 0 auto;
+  width: 80%;
+  margin: 90px auto 0;
+  .grid-sizer,
   .grid-item {
-    width: 25%;
+    width: 23%;
+    margin-top: 20px;
     img {
       width: 100%;
       display: block;
       @include transition-property(all);
       @include transition-duration(.5s);
+      @include box-shadow(#000 0 0 4px);
     }
     .imgInfo {
       display: block;

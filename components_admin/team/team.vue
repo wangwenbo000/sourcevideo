@@ -19,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="t in listData.data">
+        <tr v-for="t in listData.data | orderBy 'order' 1">
           <th scope="row">{{t.id}}</th>
           <th><img :src="'/static/img/face/'+t.face" alt="" class="img-circle" width="60"></th>
           <td>{{t.name}}</td>

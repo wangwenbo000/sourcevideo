@@ -6,7 +6,9 @@
     <div class="border-right"></div>
     <div class="border-top"></div>
     <div class="border-bottom">
-      <span>Copyright soure video © 2010-2015 design&power superset.love</span>
+      <span>Copyright soure video © 2006-2016 design&power
+        <a href="http://superset.love" target="_blank">superset.love</a>
+      </span>
     </div>
   </div>
 </template>

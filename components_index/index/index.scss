@@ -3,6 +3,36 @@
 #index {
   position: absolute;
   @include has20PX;
+  //.mainBtn{
+  //  width: 300px;
+  //  height: 40px;
+  //  position: fixed;
+  //  top: 50%;
+  //  left: 50%;
+  //  margin-top: 22px;
+  //  margin-left: -150px;
+  //  z-index: 1000;
+  //  a{
+  //    width: 140px;
+  //    height: 40px;
+  //    display: block;
+  //    border: 1px solid $linkColor;
+  //    color: $linkColor;
+  //    text-align: center;
+  //    line-height:40px;
+  //    @include transition-property(background-color);
+  //    @include transition-duration(.5s);
+  //  }
+  //  a:hover{
+  //    background: rgba(0,0,0,.6);
+  //  }
+  //  a:first-child{
+  //    float: left;
+  //  }
+  //  a:last-child{
+  //    float: right;
+  //  }
+  //}
   .moreNews {
     display: block;
     font-size: $font14;

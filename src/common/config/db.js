@@ -10,7 +10,6 @@ export default {
   database: 'sourcevideo',
   user: 'root',
   password: '15117909848',
-
   prefix: 'sv_',
   encoding: 'utf8mb4',
   nums_per_page: 10,

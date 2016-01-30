@@ -10,7 +10,6 @@
   database: 'sourcevideo', 
   user: 'root', 
   password: '',
-
   prefix: 'sv_', 
   encoding: 'utf8mb4', 
   nums_per_page: 10, 

@@ -1,8 +1,17 @@
 @import "../variable";
+
 #video {
   margin-bottom: 100px;
   margin-top: 90px;
   overflow: auto;
+  .videoBg {
+    position: fixed;
+    @include has20PX;
+    background: url("../static/globalBG.jpg") no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: -1;
+  }
   .videoCover {
     margin: 0;
     li {
@@ -24,16 +33,20 @@
           margin-top: 10px;
         }
         h2 {
+          margin-top: 60px;
           .enName {
             display: block;
-            font-size: 14px;
+            font-size: $font40;
+            font-weight: 100;
             color: $linkColor;
           }
         }
       }
       time {
         display: block;
-        font-size: 24px;
+        font-size: $font22;
+        color: $smoke;
+        margin-top: 22px;
       }
       img {
         width: 100%;
@@ -54,7 +67,8 @@
     bottom: $borderWidth;
     height: 60px;
     background: rgba(255, 255, 255, .9);
-    @include shadowOnSides(auto, 60px, 10px, rgba(0, 0, 0, .8), top);
+    @include box-shadow(#000 0 0 4px);
+    //@include shadowOnSides(auto, 60px, 10px, rgba(0, 0, 0, .8), top);
     ul {
       margin: 0;
       li {
@@ -87,7 +101,7 @@
       outline: none;
       background: url("../situation/img/search.png") no-repeat 10px center;
     }
-    .goDesign{
+    .goDesign {
       width: 60px;
       height: 60px;
       display: block;

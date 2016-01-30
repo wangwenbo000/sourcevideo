@@ -15,7 +15,8 @@ $followHeight:480px;
   @include transition-property(all);
   @include transition-duration(.5s);
   @include transition-timing-function(ease);
-  @include shadowOnSides($followWidth, $followHeight, 10px, rgba(0,0,0,.4));
+  @include box-shadow(rgba(0,0,0,.4) 0 0 4px);
+  //@include shadowOnSides($followWidth, $followHeight, 10px, rgba(0,0,0,.4));
   img{
     display: block;
     margin-top: 10px;

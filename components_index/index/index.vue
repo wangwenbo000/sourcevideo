@@ -1,6 +1,10 @@
 <template>
   <div id="index">
     <img src="./img/logo2.png" alt="" id="logo" class="ani ANI_delay" transition="fadeInDown">
+    <!--<div class="mainBtn ani" transition="fadeInDown">-->
+      <!--<a v-link="{name:'video'}">VIDEO</a>-->
+      <!--<a v-link="{name:'design'}">GRAPHIC</a>-->
+    <!--</div>-->
     <ul class="slider swiper-wrapper ani" transition="fade">
       <li v-for="img in newlist.data" class="swiper-slide"
           :style="{backgroundImage: 'url(/static/img/indexCover/'+img.cover+')'}">
@@ -26,7 +30,7 @@
   export default{
     data(){
       return {
-        getIndexData:'/home/index/getindexdata',
+        getIndexData: '/home/index/getindexdata',
         newlist: []
       }
     },
@@ -44,8 +48,8 @@
         effect: 'fade',
         speed: 1000,
         loop: true,
-        observer:true,//修改swiper自己或子元素时，自动初始化swiper
-        observeParents:true,//修改swiper的父元素时，自动初始化swiper
+        observer: true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents: true,//修改swiper的父元素时，自动初始化swiper
         fade: {
           crossFade: true
         }

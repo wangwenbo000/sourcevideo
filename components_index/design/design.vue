@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="designNav"></div>
+    <div class="designBg"></div>
+    <div class="designNav ani" transition="fadeInDown"></div>
     <div class="design">
-      <div class="grid-item">graphic design</div>
       <div class="grid-item" v-for="d in designlist.data">
         <a v-link="{name:'graphiclist', params:{id:d.id}}">
         <span class="designCatagory">
@@ -30,12 +30,14 @@
       }
     },
     ready(){
-      var $grid=$('.design').imagesLoaded(function(){
+      var $grid=$('.design').imagesLoaded().progress(function(){
         $grid.masonry({
-          itemSelector: '.grid-item'
+          itemSelector: '.grid-item',
+          percentPosition: true,
+          gutter: 20
         });
-        $grid.masonry('reloadItems')
       });
+      $grid.masonry();
     },
     route: {
       activate(complete){

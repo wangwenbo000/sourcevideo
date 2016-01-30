@@ -6,7 +6,18 @@
         <small>联系我们</small>
       </h2>
       <div class="mailme">
+        Email:
+        <small>source_video@163.com</small>
       </div>
+      <div class="address">
+        Address:
+        <small>北京市朝阳区北苑城建N次方A座1305</small>
+      </div>
+      <div class="phone">
+        Tel:
+        <small>186-1119-8762</small>
+      </div>
+      <a v-link="{name:'joblist'}" @click="show = false" class="jobForU">职位空缺</a>
     </div>
     <a href="javascript:;" class="close" @click="show = false"></a>
   </div>

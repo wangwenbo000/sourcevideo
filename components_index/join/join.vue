@@ -4,7 +4,7 @@
     <div class="joinTop">
       <div class="left">
         <h1>Team
-          <small>索思团队</small>
+          <small>索斯团队</small>
         </h1>
       </div>
       <div class="center">
@@ -15,7 +15,7 @@
       </div>
     </div>
     <ul>
-      <li v-for="t in teamlist" @mouseenter="t.showCardInfo=true"
+      <li v-for="t in teamlist | orderBy 'order' 1" @mouseenter="t.showCardInfo=true"
           @mouseleave="t.showCardInfo=false">
 
         <a v-link="{name:'membercard',params:{id:t.id}}"><img :src="'/static/img/face/'+ t.face" class="gray">

@@ -4,6 +4,14 @@
   width: 1000px;
   margin: 140px auto;
   font-weight: 100;
+  .aboutBg{
+    position: fixed;
+    @include has20PX;
+    background: url("../static/globalBG.jpg") no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: -1;
+  }
   h1 {
     font-size: $font40;
     color: $linkColor;
@@ -38,12 +46,12 @@
   .teamBtn {
     display: block;
     width: 200px;
-    height: 60px;
-    margin: 20px auto 0 auto;
-    background: $linkColor;
+    height: 40px;
+    margin: 20px auto 0;
     text-align: center;
-    line-height: 60px;
-    color: $bodyBg;
+    line-height: 40px;
+    color: $linkColor;
+    border: 1px solid $linkColor;
     @include border-radius(50px);
   }
   .business {
@@ -66,6 +74,10 @@
       dd {
         margin: 0
       }
+    }
+    dl:nth-child(odd),dl:nth-child(even){
+      text-align: center;
+      line-height: 1.4;
     }
     dl:nth-child(odd) {
       margin: 20px 10px 0 20px;

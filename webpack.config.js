@@ -4,8 +4,8 @@ var ReplacePlugin=require('replace-webpack-plugin');
 module.exports={
   entry: {
     index: './components_index/app.js',
-    //admin:'./components_admin/admin.js',
-    //login:'./components_admin/login.js'
+    admin:'./components_admin/admin.js',
+    login:'./components_admin/login.js'
 
   },
   output: {
@@ -56,11 +56,11 @@ module.exports={
   plugins: [
     new ExtractTextPlugin('/static/css/[name].style.css'),
     //进入生产环境
-    //new webpack.DefinePlugin({
-    //  'process.env': {
-    //    NODE_ENV: '"production"'
-    //  }
-    //}),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false

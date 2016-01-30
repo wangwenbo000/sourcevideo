@@ -16,26 +16,61 @@ $mapHeight: 700px;
   font-weight: 100;
   @include transition-property(opacity);
   @include transition-duration(.3s);
-  @include shadowOnSides($mapWidth, $mapHeight, 10px, rgba(0, 0, 0, .4));
+  @include box-shadow(rgba(0, 0, 0, .4) 0 0 4px);
+  //@include shadowOnSides($mapWidth, $mapHeight, 10px, rgba(0, 0, 0, .4));
   #GDMap {
-    width: 100%;
     height: 100%;
+    position: absolute;
+    left: 330px;
+    right: 0;
   }
   .contactInfo {
-    width: 400px;
+    width: 330px;
     height: 100%;
     position: absolute;
     left: 0;
     bottom: 0;
     background: rgba(255, 255, 255, .8);
-    h2 {
+    h2, .mailme, .address, .phone {
       font-size: $font52;
       font-weight: 100;
       margin: 30px 0 0 40px;
+      color: $linkColor;
       small {
+        color: $bodyBg;
         font-size: $font40;
         display: block;
       }
+    }
+    .mailme {
+      small {
+        font-size: $font22;
+        font-weight: 400;
+      }
+    }
+    .address {
+      small {
+        font-size: $font16;
+        font-weight: 400;
+      }
+    }
+    .phone {
+      small {
+        font-size: $font32;
+        font-weight: 400;
+      }
+    }
+    .jobForU {
+      display: block;
+      width: 150px;
+      height: 60px;
+      text-align: center;
+      line-height: 60px;
+      border: 1px solid $bodyBg;
+      color: $bodyBg;
+      position: absolute;
+      left: 44px;
+      bottom: 110px;
     }
   }
 }

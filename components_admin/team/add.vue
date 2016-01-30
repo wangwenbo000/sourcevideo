@@ -29,6 +29,10 @@
           <input id="upload_face" name="face" type="file" multiple class="file-loading" accept="image/*">
           <small class="text-muted">请选择最新分类</small>
         </fieldset>
+        <fieldset class="form-group">
+          <label for="memberInfo">请输入该成员的介绍信息</label>
+          <textarea class="form-control" id="memberInfo" rows="5" v-model="input.memberinfo"></textarea>
+        </fieldset>
         <a class="btn btn-primary" @click="add">添加新成员</a>
       </form>
     </div>
@@ -40,7 +44,9 @@
   export default{
     data(){
       return {
-        input: {},
+        input: {
+          memberinfo:''
+        },
         fileInputConfig: {
           uploadUrl: "/admin/team/uploadcover",
           showCancel: false,

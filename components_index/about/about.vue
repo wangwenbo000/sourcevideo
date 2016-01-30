@@ -1,5 +1,6 @@
 <template>
   <div class="aboutCenter">
+    <div class="aboutBg"></div>
     <h1>Company Profile<small>公司简介</small></h1>
     <div class="ge"></div>
     <div class="contentLeft">

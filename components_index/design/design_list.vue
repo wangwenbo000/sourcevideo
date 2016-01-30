@@ -1,8 +1,8 @@
 <template>
   <div class="showGraphic">
-    <img :src="'./static/img/graphic/' + designInfo.graphic" >
+    <img :src="'./static/img/graphic/' + designInfo.graphic" transition="fadeInDown" class="ani">
     <a v-link="{name:'design'}" class="close"></a>
-    <div class="graphicInfo">
+    <div class="graphicInfo ani" transition="fadeInUp">
       <h2>{{designInfo.title}}</h2>
       <span>{{designInfo.catagory}}</span>
       <time>{{designInfo.date | dateTime}}</time>
