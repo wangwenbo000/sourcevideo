@@ -28,6 +28,7 @@
       activate(complete){
         this.$http.post(this.getDesignData, {id: complete.to.params.id}).then(response=>{
           this.$set('designInfo', response.data.data[0]);
+          Pace.restart();
           complete.next();
         })
       }

@@ -1,6 +1,7 @@
 .join{
   width: 1200px;
-  margin: 80px auto 30px auto;
+  margin: 80px auto 50px auto;
+  overflow: auto;
   .joinBg{
     position: fixed;
     background: #2b2b2b url("./img/join.jpg") no-repeat center;

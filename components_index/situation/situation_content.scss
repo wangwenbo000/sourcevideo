@@ -7,7 +7,10 @@
     font-size: $font32;
   }
   p {
-    line-height: 12px;
+    line-height:1.8;
+    img{
+      max-width: 100%;
+    }
   }
   hr {
     @include the1PX;

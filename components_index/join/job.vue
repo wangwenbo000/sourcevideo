@@ -27,6 +27,14 @@
         <!-- Add Scrollbar -->
         <div class="swiper-scrollbar"></div>
       </div>
+      <div class="jobInput">
+        <input type="text" name="name" placeholder="告诉我们您的大名" v-model="newJoberInfo.name"/>
+        <input type="text" name="phone" placeholder="您的手机号方便我面联系您" v-model="newJoberInfo.phoneNum"/>
+        <input type="text" name="mail" placeholder="您的邮箱" v-model="newJoberInfo.email">
+        <input type="text" name="position" placeholder="您招聘的职位" v-model="newJoberInfo.position">
+        <input type="text" name="compensation" placeholder="您期望的薪资" v-model="newJoberInfo.compensation">
+        <a href="javascript:;" @click="saveJob">发送信息</a>
+      </div>
     </div>
   </div>
 </template>
@@ -50,7 +58,9 @@
     data(){
       return {
         getJobListAPI: '/home/index/getjobdata',
-        joblist: {}
+        saveNewJoberInfo:'/home/index/savenewjoberinfo',
+        joblist: {},
+        newJoberInfo:{}
       }
     },
     filters: {
@@ -65,7 +75,16 @@
       activate(complete){
         this.$http.post(this.getJobListAPI).then(response=> {
           this.$set('joblist', response.data.data);
+          Pace.restart();
           complete.next();
+        })
+      }
+    },
+    methods:{
+      saveJob(){
+        this.newJoberInfo.date = moment().format('YYYY-MM-DD HH:mm:ss');
+        this.$http.post(this.saveNewJoberInfo,this.newJoberInfo).then(response=> {
+          console.log(response);
         })
       }
     }

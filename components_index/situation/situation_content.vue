@@ -6,7 +6,7 @@
         <time>{{newlist.date | dateTime}} / </time>
         <span class="catagory">{{newlist.catagory}}</span>
         <hr>
-        <p style="font-family:microsoft yahei; line-height:1.8;">{{{newlist.content}}}</p>
+        <p class="situationContent">{{{newlist.content}}}</p>
       </div>
     </div>
     <div class="swiper-scrollbar"></div>
@@ -35,6 +35,9 @@
         observer: true,//修改swiper自己或子元素时，自动初始化swiper
         observeParents: true,//修改swiper的父元素时，自动初始化swiper
       });
+      uParse('.situationContent', {
+        rootPath: '/static/js/ueditor/'
+      })
     },
     route: {
       activate(complete){

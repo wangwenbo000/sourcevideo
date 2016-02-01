@@ -43,6 +43,7 @@
       activate(complete){
         this.$http.post(this.getVideoData).then(response=>{
           this.$set('designlist', response.data.data);
+          Pace.restart();
           complete.next();
         })
       }

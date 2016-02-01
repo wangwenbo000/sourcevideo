@@ -54,4 +54,9 @@
   getmemberinfobyidAction = function () {var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee9() {var 
       model, 
       data;return _regenerator2.default.wrap(function _callee9$(_context9) {while (1) {switch (_context9.prev = _context9.next) {case 0:model = this.model('team');_context9.next = 3;return model.where({ id: this.post().id }).select();case 3:data = _context9.sent;
-              this.success(data);case 5:case 'end':return _context9.stop();}}}, _callee9, this);}));return function getmemberinfobyidAction() {return ref.apply(this, arguments);};}();return _class;}(_base2.default);exports.default = _class;
+              this.success(data);case 5:case 'end':return _context9.stop();}}}, _callee9, this);}));return function getmemberinfobyidAction() {return ref.apply(this, arguments);};}();_class.prototype.
+
+  savenewjoberinfoAction = function () {var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee10() {var 
+      model, 
+      insertId;return _regenerator2.default.wrap(function _callee10$(_context10) {while (1) {switch (_context10.prev = _context10.next) {case 0:model = this.model('applicant');_context10.next = 3;return model.add(this.post());case 3:insertId = _context10.sent;
+              this.success(insertId);case 5:case 'end':return _context10.stop();}}}, _callee10, this);}));return function savenewjoberinfoAction() {return ref.apply(this, arguments);};}();return _class;}(_base2.default);exports.default = _class;

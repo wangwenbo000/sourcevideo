@@ -56,4 +56,9 @@ export default class extends Base {
     let data = await model.where({id:this.post().id}).select();
     this.success(data);
   }
+  async savenewjoberinfoAction(){
+    let model = this.model('applicant');
+    let insertId = await model.add(this.post());
+    this.success(insertId);
+  }
 }
